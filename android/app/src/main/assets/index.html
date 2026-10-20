@@ -1,0 +1,4331 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#070914">
+  <meta name="description" content="GRE Quantitative Reasoning self-study lab with topic-by-topic formula lessons, practice quizzes, and an integrated rough-work whiteboard.">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="GRE Quant">
+  <link rel="manifest" href='data:application/manifest+json,{"name":"GRE Quant Lab","short_name":"GRE Quant","start_url":".","display":"standalone","background_color":"#070914","theme_color":"#070914"}'>
+  <title>GRE Quant Lab — Formulas, Lessons & Topic Quizzes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+  <style>
+/* ==========================================================================
+   GRE Quant Lab — Design System (Editorial & Intentional, Anti-Slop)
+   Crafted following taste-skill principles:
+   - Restrained palette (color strictly on data & state, not decorative neon chrome)
+   - Flat, architectural surfaces with crisp 1px hairlines (no heavy glowing blurs)
+   - Generous typographic rhythm, clear hierarchy and balanced whitespace
+   ========================================================================== */
+
+:root {
+  /* Dark Mode (Default) — Deep Obsidian / Slate */
+  --bg: #0b0d13;
+  --bg2: #12151f;
+  --surface: #161a26;
+  --surface2: #1c2132;
+  --surface-hover: #21273b;
+  --border: rgba(255, 255, 255, 0.08);
+  --border2: rgba(255, 255, 255, 0.15);
+  
+  --text: #f1f3f9;
+  --muted: #8e96ac;
+  --faint: #596179;
+
+  /* Primary Accent — Thoughtful Royal Indigo (Restrained, not neon) */
+  --accent: #4f46e5;
+  --accent-hover: #4338ca;
+  --accent-subtle: rgba(79, 70, 229, 0.12);
+  --accent-text: #818cf8;
+
+  /* State / Meaning Colors Only */
+  --good: #10b981;
+  --good-bg: rgba(16, 185, 129, 0.1);
+  --good-border: rgba(16, 185, 129, 0.35);
+  --bad: #f43f5e;
+  --bad-bg: rgba(244, 63, 94, 0.1);
+  --bad-border: rgba(244, 63, 94, 0.35);
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.2);
+  --shadow: 0 4px 16px -4px rgba(0, 0, 0, 0.35);
+  --shadow-lg: 0 12px 36px -8px rgba(0, 0, 0, 0.5);
+
+  --radius: 14px;
+  --radius-sm: 8px;
+  --radius-lg: 18px;
+
+  --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-h: 'Outfit', 'Inter', sans-serif;
+  --font-m: 'STIX Two Text', 'Cambria Math', Cambria, Georgia, serif;
+  
+  --wb-h: 52vh;
+  --wb-w: 44vw;
+
+  color-scheme: dark;
+}
+
+:root[data-theme="light"] {
+  /* Light Mode — Crisp Academic Paper */
+  --bg: #f8fafc;
+  --bg2: #f1f5f9;
+  --surface: #ffffff;
+  --surface2: #f8fafc;
+  --surface-hover: #f1f5f9;
+  --border: rgba(15, 23, 42, 0.08);
+  --border2: rgba(15, 23, 42, 0.16);
+
+  --text: #0f172a;
+  --muted: #475569;
+  --faint: #94a3b8;
+
+  --accent: #312e81;
+  --accent-hover: #1e1b4b;
+  --accent-subtle: rgba(49, 46, 129, 0.07);
+  --accent-text: #3730a3;
+
+  --good: #059669;
+  --good-bg: rgba(5, 150, 105, 0.08);
+  --good-border: rgba(5, 150, 105, 0.25);
+  --bad: #e11d48;
+  --bad-bg: rgba(225, 29, 72, 0.08);
+  --bad-border: rgba(225, 29, 72, 0.25);
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow: 0 4px 14px -3px rgba(15, 23, 42, 0.06);
+  --shadow-lg: 0 12px 30px -6px rgba(15, 23, 42, 0.1);
+
+  color-scheme: light;
+}
+
+/* ==========================================================================
+   Base & Reset
+   ========================================================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+}
+
+body {
+  font-family: var(--font);
+  background-color: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  line-height: 1.65;
+  font-size: 15px;
+  margin: 0;
+  padding: 0;
+  transition: background-color 0.25s ease;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+button, input, textarea, select {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  touch-action: manipulation;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+::selection {
+  background: rgba(79, 70, 229, 0.25);
+}
+
+/* ==========================================================================
+   Layout Architecture
+   ========================================================================== */
+.app {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 24px 120px;
+  overflow-x: hidden;
+  transition: margin 0.35s ease;
+}
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 24px;
+  margin: 0 -24px 20px;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-h);
+  font-weight: 700;
+  font-size: 1.05rem;
+  letter-spacing: -0.01em;
+}
+
+.brand-logo {
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
+  background: var(--surface2);
+  border: 1px solid var(--border2);
+  display: grid;
+  place-items: center;
+  font-family: var(--font-m);
+  font-style: italic;
+  font-weight: 600;
+  color: var(--text);
+  font-size: 1.15rem;
+}
+
+.brand small {
+  display: block;
+  font-family: var(--font);
+  font-weight: 500;
+  font-size: 0.72rem;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-top: -2px;
+}
+
+.spacer {
+  flex: 1;
+}
+
+.topbar-wb-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: var(--radius-sm);
+  background: var(--surface2);
+  border: 1px solid var(--border2);
+  color: var(--text);
+  font-weight: 600;
+  font-size: 0.88rem;
+  transition: all 0.15s ease;
+  cursor: pointer;
+  flex: none;
+}
+
+.topbar-wb-btn:hover {
+  background: var(--surface-hover);
+  border-color: var(--text);
+}
+
+.topbar-wb-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+.icon-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 9px;
+  display: grid;
+  place-items: center;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--muted);
+  transition: all 0.15s ease;
+}
+
+.icon-btn:hover {
+  background: var(--surface2);
+  border-color: var(--border2);
+  color: var(--text);
+}
+
+.icon-btn:active {
+  transform: scale(0.96);
+}
+
+.icon-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text);
+  white-space: nowrap;
+}
+
+/* ==========================================================================
+   Surfaces & Cards (Flat, Clear, Architectural)
+   ========================================================================== */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.fade-in {
+  animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ==========================================================================
+   Hero & Overview Stats
+   ========================================================================== */
+.hero {
+  padding: 32px 36px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 36px;
+  align-items: center;
+  margin-bottom: 32px;
+  background: var(--surface);
+  border: 1px solid var(--border2);
+}
+
+.hero h1 {
+  font-family: var(--font-h);
+  font-size: clamp(1.5rem, 3.8vw, 2.1rem);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+  margin-bottom: 8px;
+  color: var(--text);
+}
+
+.hero p {
+  color: var(--muted);
+  font-size: 0.95rem;
+  max-width: 58ch;
+  line-height: 1.6;
+}
+
+.ring {
+  position: relative;
+  width: 120px;
+  height: 120px;
+}
+
+.ring svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.ring .track {
+  stroke: var(--surface2);
+  fill: none;
+}
+
+.ring .bar {
+  fill: none;
+  stroke: var(--accent);
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ring-label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.ring-label b {
+  font-family: var(--font-h);
+  font-size: 1.65rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.ring-label span {
+  font-size: 0.68rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+}
+
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 18px 0 22px;
+}
+
+.stat {
+  padding: 8px 14px;
+  border-radius: var(--radius-sm);
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+.stat b {
+  display: block;
+  color: var(--text);
+  font-family: var(--font-h);
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+/* ==========================================================================
+   Buttons & Controls (Tactile & Grounded)
+   ========================================================================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  font-size: 0.92rem;
+  transition: background-color 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
+  user-select: none;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn-primary {
+  background: var(--text);
+  color: var(--bg);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-primary:hover {
+  opacity: 0.92;
+}
+
+.btn-ghost {
+  background: var(--surface);
+  border: 1px solid var(--border2);
+  color: var(--text);
+}
+
+.btn-ghost:hover {
+  background: var(--surface2);
+  border-color: var(--text);
+}
+
+.btn-good {
+  background: var(--good);
+  color: #ffffff;
+}
+
+.btn-good:hover {
+  opacity: 0.92;
+}
+
+.btn[disabled] {
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+.btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+/* ==========================================================================
+   Chapters & Topic Cards
+   ========================================================================== */
+.chapter {
+  margin: 36px 0 16px;
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.chapter h2 {
+  font-family: var(--font-h);
+  font-size: 1.18rem;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  color: var(--text);
+}
+
+.chapter span {
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.chapter::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 14px;
+}
+
+.tcard {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tcard:hover {
+  border-color: var(--border2);
+  background: var(--surface-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+}
+
+.tcard-top {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+
+.ticon {
+  width: 42px;
+  height: 42px;
+  flex: none;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  font-size: 1.25rem;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+}
+
+.tcard h3 {
+  font-family: var(--font-h);
+  font-size: 1.02rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.tcard .num {
+  font-size: 0.7rem;
+  color: var(--faint);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.tcard p {
+  font-size: 0.85rem;
+  color: var(--muted);
+  line-height: 1.5;
+  flex: 1;
+}
+
+.pbar {
+  height: 4px;
+  border-radius: 2px;
+  background: var(--surface2);
+  overflow: hidden;
+}
+
+.pbar i {
+  display: block;
+  height: 100%;
+  border-radius: 2px;
+  background: var(--accent);
+  transition: width 0.6s ease;
+}
+
+.tmeta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.78rem;
+  color: var(--muted);
+  gap: 8px;
+  padding-top: 4px;
+}
+
+.badge {
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 6px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  color: var(--muted);
+}
+
+.badge.ok {
+  color: var(--good);
+  background: var(--good-bg);
+  border-color: var(--good-border);
+}
+
+.badge.go {
+  color: var(--accent-text);
+  background: var(--accent-subtle);
+  border-color: transparent;
+}
+
+/* ==========================================================================
+   Topic Header & Navigation Tabs
+   ========================================================================== */
+.thead {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 8px 0 24px;
+}
+
+.crumb {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 0.88rem;
+  font-weight: 500;
+  width: max-content;
+}
+
+.crumb:hover {
+  color: var(--text);
+}
+
+.thead h1 {
+  font-family: var(--font-h);
+  font-size: clamp(1.5rem, 4vw, 2.1rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+
+.tabs {
+  display: inline-flex;
+  padding: 4px;
+  border-radius: 10px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  gap: 4px;
+  width: max-content;
+  max-width: 100%;
+}
+
+.tab {
+  padding: 8px 18px;
+  border-radius: 7px;
+  font-weight: 600;
+  font-size: 0.88rem;
+  color: var(--muted);
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  transition: all 0.15s ease;
+}
+
+.tab:hover {
+  color: var(--text);
+}
+
+.tab.active {
+  background: var(--surface2);
+  border: 1px solid var(--border2);
+  color: var(--text);
+}
+
+.tab small {
+  font-size: 0.72rem;
+  opacity: 0.8;
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   Lesson Content & Academic Math Typography
+   ========================================================================== */
+.lesson {
+  padding: clamp(24px, 4.5vw, 40px);
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+
+.lesson h3 {
+  font-family: var(--font-h);
+  font-size: 1.22rem;
+  font-weight: 700;
+  margin: 32px 0 12px;
+  color: var(--text);
+  letter-spacing: -0.015em;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.lesson h3:first-child {
+  margin-top: 0;
+}
+
+.lesson p {
+  margin: 12px 0;
+  color: var(--text);
+  font-size: 0.98rem;
+  line-height: 1.7;
+}
+
+.lesson ul, .lesson ol {
+  margin: 12px 0 16px 24px;
+}
+
+.lesson li {
+  margin: 8px 0;
+  line-height: 1.65;
+}
+
+.lesson li::marker {
+  color: var(--muted);
+}
+
+/* Clean, Scholarly Callouts */
+.box {
+  border-radius: var(--radius-sm);
+  padding: 18px 22px;
+  margin: 20px 0;
+  border: 1px solid var(--border2);
+  position: relative;
+}
+
+.box-t {
+  font-family: var(--font-h);
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.box.formula {
+  background: var(--surface2);
+  border-left: 3px solid var(--text);
+}
+
+.box.formula .box-t {
+  color: var(--text);
+}
+
+.box.tip {
+  background: var(--accent-subtle);
+  border-left: 3px solid var(--accent);
+}
+
+.box.tip .box-t {
+  color: var(--accent-text);
+}
+
+.box.note {
+  background: var(--surface2);
+  border-left: 3px solid var(--muted);
+}
+
+.box.note .box-t {
+  color: var(--muted);
+}
+
+.box .big {
+  font-size: 1.25rem;
+  text-align: center;
+  padding: 10px 0;
+}
+
+/* Worked Examples Accordion */
+details.ex {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  margin: 18px 0;
+  background: var(--surface2);
+  overflow: hidden;
+  transition: border-color 0.2s ease;
+}
+
+details.ex[open] {
+  border-color: var(--border2);
+}
+
+details.ex summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 16px 18px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px 14px;
+  align-items: center;
+}
+
+details.ex summary::-webkit-details-marker {
+  display: none;
+}
+
+.ex-t {
+  grid-column: 1 / -1;
+  font-family: var(--font-h);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.ex-q {
+  font-weight: 500;
+  font-size: 0.96rem;
+  line-height: 1.5;
+}
+
+.ex-btn {
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 6px;
+  background: var(--surface);
+  border: 1px solid var(--border2);
+  color: var(--text);
+  white-space: nowrap;
+}
+
+details.ex[open] .ex-btn {
+  background: var(--border);
+  color: var(--muted);
+}
+
+.ex-s {
+  padding: 6px 18px 18px;
+  border-top: 1px solid var(--border);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+.lesson-end {
+  margin-top: 36px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* ==========================================================================
+   Math Typography Engine
+   ========================================================================== */
+.m {
+  font-family: var(--font-m);
+  font-size: 1.08em;
+  white-space: nowrap;
+  letter-spacing: 0.01em;
+}
+
+.m i {
+  font-style: italic;
+}
+
+.m .o {
+  padding: 0 0.22em;
+}
+
+.m sup, .m sub {
+  font-size: 0.75em;
+  line-height: 0;
+}
+
+.fr {
+  display: inline-flex;
+  flex-direction: column;
+  vertical-align: middle;
+  text-align: center;
+  font-size: 0.9em;
+  margin: 0 0.15em;
+  line-height: 1.15;
+}
+
+.fr > .fn {
+  border-bottom: 1.3px solid currentColor;
+  padding: 0 0.2em 0.05em;
+}
+
+.fr > .fd {
+  padding: 0.05em 0.2em 0;
+}
+
+.sq {
+  white-space: nowrap;
+}
+
+.sq .sqc {
+  border-top: 1.3px solid currentColor;
+  padding: 0 0.12em;
+  margin-left: 0.04em;
+  display: inline-block;
+  line-height: 1.2;
+}
+
+.sq .ri {
+  font-size: 0.6em;
+  vertical-align: 0.7em;
+  margin-right: -0.32em;
+}
+
+.txt {
+  font-family: var(--font);
+  font-size: 0.92em;
+}
+
+/* ==========================================================================
+   Quiz Screen (Clean, Focused, GRE Exam Feel)
+   ========================================================================== */
+.qwrap {
+  display: grid;
+  gap: 16px;
+}
+
+.qhead {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding-bottom: 4px;
+}
+
+.qhead .count {
+  font-family: var(--font-h);
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+
+.qhead .count small {
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.dots {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.dot {
+  width: 32px;
+  height: 32px;
+  border-radius: 7px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  display: grid;
+  place-items: center;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--muted);
+  transition: all 0.15s ease;
+}
+
+.dot:hover {
+  border-color: var(--border2);
+  color: var(--text);
+}
+
+.dot.ok {
+  background: var(--good-bg);
+  color: var(--good);
+  border-color: var(--good-border);
+}
+
+.dot.no {
+  background: var(--bad-bg);
+  color: var(--bad);
+  border-color: var(--bad-border);
+}
+
+.dot.cur {
+  border-color: var(--text);
+  color: var(--text);
+  background: var(--surface2);
+  font-weight: 700;
+}
+
+.qcard {
+  padding: clamp(24px, 4.5vw, 36px);
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+
+.q-tag {
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 14px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.q-body {
+  font-size: 1.08rem;
+  line-height: 1.75;
+  margin-bottom: 24px;
+  color: var(--text);
+}
+
+.opts {
+  display: grid;
+  gap: 10px;
+}
+
+.opt {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  text-align: left;
+  padding: 14px 18px;
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+  font-size: 1rem;
+}
+
+.opt:hover:not([disabled]) {
+  border-color: var(--border2);
+  background: var(--surface2);
+}
+
+.opt:active:not([disabled]) {
+  transform: scale(0.99);
+}
+
+.opt .L {
+  flex: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  font-size: 0.82rem;
+  background: var(--surface2);
+  border: 1px solid var(--border2);
+  color: var(--muted);
+  transition: all 0.15s ease;
+}
+
+.opt.sel {
+  border-color: var(--text);
+  background: var(--surface2);
+}
+
+.opt.sel .L {
+  background: var(--text);
+  color: var(--bg);
+  border-color: transparent;
+}
+
+.opt.right {
+  border-color: var(--good);
+  background: var(--good-bg);
+}
+
+.opt.right .L {
+  background: var(--good);
+  color: #ffffff;
+  border-color: transparent;
+}
+
+.opt.wrong {
+  border-color: var(--bad);
+  background: var(--bad-bg);
+}
+
+.opt.wrong .L {
+  background: var(--bad);
+  color: #ffffff;
+  border-color: transparent;
+}
+
+.opt[disabled] {
+  cursor: default;
+}
+
+.numin {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.numin input {
+  flex: 1;
+  min-width: 160px;
+  max-width: 260px;
+  padding: 12px 16px;
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  border: 1.5px solid var(--border2);
+  font-size: 1.1rem;
+  font-family: var(--font-m);
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+
+.numin input:focus {
+  border-color: var(--text);
+}
+
+.numin input.right {
+  border-color: var(--good);
+  background: var(--good-bg);
+}
+
+.numin input.wrong {
+  border-color: var(--bad);
+  background: var(--bad-bg);
+}
+
+.numin .hint {
+  font-size: 0.82rem;
+  color: var(--muted);
+  width: 100%;
+}
+
+.verdict {
+  margin-top: 22px;
+  border-radius: var(--radius-sm);
+  padding: 18px 20px;
+  border: 1px solid;
+  animation: fadeIn 0.25s ease both;
+}
+
+.verdict.ok {
+  background: var(--good-bg);
+  border-color: var(--good-border);
+}
+
+.verdict.no {
+  background: var(--bad-bg);
+  border-color: var(--bad-border);
+}
+
+.verdict h4 {
+  font-family: var(--font-h);
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.verdict.ok h4 {
+  color: var(--good);
+}
+
+.verdict.no h4 {
+  color: var(--bad);
+}
+
+.verdict .exp {
+  font-size: 0.96rem;
+  line-height: 1.7;
+}
+
+.qnav {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 26px;
+  flex-wrap: wrap;
+}
+
+.kbd-hint {
+  font-size: 0.78rem;
+  color: var(--faint);
+  text-align: center;
+  margin-top: 10px;
+}
+
+/* ==========================================================================
+   Results Screen
+   ========================================================================== */
+.results {
+  padding: 36px;
+  text-align: center;
+  display: grid;
+  gap: 18px;
+  justify-items: center;
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+
+.results h2 {
+  font-family: var(--font-h);
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.results p {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.results .ring {
+  width: 140px;
+  height: 140px;
+}
+
+/* ==========================================================================
+   Formula Sheet View
+   ========================================================================== */
+.fs-topic {
+  margin-bottom: 20px;
+  padding: 24px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+
+.fs-topic h3 {
+  font-family: var(--font-h);
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.fs-topic h3 a {
+  font-size: 0.8rem;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.fs-topic h3 a:hover {
+  color: var(--text);
+}
+
+/* ==========================================================================
+   Whiteboard / Scratchpad (Overlay Modal & Bottom Sheet)
+   ========================================================================== */
+.fab {
+  position: fixed !important;
+  right: 20px !important;
+  bottom: calc(20px + env(safe-area-inset-bottom, 0px)) !important;
+  z-index: 800 !important;
+  height: 48px !important;
+  padding: 0 18px 0 14px !important;
+  border-radius: 24px !important;
+  background: var(--text) !important;
+  color: var(--bg) !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  font-weight: 600 !important;
+  font-size: 0.9rem !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45) !important;
+  border: 1px solid var(--border2) !important;
+  cursor: pointer !important;
+  transition: transform 0.2s ease, opacity 0.2s ease !important;
+}
+
+.fab:hover {
+  transform: translateY(-2px) !important;
+}
+
+.fab svg {
+  width: 18px;
+  height: 18px;
+}
+
+body.wb-open .fab {
+  opacity: 0 !important;
+  pointer-events: none !important;
+  transform: scale(0.9) !important;
+}
+
+/* Rock-Solid Viewport-Locked Whiteboard Modal */
+.wb-overlay {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  z-index: 9999 !important;
+  display: none !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+  padding: 14px !important;
+  box-sizing: border-box !important;
+}
+
+body.wb-open .wb-overlay {
+  display: flex !important;
+}
+
+.wb-backdrop {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  background: rgba(4, 6, 14, 0.78) !important;
+  z-index: 1 !important;
+  cursor: pointer !important;
+}
+
+.wb {
+  position: relative !important;
+  z-index: 10 !important;
+  width: 100% !important;
+  max-width: 900px !important;
+  height: 84vh !important;
+  min-height: 440px !important;
+  max-height: 94vh !important;
+  background: #0f121d !important;
+  border: 1px solid var(--border2) !important;
+  border-radius: var(--radius-lg) !important;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.85) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  overflow: hidden !important;
+  box-sizing: border-box !important;
+  touch-action: none !important;
+  transform: none !important;
+  margin: auto !important;
+}
+
+:root[data-theme="light"] .wb {
+  background: #ffffff !important;
+}
+
+.wb-handle {
+  display: none !important;
+}
+
+.wb-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 16px 12px;
+  overflow-x: auto;
+  flex: none;
+  scrollbar-width: none;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-x;
+}
+
+.wb-bar::-webkit-scrollbar {
+  display: none;
+}
+
+.wb-title {
+  font-family: var(--font-h);
+  font-weight: 700;
+  font-size: 0.88rem;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-right: 4px;
+  color: var(--text);
+}
+
+.wb-title small {
+  color: var(--muted);
+  font-weight: 500;
+  font-family: var(--font);
+  max-width: 140px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.wb-sep {
+  width: 1px;
+  height: 24px;
+  background: var(--border2);
+  flex: none;
+}
+
+.tool {
+  flex: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 7px;
+  display: grid;
+  place-items: center;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--muted);
+  transition: all 0.15s ease;
+}
+
+.tool svg {
+  width: 18px;
+  height: 18px;
+}
+
+.tool:hover {
+  border-color: var(--border2);
+  color: var(--text);
+}
+
+.tool.active {
+  background: var(--text);
+  color: var(--bg);
+  border-color: transparent;
+}
+
+.swatch {
+  flex: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid var(--border2);
+  transition: transform 0.15s ease;
+}
+
+.swatch.active {
+  transform: scale(1.15);
+  box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--text);
+}
+
+.size-ctl {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 10px;
+  border-radius: 7px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  height: 36px;
+}
+
+.size-ctl input[type=range] {
+  width: 90px;
+  accent-color: var(--text);
+}
+
+.size-prev {
+  width: 24px;
+  height: 24px;
+  display: grid;
+  place-items: center;
+}
+
+.size-prev i {
+  display: block;
+  border-radius: 50%;
+  background: var(--text);
+  transition: all 0.1s ease;
+}
+
+.size-val {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--muted);
+  min-width: 20px;
+  text-align: right;
+}
+
+.wb-stage {
+  position: relative !important;
+  flex: 1 1 300px !important;
+  min-height: 240px !important;
+  margin: 0 14px 14px !important;
+  border-radius: var(--radius-sm) !important;
+  overflow: hidden !important;
+  border: 1px solid var(--border2) !important;
+  touch-action: none !important;
+  -webkit-touch-callout: none !important;
+  -webkit-user-select: none !important;
+  user-select: none !important;
+  box-sizing: border-box !important;
+}
+
+.wb-stage.dark {
+  background-color: #0c0e16;
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.wb-stage.paper {
+  background-color: #fcfcfb;
+  background-image: 
+    linear-gradient(rgba(15, 23, 42, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15, 23, 42, 0.04) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.wb-stage canvas {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  touch-action: none !important;
+  -webkit-touch-callout: none !important;
+  -webkit-user-select: none !important;
+  user-select: none !important;
+  cursor: crosshair !important;
+  display: block !important;
+}
+
+.wb-stage.erasing canvas {
+  cursor: cell !important;
+}
+
+.wb-empty {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  pointer-events: none !important;
+  color: var(--faint) !important;
+  font-size: 0.85rem !important;
+  text-align: center !important;
+  padding: 20px !important;
+  box-sizing: border-box !important;
+  transition: opacity 0.3s ease !important;
+}
+
+@media (min-width: 768px) {
+  .wb-overlay {
+    justify-content: center !important;
+    align-items: center !important;
+    padding: 24px !important;
+    box-sizing: border-box !important;
+  }
+  .wb {
+    width: 92% !important;
+    max-width: 880px !important;
+    height: 82vh !important;
+    min-height: 480px !important;
+    max-height: 90vh !important;
+    border: 1px solid var(--border2) !important;
+    border-radius: var(--radius-lg) !important;
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.8) !important;
+    transform: none !important;
+    padding-bottom: 0 !important;
+    margin: auto !important;
+  }
+  body.wb-open .wb {
+    transform: none !important;
+  }
+  .wb-handle {
+    display: none !important;
+  }
+  .wb-bar {
+    padding-top: 14px;
+    flex-wrap: wrap;
+    overflow: visible;
+  }
+}
+
+/* Fullscreen expansion mode on any device */
+.wb.expanded {
+  width: 96% !important;
+  width: calc(100% - 24px) !important;
+  max-width: none !important;
+  height: 94vh !important;
+  height: calc(100vh - 24px) !important;
+  max-height: none !important;
+  border-radius: var(--radius-lg) !important;
+  margin: auto !important;
+  transform: scale(1) !important;
+}
+
+/* ==========================================================================
+   Modals & Notifications
+   ========================================================================== */
+.modal-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 80;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  box-sizing: border-box;
+  animation: fadeIn 0.15s ease;
+}
+
+.modal {
+  width: min(520px, 100%);
+  max-height: 88vh;
+  overflow: auto;
+  padding: 28px;
+  background: var(--surface);
+  border: 1px solid var(--border2);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+}
+
+.modal h2 {
+  font-family: var(--font-h);
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.modal h4 {
+  font-family: var(--font-h);
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin: 20px 0 8px;
+}
+
+.modal p {
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.modal textarea {
+  width: 100%;
+  min-height: 85px;
+  margin-top: 8px;
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  background: var(--surface2);
+  border: 1px solid var(--border2);
+  font-family: monospace;
+  font-size: 0.78rem;
+  resize: vertical;
+}
+
+.switch-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: calc(24px + env(safe-area-inset-bottom));
+  transform: translateX(-50%) translateY(16px);
+  z-index: 90;
+  padding: 10px 18px;
+  border-radius: var(--radius-sm);
+  background: var(--surface2);
+  border: 1px solid var(--border2);
+  color: var(--text);
+  font-size: 0.88rem;
+  font-weight: 500;
+  box-shadow: var(--shadow-lg);
+  opacity: 0;
+  transition: all 0.25s ease;
+  pointer-events: none;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  max-width: 90vw;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%);
+  pointer-events: auto;
+}
+
+.toast button {
+  color: var(--accent-text);
+  font-weight: 700;
+}
+
+body.wb-open .toast {
+  bottom: calc(var(--wb-h) + 16px);
+}
+
+@media (min-width: 1024px) {
+  body.wb-open .toast {
+    bottom: 24px;
+  }
+}
+
+.footer {
+  color: var(--faint);
+  font-size: 0.8rem;
+  text-align: center;
+  margin-top: 48px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+}
+
+/* ==========================================================================
+   Mobile Responsive Refinements
+   ========================================================================== */
+@media (max-width: 640px) {
+  .app {
+    padding: 0 16px 120px;
+  }
+  .topbar {
+    padding: 14px 16px;
+    margin: 0 -16px 16px;
+  }
+  .hero {
+    grid-template-columns: 1fr;
+    text-align: center;
+    justify-items: center;
+    padding: 24px 20px;
+    gap: 20px;
+  }
+  .stats {
+    justify-content: center;
+  }
+  .hero .btn-row {
+    justify-content: center;
+  }
+  .fab span {
+    display: none;
+  }
+  .fab {
+    padding: 0;
+    width: 50px;
+    height: 50px;
+    justify-content: center;
+    border-radius: 50%;
+  }
+  .q-body {
+    font-size: 1.02rem;
+  }
+  .brand small {
+    display: none;
+  }
+  .topbar-wb-btn span {
+    display: none;
+  }
+  .topbar-wb-btn {
+    padding: 0;
+    width: 38px;
+    height: 38px;
+    justify-content: center;
+  }
+  .wb-stage {
+    margin: 0 10px 10px;
+  }
+  .wb-bar {
+    padding: 0 10px 8px;
+    gap: 6px;
+  }
+  .wb-title small {
+    display: none;
+  }
+  .size-ctl input[type=range] {
+    width: 65px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+  </style>
+</head>
+<body>
+  <div class="app">
+    <!-- Sticky top navigation bar -->
+    <header class="topbar">
+      <a class="brand" href="#/" title="GRE Quant Lab Home">
+        <div class="brand-logo">∑</div>
+        <div>
+          GRE Quant Lab
+          <small>Topic-wise prep</small>
+        </div>
+      </a>
+      <span class="spacer"></span>
+      <button class="topbar-wb-btn" id="topbarWbBtn" title="Rough work whiteboard" aria-label="Rough work whiteboard">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 20h9"></path>
+          <path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"></path>
+        </svg>
+        <span>Rough work</span>
+      </button>
+      <button class="icon-btn" id="themeBtn" title="Toggle dark/light theme" aria-label="Toggle theme">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+      </button>
+      <button class="icon-btn" id="settingsBtn" title="Settings, backup & mobile sync" aria-label="Settings">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="3"></circle>
+          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+        </svg>
+      </button>
+    </header>
+
+    <!-- Main dynamic view container -->
+    <main id="view"></main>
+  </div>
+
+  <!-- Floating action button for whiteboard -->
+  <button class="fab" id="fab" title="Open rough work whiteboard" aria-label="Open rough work whiteboard">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 20h9"></path>
+      <path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"></path>
+    </svg>
+    <span>Rough work</span>
+  </button>
+
+  <!-- Whiteboard Overlay Modal (Guaranteed Viewport Container) -->
+  <div class="wb-overlay" id="wbOverlay" role="dialog" aria-modal="true" aria-label="Rough work whiteboard">
+    <div class="wb-backdrop" id="wbBackdrop"></div>
+    <aside class="wb" id="wb"></aside>
+  </div>
+
+  <!-- Toast notification -->
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <!-- Self-contained app scripts -->
+  <script>
+/* ===== GRE Quant Lab — core globals (loaded before data files) ===== */
+'use strict';
+// R`...` keeps backslashes literal so math can be written TeX-style: R`\(\frac{a}{b}\)`
+const R = String.raw;
+const TOPICS = [];
+const CHAPTERS = [
+  { id: 'alg', name: 'Algebra', sub: 'Equations, inequalities, exponents & functions' },
+  { id: 'ari', name: 'Arithmetic', sub: 'Numbers, fractions, factors & sequences' },
+  { id: 'wp', name: 'Word Problems', sub: 'Percent, rates, interest, ratios & sets' },
+  { id: 'da', name: 'Data Analysis', sub: 'Statistics, counting & probability' },
+  { id: 'geo', name: 'Geometry', sub: 'Coordinates, shapes & solids' }
+];
+/*
+  Topic format:
+  { id, ch, icon, title, desc, learn: R`html with <F t="..">formula</F>, <TIP>, <NOTE>, <EX t="..">q<SOL>solution</EX>, <BIG>`,
+    quiz: [ { q, o:[correct, wrong, ...], e }            // multiple choice, first option is correct (shuffled on display)
+          | { q, o:[...], a:idx, fix:1, e }               // fixed order, a = correct index
+          | { q, n:'value', e } ] }                       // numeric entry
+*/
+
+
+/* ===== GRE Quant Lab — Algebra Topics ===== */
+'use strict';
+
+// 1. Linear Equations (1 & 2 Variables)
+TOPICS.push({
+  id: 'lineq',
+  ch: 'alg',
+  icon: '⚖️',
+  title: 'Linear Equations',
+  desc: 'Single-variable equations, simultaneous systems, word problems & substitution shortcuts.',
+  learn: R`
+<h3>Single-Variable Linear Equations</h3>
+<p>A linear equation in one variable has the standard form \(ax + b = c\) where \(a \ne 0\). The goal is always to isolate the variable by applying inverse operations to both sides.</p>
+
+<F t="Solving Strategy">
+<ol>
+  <li><b>Clear fractions / parentheses:</b> Multiply by the LCD if fractions exist, or expand brackets.</li>
+  <li><b>Collect variable terms:</b> Move all terms with the variable to one side, constants to the other.</li>
+  <li><b>Isolate:</b> Divide by the variable's coefficient.</li>
+</ol>
+</F>
+
+<EX t="Age Problem">
+Peter's age 10 years from now will be twice his current age. How old is Peter today?
+<SOL>
+Let Peter's current age be \(p\).<br>
+Equation: \(p + 10 = 2p\)<br>
+Subtract \(p\) from both sides: \(10 = p\).<br>
+Peter is <b>10 years old</b>.
+</SOL>
+</EX>
+
+<h3>Two-Variable Systems & Word Problems</h3>
+<p>When two unknown quantities are linked by two equations, you can solve using <b>elimination</b> or <b>substitution</b>. On the GRE, setting up a single variable using a total is often much faster!</p>
+
+<TIP>
+<b>One-Variable Shortcut for Mixture & Count Problems:</b><br>
+If you have a total of \(10\) items consisting of pens at \(\$5\) and pencils at \(\$4\), total cost \(\$44\):<br>
+Let pens \(= p\), then pencils \(= (10 - p)\).<br>
+\(5p + 4(10 - p) = 44 \Rightarrow p + 40 = 44 \Rightarrow p = 4\). (Much faster than a \(2 \times 2\) system!)
+</TIP>
+
+<EX t="Ratio & Divisibility Trick">
+Adam received \(\frac{1}{3}\) more votes than Peter. If the total votes were an integer, which of the following could be the total number of votes? (12, 13, 14, 15, 16)
+<SOL>
+Let Peter's votes be \(P\). Adam has \(P + \frac{1}{3}P = \frac{4}{3}P\).<br>
+Total votes \(= P + \frac{4}{3}P = \frac{7}{3}P\).<br>
+Since votes must be integers, \(P\) must be a multiple of \(3\), which makes Total a <b>multiple of 7</b>.<br>
+Among the choices, only <b>14</b> is divisible by 7!
+</SOL>
+</EX>
+`,
+  quiz: [
+    {
+      q: R`Solve for \(x\): \(7x + 23 = 2(x + 4)\)`,
+      o: [R`\(-3\)`, R`\(3\)`, R`\(-5\)`, R`\(5\)`, R`\(-1\)`],
+      e: R`Expand: \(7x + 23 = 2x + 8\). Subtract \(2x\): \(5x + 23 = 8\). Subtract 23: \(5x = -15 \Rightarrow x = -3\).`
+    },
+    {
+      q: R`Solve for \(x\): \(2(5x - 2) = 3[2(x + 1) + 14]\)`,
+      o: [R`\(13\)`, R`\(11\)`, R`\(15\)`, R`\(9\)`, R`\(17\)`],
+      e: R`Expand inner brackets: \(2(5x - 2) = 3[2x + 16]\).<br>Expand: \(10x - 4 = 6x + 48\).<br>Subtract \(6x\): \(4x - 4 = 48 \Rightarrow 4x = 52 \Rightarrow x = 13\).`
+    },
+    {
+      q: R`Harry, 15 years from now, will be 3 times as old as he was 5 years ago. How old is Harry today?`,
+      o: [R`\(15\)`, R`\(20\)`, R`\(25\)`, R`\(12\)`, R`\(10\)`],
+      e: R`Let Harry's age be \(h\).<br>\(h + 15 = 3(h - 5) \Rightarrow h + 15 = 3h - 15 \Rightarrow 2h = 30 \Rightarrow h = 15\).`
+    },
+    {
+      q: R`Adam spent \(\$17.10\) on fruit. He bought 3 apples at \(\$1.50\) each, 2 mangoes at \(\$1.35\) each, and the rest were 9 guavas. What is the combined cost of 2 apples and 1 guava?`,
+      o: [R`\(\$4.10\)`, R`\(\$3.90\)`, R`\(\$4.50\)`, R`\(\$4.20\)`, R`\(\$3.80\)`],
+      e: R`Apples: \(3 \times 1.50 = \$4.50\). Mangoes: \(2 \times 1.35 = \$2.70\).<br>Spent on apples & mangoes \(= 4.50 + 2.70 = \$7.20\).<br>Remaining for 9 guavas \(= 17.10 - 7.20 = \$9.90 \Rightarrow\) each guava \(= \$1.10\).<br>2 apples \((2 \times 1.50 = 3.00) + 1\) guava \((1.10) = \$4.10\).`
+    },
+    {
+      q: R`A water tank is \(\frac{3}{8}\) full. When 3 gallons of water are added, it becomes \(\frac{1}{2}\) full. What is the total capacity of the tank in gallons?`,
+      o: [R`\(24\)`, R`\(18\)`, R`\(32\)`, R`\(20\)`, R`\(16\)`],
+      e: R`Let capacity be \(C\).<br>\(\frac{1}{2}C - \frac{3}{8}C = 3 \Rightarrow \frac{4}{8}C - \frac{3}{8}C = \frac{1}{8}C = 3 \Rightarrow C = 24\) gallons.`
+    },
+    {
+      q: R`A student bought 7 books (textbooks at \(\$5\) each and notebooks at \(\$4\) each) for a total of \(\$31\). How many textbooks did they buy?`,
+      o: [R`\(3\)`, R`\(4\)`, R`\(2\)`, R`\(5\)`, R`\(1\)`],
+      e: R`Let textbooks \(= t\), notebooks \(= 7 - t\).<br>\(5t + 4(7 - t) = 31 \Rightarrow t + 28 = 31 \Rightarrow t = 3\).`
+    },
+    {
+      q: R`Peter is 10 years older than Adam. 5 years ago, Peter was twice as old as Adam. How old is Peter today?`,
+      o: [R`\(25\)`, R`\(15\)`, R`\(30\)`, R`\(20\)`, R`\(35\)`],
+      e: R`Let Adam's age today be \(A\). Then Peter is \(A + 10\).<br>5 years ago: Peter was \(A + 5\), Adam was \(A - 5\).<br>\(A + 5 = 2(A - 5) \Rightarrow A + 5 = 2A - 10 \Rightarrow A = 15\).<br>Peter's age today \(= 15 + 10 = 25\).`
+    },
+    {
+      q: R`Peter and John together weigh 75 kg. Peter weighs 15 kg less than twice John's weight. How much does Peter weigh?`,
+      o: [R`\(45\text{ kg}\)`, R`\(30\text{ kg}\)`, R`\(50\text{ kg}\)`, R`\(40\text{ kg}\)`, R`\(35\text{ kg}\)`],
+      e: R`\(P + J = 75\) and \(P = 2J - 15\).<br>Substitute: \((2J - 15) + J = 75 \Rightarrow 3J = 90 \Rightarrow J = 30\text{ kg}\).<br>\(P = 75 - 30 = 45\text{ kg}\).`
+    },
+    {
+      q: R`A snack stall sells single sandwiches for \(\$1\) and double sandwiches for \(\$2\). On a certain day, 125 sandwiches were sold for a total revenue of \(\$200\). How many double sandwiches were sold?`,
+      o: [R`\(75\)`, R`\(50\)`, R`\(65\)`, R`\(80\)`, R`\(70\)`],
+      e: R`Let double sandwiches \(= d\), single \(= 125 - d\).<br>\(1(125 - d) + 2d = 200 \Rightarrow 125 + d = 200 \Rightarrow d = 75\).`
+    },
+    {
+      q: R`Victoria has 50 chocolates packed in 5-piece and 10-piece boxes. She has 4 more 5-piece boxes than 10-piece boxes. How many 10-piece boxes does she have?`,
+      o: [R`\(2\)`, R`\(3\)`, R`\(4\)`, R`\(1\)`, R`\(5\)`],
+      e: R`Let 10-piece boxes \(= x\), then 5-piece boxes \(= x + 4\).<br>\(10x + 5(x + 4) = 50 \Rightarrow 15x + 20 = 50 \Rightarrow 15x = 30 \Rightarrow x = 2\).`
+    },
+    {
+      q: R`John has an equal number of nickels (\(\$0.05\)) and quarters (\(\$0.25\)). If their combined value is \(\$9.00\), what is the total number of coins he has?`,
+      o: [R`\(60\)`, R`\(30\)`, R`\(45\)`, R`\(50\)`, R`\(75\)`],
+      e: R`Let \(n\) be the number of nickels (and quarters).<br>\(0.05n + 0.25n = 9.00 \Rightarrow 0.30n = 9 \Rightarrow n = 30\).<br>Total coins \(= n + n = 60\).`
+    },
+    {
+      q: R`If \(a + b = 15\), \(b + c = 10\), and \(a + c = 10\), what is the value of \(a + b + c\)?`,
+      o: [R`\(17.5\)`, R`\(15\)`, R`\(20\)`, R`\(18\)`, R`\(16.5\)`],
+      e: R`Sum all three equations: \((a+b) + (b+c) + (a+c) = 15 + 10 + 10 = 35\).<br>\(2(a + b + c) = 35 \Rightarrow a + b + c = 17.5\).`
+    },
+    {
+      q: R`If \(\frac{x + y}{y} = 5\), what is the value of \(\frac{x + 3y}{y}\)?`,
+      o: [R`\(7\)`, R`\(8\)`, R`\(6\)`, R`\(5\)`, R`\(9\)`],
+      e: R`\(\frac{x + y}{y} = \frac{x}{y} + 1 = 5 \Rightarrow \frac{x}{y} = 4\).<br>\(\frac{x + 3y}{y} = \frac{x}{y} + 3 = 4 + 3 = 7\).`
+    }
+  ]
+});
+
+// 2. Quadratic Equations
+TOPICS.push({
+  id: 'quad',
+  ch: 'alg',
+  icon: '⚡',
+  title: 'Quadratic Equations',
+  desc: 'Factoring, quadratic formula, discriminant, nature of roots & Vieta\'s relations.',
+  learn: R`
+<h3>Standard Form of a Quadratic</h3>
+<p>A quadratic equation has the standard form:</p>
+<BIG>\(ax^2 + bx + c = 0 \quad (a \ne 0)\)</BIG>
+
+<F t="The Quadratic Formula">
+<BIG>\(x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}\)</BIG>
+<p>The term inside the radical, \(D = b^2 - 4ac\), is called the <b>discriminant</b>.</p>
+<ul>
+  <li>\(D > 0\): Two distinct real roots.</li>
+  <li>\(D = 0\): Exactly one real root (repeated / double root).</li>
+  <li>\(D < 0\): No real roots.</li>
+</ul>
+</F>
+
+<F t="Vieta's Formulas (Sum & Product of Roots)">
+If \(r_1\) and \(r_2\) are roots of \(ax^2 + bx + c = 0\):
+<BIG>\(r_1 + r_2 = -\frac{b}{a}, \qquad r_1 r_2 = \frac{c}{a}\)</BIG>
+</F>
+
+<TIP>
+<b>Factoring by Splitting the Middle Term:</b><br>
+To factor \(x^2 + 5x + 6 = 0\), find two numbers whose product is \(6\) and sum is \(5\): \(2\) and \(3\).<br>
+\((x + 2)(x + 3) = 0 \Rightarrow x = -2, -3\).
+</TIP>
+
+<EX t="Finding an Unknown Coefficient">
+If \(x = 4\) is a root of \(x^2 + kx - 8 = 0\), what is \(k\)?
+<SOL>
+Plug in \(x = 4\):<br>
+\(4^2 + k(4) - 8 = 0 \Rightarrow 16 + 4k - 8 = 0 \Rightarrow 4k = -8 \Rightarrow k = -2\).
+</SOL>
+</EX>
+`,
+  quiz: [
+    {
+      q: R`What are the roots of \(x^2 + 5x - 6 = 0\)?`,
+      o: [R`\(1\) and \(-6\)`, R`\(-1\) and \(6\)`, R`\(2\) and \(-3\)`, R`\(-2\) and \(3\)`, R`\(1\) and \(6\)`],
+      e: R`Factor: \((x + 6)(x - 1) = 0 \Rightarrow x = 1, -6\).`
+    },
+    {
+      q: R`What are the roots of \(x^2 - 4x - 5 = 0\)?`,
+      o: [R`\(5\) and \(-1\)`, R`\(-5\) and \(1\)`, R`\(4\) and \(-1\)`, R`\(5\) and \(1\)`, R`\(-5\) and \(-1\)`],
+      e: R`Factor: \((x - 5)(x + 1) = 0 \Rightarrow x = 5, -1\).`
+    },
+    {
+      q: R`Solve for \(x\): \(2x^2 + 7x + 6 = 0\)`,
+      o: [R`\(-1.5\) and \(-2\)`, R`\(1.5\) and \(2\)`, R`\(-3\) and \(-2\)`, R`\(-1.5\) and \(2\)`, R`\(3\) and \(2\)`],
+      e: R`Factor by grouping: \(2x^2 + 4x + 3x + 6 = 2x(x + 2) + 3(x + 2) = (2x + 3)(x + 2) = 0\).<br>\(x = -\frac{3}{2} = -1.5\), \(x = -2\).`
+    },
+    {
+      q: R`Find the roots of \(x^2 + 5x - 7 = 0\).`,
+      o: [R`\(\frac{-5 \pm \sqrt{53}}{2}\)`, R`\(\frac{-5 \pm \sqrt{33}}{2}\)`, R`\(\frac{5 \pm \sqrt{53}}{2}\)`, R`\(-5 \pm \sqrt{53}\)`, R`\(\frac{-5 \pm \sqrt{47}}{2}\)`],
+      e: R`Use quadratic formula with \(a=1, b=5, c=-7\):<br>\(D = 5^2 - 4(1)(-7) = 25 + 28 = 53\).<br>\(x = \frac{-5 \pm \sqrt{53}}{2}\).`
+    },
+    {
+      q: R`If \(x = 4\) is a root of the equation \(x^2 + kx - 8 = 0\), find the value of \(k\).`,
+      o: [R`\(-2\)`, R`\(2\)`, R`\(-4\)`, R`\(4\)`, R`\(0\)`],
+      e: R`Substitute \(x = 4\): \(16 + 4k - 8 = 0 \Rightarrow 4k + 8 = 0 \Rightarrow k = -2\).`
+    },
+    {
+      q: R`Which of the following quadratic equations has roots \(4\) and \(2\)?`,
+      o: [R`\(x^2 - 6x + 8 = 0\)`, R`\(x^2 - 6x - 8 = 0\)`, R`\(x^2 - 4x + 8 = 0\)`, R`\(x^2 + 6x + 8 = 0\)`, R`\(x^2 + 6x + 12 = 0\)`],
+      e: R`Equation with roots \(r_1, r_2\) is \((x - r_1)(x - r_2) = 0\).<br>\((x - 4)(x - 2) = x^2 - 6x + 8 = 0\).`
+    },
+    {
+      q: R`If \(x^2 + a = b\), where \(x\) is an integer, which of the following could be the value of \(b - a\)?`,
+      o: [R`\(4\)`, R`\(3\)`, R`\(5\)`, R`\(6\)`, R`\(7\)`],
+      e: R`Rearrange: \(b - a = x^2\). Since \(x\) is an integer, \(b - a\) must be a perfect square. Among the choices, only 4 is a perfect square (\(2^2\)).`
+    },
+    {
+      q: R`If \(xy = 6\) and \(x + 2y = 7\), what are the possible values of \(x\)?`,
+      o: [R`\(3\) or \(4\)`, R`\(2\) or \(3\)`, R`\(1\) or \(6\)`, R`\(2\) or \(4\)`, R`\(-3\) or \(-4\)`],
+      e: R`From \(x + 2y = 7 \Rightarrow 2y = 7 - x \Rightarrow y = \frac{7 - x}{2}\).<br>Substitute into \(xy = 6\): \(x\left(\frac{7 - x}{2}\right) = 6 \Rightarrow 7x - x^2 = 12 \Rightarrow x^2 - 7x + 12 = 0\).<br>\((x - 3)(x - 4) = 0 \Rightarrow x = 3\) or \(4\).`
+    },
+    {
+      q: R`How many real solutions does the equation \(x^2 - 4x + 4 = 0\) have?`,
+      o: [R`\(1\)`, R`\(2\)`, R`\(0\)`, R`\(3\)`, R`Infinitely many`],
+      e: R`\(D = b^2 - 4ac = (-4)^2 - 4(1)(4) = 16 - 16 = 0\). Discriminant is zero, so there is exactly 1 real solution (\(x = 2\)).`
+    },
+    {
+      q: R`How many real solutions does \(x^2 + 9x + 21 = 0\) have?`,
+      o: [R`\(0\)`, R`\(1\)`, R`\(2\)`, R`\(3\)`, R`Cannot be determined`],
+      e: R`\(D = 9^2 - 4(1)(21) = 81 - 84 = -3 < 0\). Negative discriminant means 0 real solutions.`
+    }
+  ]
+});
+
+// 3. Square Root Equations
+TOPICS.push({
+  id: 'sqrteq',
+  ch: 'alg',
+  icon: '√',
+  title: 'Square Root Equations',
+  desc: 'Radical equations, squaring both sides, domain restrictions & detecting extraneous roots.',
+  learn: R`
+<h3>Solving Radical Equations</h3>
+<p>To solve an equation containing square roots, follow these fundamental rules:</p>
+
+<F t="Three-Step Method">
+<ol>
+  <li><b>Isolate:</b> Get the radical term alone on one side of the equation.</li>
+  <li><b>Square:</b> Square both sides to eliminate the radical.</li>
+  <li><b>Check:</b> ⚠️ <b>MANDATORY:</b> Always test your answers in the original equation! Squaring both sides can introduce <i>extraneous solutions</i> that are invalid.</li>
+</ol>
+</F>
+
+<NOTE>
+<b>Definition of Principal Square Root:</b><br>
+The symbol \(\sqrt{a}\) refers strictly to the <b>non-negative</b> square root. Thus \(\sqrt{9} = 3\), NEVER \(-3\) or \(\pm 3\).<br>
+Likewise, \(\sqrt{(-3)^2} = \sqrt{9} = 3\).
+</NOTE>
+
+<EX t="Beware Extraneous Roots">
+Solve \(\sqrt{x} = x - 2\).
+<SOL>
+Square both sides: \(x = (x - 2)^2 = x^2 - 4x + 4\).<br>
+Rearrange: \(x^2 - 5x + 4 = 0 \Rightarrow (x - 4)(x - 1) = 0 \Rightarrow x = 4\) or \(x = 1\).<br>
+<b>Check:</b>
+<ul>
+  <li>\(x = 4\): \(\sqrt{4} = 4 - 2 \Rightarrow 2 = 2\) ✓ Valid!</li>
+  <li>\(x = 1\): \(\sqrt{1} = 1 - 2 \Rightarrow 1 = -1\) ✗ False! \(x = 1\) is extraneous.</li>
+</ul>
+The only valid solution is <b>\(x = 4\)</b>.
+</SOL>
+</EX>
+`,
+  quiz: [
+    {
+      q: R`Solve for \(x\): \(\sqrt{x - 8} = 6\)`,
+      o: [R`\(44\)`, R`\(36\)`, R`\(28\)`, R`\(42\)`, R`\(50\)`],
+      e: R`Square both sides: \(x - 8 = 36 \Rightarrow x = 44\).<br>Check: \(\sqrt{44 - 8} = \sqrt{36} = 6\) ✓.`
+    },
+    {
+      q: R`Solve for \(x\): \(\sqrt{x^2 + 21} = 5\)`,
+      o: [R`\(\pm 2\)`, R`\(2\) only`, R`\(-2\) only`, R`\(\pm 4\)`, R`No real solution`],
+      e: R`Square both sides: \(x^2 + 21 = 25 \Rightarrow x^2 = 4 \Rightarrow x = \pm 2\).<br>Both check out in the original equation.`
+    },
+    {
+      q: R`Solve for \(x\): \(\sqrt{x} = \frac{2}{\sqrt{x - 3}}\)`,
+      o: [R`\(4\) only`, R`\(4\) and \(-1\)`, R`\(-1\) only`, R`\(3\)`, R`\(2\)`],
+      e: R`Cross-multiply: \(\sqrt{x(x - 3)} = 2\).<br>Square: \(x(x - 3) = 4 \Rightarrow x^2 - 3x - 4 = 0 \Rightarrow (x - 4)(x + 1) = 0\).<br>Since \(\sqrt{x}\) requires \(x \ge 0\), \(x = -1\) is extraneous. Thus \(x = 4\).`
+    },
+    {
+      q: R`Solve for \(x\): \(\sqrt{x^2 - 2} - \sqrt{x} = 0\)`,
+      o: [R`\(2\)`, R`\(-1\)`, R`\(2\) and \(-1\)`, R`\(\sqrt{2}\)`, R`\(0\)`],
+      e: R`\(\sqrt{x^2 - 2} = \sqrt{x} \Rightarrow x^2 - 2 = x \Rightarrow x^2 - x - 2 = 0 \Rightarrow (x - 2)(x + 1) = 0\).<br>\(x = -1\) makes \(\sqrt{x}\) non-real. Thus the only real solution is \(x = 2\).`
+    },
+    {
+      q: R`If \(x = 9\) is a solution to \(\sqrt{x} + k\sqrt{x - 8} = 0\), what is the value of \(k\)?`,
+      o: [R`\(-3\)`, R`\(3\)`, R`\(-1\)`, R`\(1\)`, R`\(-9\)`],
+      e: R`Substitute \(x = 9\): \(\sqrt{9} + k\sqrt{9 - 8} = 0 \Rightarrow 3 + k(1) = 0 \Rightarrow k = -3\).`
+    },
+    {
+      q: R`What is the value of \(\sqrt{(-3)^2}\)?`,
+      o: [R`\(3\)`, R`\(-3\)`, R`\(\pm 3\)`, R`\(9\)`, R`Undefined`],
+      e: R`\((-3)^2 = 9\), and \(\sqrt{9} = 3\). The principal square root is always non-negative.`
+    }
+  ]
+});
+
+// 4. Inequalities & Absolute Value
+TOPICS.push({
+  id: 'ineq',
+  ch: 'alg',
+  icon: '><',
+  title: 'Inequalities & Absolute Value',
+  desc: 'Sign reversal rules, non-linear inequalities, distance definition of absolute value & compound ranges.',
+  learn: R`
+<h3>Rules of Inequalities</h3>
+<p>Inequalities follow the same algebra rules as equations, with one crucial exception:</p>
+
+<F t="Golden Rule of Inequalities">
+When you <b>multiply or divide</b> both sides by a <b>negative number</b>, the inequality sign <b>REVERSES</b>!
+<BIG>\(-2x < -14 \quad\Longrightarrow\quad x > 7\)</BIG>
+</F>
+
+<h3>Powers & Ranges</h3>
+<ul>
+  <li>If \(x > 1\): Higher powers increase: \(x^3 > x^2 > x > \sqrt{x}\).</li>
+  <li>If \(0 < x < 1\): Higher powers <b>decrease</b>: \(\sqrt{x} > x > x^2 > x^3\).</li>
+  <li>If \(x^2 > x\): This holds when \(x > 1\) OR \(x < 0\).</li>
+</ul>
+
+<h3>Absolute Value as Distance</h3>
+<p>\(|x|\) represents the distance of \(x\) from \(0\) on the number line.</p>
+<BIG>\(|x| = \begin{cases} x & \text{if } x \ge 0 \\ -x & \text{if } x < 0 \end{cases}\)</BIG>
+
+<F t="Absolute Value Inequalities">
+<ul>
+  <li>\(|x - a| < k \iff a - k < x < a + k\) (within distance \(k\) of \(a\))</li>
+  <li>\(|x - a| > k \iff x > a + k \text{ or } x < a - k\) (beyond distance \(k\) of \(a\))</li>
+</ul>
+</F>
+`,
+  quiz: [
+    {
+      q: R`Solve for \(x\): \(7(x + 2) > 2(x - 3)\)`,
+      o: [R`\(x > -4\)`, R`\(x < -4\)`, R`\(x > 4\)`, R`\(x > -2\)`, R`\(x < 2\)`],
+      e: R`\(7x + 14 > 2x - 6 \Rightarrow 5x > -20 \Rightarrow x > -4\).`
+    },
+    {
+      q: R`For which values of \(x\) is \((x - 3)(x + 1) > 0\)?`,
+      o: [R`\(x > 3\) or \(x < -1\)`, R`\(-1 < x < 3\)`, R`\(x > 3\) only`, R`\(x < -1\) only`, R`\(x > 1\) or \(x < -3\)`],
+      e: R`The roots are \(3\) and \(-1\). The product is positive outside the roots: \(x > 3\) or \(x < -1\).`
+    },
+    {
+      q: R`Solve for \(x\): \((2x - 5)(x + 3) < 0\)`,
+      o: [R`\(-3 < x < 2.5\)`, R`\(x > 2.5\) or \(x < -3\)`, R`\(-2.5 < x < 3\)`, R`\(0 < x < 2.5\)`, R`\(x > -3\)`],
+      e: R`The roots are \(x = 2.5\) and \(x = -3\). A quadratic opening upward is negative between the roots: \(-3 < x < 2.5\).`
+    },
+    {
+      q: R`Solve for \(x\): \(24 - |x + 7| = 20\)`,
+      o: [R`\(-3\) or \(-11\)`, R`\(3\) or \(-11\)`, R`\(-3\) or \(11\)`, R`\(3\) only`, R`\(-3\) only`],
+      e: R`\(|x + 7| = 4 \Rightarrow x + 7 = 4\) or \(x + 7 = -4 \Rightarrow x = -3\) or \(-11\).`
+    },
+    {
+      q: R`Solve for \(x\): \(|x - 5| > 2\)`,
+      o: [R`\(x > 7\) or \(x < 3\)`, R`\(3 < x < 7\)`, R`\(x > 7\) only`, R`\(x < 3\) only`, R`\(x > 3\) or \(x < -7\)`],
+      e: R`Distance from 5 is greater than 2: \(x - 5 > 2 \Rightarrow x > 7\), or \(x - 5 < -2 \Rightarrow x < 3\).`
+    },
+    {
+      q: R`Solve for \(x\): \(|5 - x| < 2\)`,
+      o: [R`\(3 < x < 7\)`, R`\(x > 7\) or \(x < 3\)`, R`\(-7 < x < -3\)`, R`\(2 < x < 5\)`, R`\(0 < x < 7\)`],
+      e: R`Since \(|5 - x| = |x - 5|\), this means distance from 5 is less than 2: \(5 - 2 < x < 5 + 2 \Rightarrow 3 < x < 7\).`
+    },
+    {
+      q: R`If \(x < 0\), what is the value of \(|x|\)?`,
+      o: [R`\(-x\)`, R`\(x\)`, R`\(0\)`, R`\(x^2\)`, R`\(1\)`],
+      e: R`By definition, if \(x\) is negative, \(|x| = -x\) (which is positive since \(-(-p) = p\)).`
+    },
+    {
+      q: R`For what values of \(x\) does \(\sqrt{x} > x > x^2\) hold true?`,
+      o: [R`\(0 < x < 1\)`, R`\(x > 1\)`, R`\(x < 0\)`, R`\(x = 1\)`, R`For all real numbers`],
+      e: R`For fractions between 0 and 1, taking powers makes them smaller, and taking square roots makes them larger. Example: \(x = 0.25 \Rightarrow \sqrt{x} = 0.5 > 0.25 > 0.0625\).`
+    }
+  ]
+});
+
+// 5. Exponents & Roots
+TOPICS.push({
+  id: 'exp',
+  ch: 'alg',
+  icon: 'xⁿ',
+  title: 'Exponents & Roots',
+  desc: 'Exponent laws, negative & fractional powers, common bases & radical comparisons.',
+  learn: R`
+<h3>Fundamental Laws of Exponents</h3>
+
+<F t="Exponent Rules">
+<ul>
+  <li><b>Product:</b> \(a^m \cdot a^n = a^{m+n}\)</li>
+  <li><b>Quotient:</b> \(\frac{a^m}{a^n} = a^{m-n}\)</li>
+  <li><b>Power of a Power:</b> \((a^m)^n = a^{mn}\)</li>
+  <li><b>Negative Power:</b> \(a^{-n} = \frac{1}{a^n}\)</li>
+  <li><b>Zero Power:</b> \(a^0 = 1 \quad (a \ne 0)\)</li>
+  <li><b>Fractional Power:</b> \(a^{1/n} = \sqrt[n]{a}\), \quad \(a^{m/n} = (\sqrt[n]{a})^m\)</li>
+</ul>
+</F>
+
+<TIP>
+<b>Factoring Out Common Powers:</b><br>
+When adding powers of the same base, do NOT multiply the bases! Instead, <b>factor out the smallest power</b>.<br>
+\(2^{10} + 2^{11} = 2^{10}(1 + 2^1) = 3 \times 2^{10}\).
+</TIP>
+
+<EX t="Comparing Large Roots">
+Compare \(9^{1/8}\) and \(8^{1/9}\).
+<SOL>
+Raise both sides to the \(72^{\text{nd}}\) power (since \(\text{LCM}(8, 9) = 72\)):<br>
+\((9^{1/8})^{72} = 9^9\)<br>
+\((8^{1/9})^{72} = 8^8\)<br>
+Clearly, \(9^9 > 8^8\), so <b>\(9^{1/8} > 8^{1/9}\)</b>.
+</SOL>
+</EX>
+`,
+  quiz: [
+    {
+      q: R`Simplify: \(2^{10} + 2^{11} + 2^{12} + 2^{13} + 2^{14}\)`,
+      o: [R`\(31 \times 2^{10}\)`, R`\(30 \times 2^{10}\)`, R`\(2^{15}\)`, R`\(15 \times 2^{10}\)`, R`\(2^{70}\)`],
+      e: R`Factor out \(2^{10}\): \(2^{10}(1 + 2 + 4 + 8 + 16) = 2^{10}(31) = 31 \times 2^{10}\).`
+    },
+    {
+      q: R`Simplify: \(\frac{55^5}{5^{55}}\)`,
+      o: [R`\(\frac{11^5}{5^{50}}\)`, R`\(\frac{11^5}{5^{55}}\)`, R`\(11^5\)`, R`\(\frac{1}{5^{50}}\)`, R`\(55^{-50}\)`],
+      e: R`\(55^5 = (5 \times 11)^5 = 5^5 \times 11^5\).<br>\(\frac{5^5 \times 11^5}{5^{55}} = \frac{11^5}{5^{55 - 5}} = \frac{11^5}{5^{50}}\).`
+    },
+    {
+      q: R`Simplify: \(\frac{7^{10} + 7^{11}}{7}\)`,
+      o: [R`\(8 \times 7^9\)`, R`\(7^{10}\)`, R`\(8 \times 7^{10}\)`, R`\(7^9 + 7^{10}\)`, R`\(2 \times 7^9\)`],
+      e: R`\(\frac{7^{10}(1 + 7)}{7} = \frac{7^{10} \times 8}{7} = 8 \times 7^9\).`
+    },
+    {
+      q: R`Simplify: \(\frac{2^{25} - 2^{10}}{2^9}\)`,
+      o: [R`\(2^{16} - 2\)`, R`\(2^{16} - 1\)`, R`\(2^{15} - 2\)`, R`\(2^{14}\)`, R`\(2^{16}\)`],
+      e: R`\(\frac{2^{25}}{2^9} - \frac{2^{10}}{2^9} = 2^{16} - 2^1 = 2^{16} - 2\).`
+    },
+    {
+      q: R`If \(a^4 = 256\), \(b^3 = -27\), and \(c^3 = 64\), what is the greatest possible value of \(a + b + c\)?`,
+      o: [R`\(5\)`, R`\(-3\)`, R`\(11\)`, R`\(1\)`, R`\(3\)`],
+      e: R`\(a = \pm 4\), \(b = -3\), \(c = 4\).<br>Greatest value takes \(a = 4\): \(4 + (-3) + 4 = 5\).`
+    },
+    {
+      q: R`Evaluate: \(256^{0.18} \times 256^{0.07}\)`,
+      o: [R`\(4\)`, R`\(2\)`, R`\(16\)`, R`\(8\)`, R`\(1\)`],
+      e: R`\(256^{0.18 + 0.07} = 256^{0.25} = 256^{1/4} = \sqrt[4]{256} = 4\).`
+    },
+    {
+      q: R`If \(2^x = 16^y\), express \(x\) in terms of \(y\).`,
+      o: [R`\(x = 4y\)`, R`\(x = 8y\)`, R`\(x = 2y\)`, R`\(x = 16y\)`, R`\(x = y/4\)`],
+      e: R`\(16 = 2^4 \Rightarrow 16^y = 2^{4y}\). Since \(2^x = 2^{4y}\), we have \(x = 4y\).`
+    },
+    {
+      q: R`Which is greater: \(\sqrt{12} + \sqrt{20}\) or \(\sqrt{16} + \sqrt{16}\)?`,
+      o: [R`\(\sqrt{16} + \sqrt{16}\)`, R`\(\sqrt{12} + \sqrt{20}\)`, R`They are equal`, R`Cannot be determined`],
+      fix: 1, a: 0,
+      e: R`\(\sqrt{16} + \sqrt{16} = 4 + 4 = 8 = \sqrt{64}\).<br>Square both: \((\sqrt{12} + \sqrt{20})^2 = 32 + 2\sqrt{240}\).<br>\(8^2 = 64 = 32 + 32 = 32 + 2\sqrt{256}\).<br>Since \(\sqrt{256} > \sqrt{240}\), \(\sqrt{16} + \sqrt{16}\) is greater.`
+    }
+  ]
+});
+
+// 6. Functions & Graphs
+TOPICS.push({
+  id: 'func',
+  ch: 'alg',
+  icon: '📈',
+  title: 'Functions & Graphs',
+  desc: 'Function notation, domain/range, vertex of quadratics, transformations & piecewise definitions.',
+  learn: R`
+<h3>Function Notation & Evaluations</h3>
+<p>A function \(f(x)\) is a rule that assigns an input \(x\) to an output \(y = f(x)\).</p>
+
+<F t="Parabolas & Extreme Values">
+For a quadratic function \(f(x) = ax^2 + bx + c\):
+<ul>
+  <li>The <b>vertex</b> occurs at \(x = -\frac{b}{2a}\).</li>
+  <li>If \(a < 0\): opens downwards, vertex is a <b>maximum</b>.</li>
+  <li>If \(a > 0\): opens upwards, vertex is a <b>minimum</b>.</li>
+</ul>
+</F>
+
+<EX t="Finding Maximum Value">
+Find the maximum value of \(f(x) = 10 - (x - 3)^2\).
+<SOL>
+Since \((x - 3)^2 \ge 0\) for all real \(x\), the subtracted term is smallest when \((x - 3) = 0 \Rightarrow x = 3\).<br>
+The maximum value is \(10 - 0 = \mathbf{10}\).
+</SOL>
+</EX>
+
+<F t="Graph Transformations">
+Starting from \(y = f(x)\):
+<ul>
+  <li>\(y = f(x) + c\): Shift UP by \(c\)</li>
+  <li>\(y = f(x) - c\): Shift DOWN by \(c\)</li>
+  <li>\(y = f(x - c)\): Shift RIGHT by \(c\)</li>
+  <li>\(y = f(x + c)\): Shift LEFT by \(c\)</li>
+</ul>
+</F>
+`,
+  quiz: [
+    {
+      q: R`The height \(h(t)\) of an object in feet after \(t\) seconds is given by \(h(t) = 100 - (t - 5)^2\). What is the maximum height reached by the object?`,
+      o: [R`\(100\text{ ft}\)`, R`\(75\text{ ft}\)`, R`\(95\text{ ft}\)`, R`\(125\text{ ft}\)`, R`\(50\text{ ft}\)`],
+      e: R`Since \(-(t - 5)^2 \le 0\), the maximum occurs when \(t - 5 = 0 \Rightarrow t = 5\), giving \(h(5) = 100\text{ ft}\).`
+    },
+    {
+      q: R`For the same height function \(h(t) = 100 - (t - 5)^2\), at what time \(t > 0\) does the object return to the ground (\(h = 0\))?`,
+      o: [R`\(t = 15\)`, R`\(t = 10\)`, R`\(t = 5\)`, R`\(t = 20\)`, R`\(t = 25\)`],
+      e: R`Set \(h(t) = 0\): \(100 - (t - 5)^2 = 0 \Rightarrow (t - 5)^2 = 100 \Rightarrow t - 5 = 10 \Rightarrow t = 15\text{ s}\).`
+    },
+    {
+      q: R`At how many points do the graphs of \(y = x^2\) and \(y = x\) intersect?`,
+      o: [R`\(2\)`, R`\(1\)`, R`\(0\)`, R`\(3\)`, R`Infinitely many`],
+      e: R`Set \(x^2 = x \Rightarrow x^2 - x = 0 \Rightarrow x(x - 1) = 0 \Rightarrow x = 0\) and \(x = 1\). Points are \((0,0)\) and \((1,1)\), so 2 points.`
+    },
+    {
+      q: R`Consider the piecewise function:
+\[ f(x) = \begin{cases} -3x & \text{for } x \le 0 \\ x^2 + 3 & \text{for } x > 0 \end{cases} \]
+Find \(f(-2) + f(2)\).`,
+      o: [R`\(13\)`, R`\(7\)`, R`\(1\)`, R`\(10\)`, R`\(-1\)`],
+      e: R`Since \(-2 \le 0\), \(f(-2) = -3(-2) = 6\).<br>Since \(2 > 0\), \(f(2) = 2^2 + 3 = 7\).<br>Sum \(= 6 + 7 = 13\).`
+    },
+    {
+      q: R`How is the graph of \(y = (x - 5)^2\) obtained from the graph of \(y = x^2\)?`,
+      o: [R`Shift 5 units to the right`, R`Shift 5 units to the left`, R`Shift 5 units upwards`, R`Shift 5 units downwards`, R`Reflected across the x-axis`],
+      e: R`Replacing \(x\) with \((x - 5)\) shifts the graph 5 units to the right.`
+    }
+  ]
+});
+
+
+/* ===== GRE Quant Lab — Arithmetic Topics ===== */
+'use strict';
+
+// 7. Number Classification, Place Value & Decimals
+TOPICS.push({
+  id: 'num',
+  ch: 'ari',
+  icon: '🔢',
+  title: 'Number Types & Decimals',
+  desc: 'Integers, parity rules, place values, rounding, scientific notation & powers of ten.',
+  learn: R`
+<h3>Classification of Numbers</h3>
+<ul>
+  <li><b>Natural Numbers:</b> \(1, 2, 3, 4, \dots\)</li>
+  <li><b>Whole Numbers:</b> \(0, 1, 2, 3, \dots\) (includes \(0\))</li>
+  <li><b>Integers:</b> \(\dots, -3, -2, -1, 0, 1, 2, 3, \dots\)</li>
+  <li><b>Rational Numbers:</b> Can be expressed as \(\frac{p}{q}\) where \(p, q\) are integers and \(q \ne 0\).</li>
+  <li><b>Irrational Numbers:</b> Non-terminating, non-repeating decimals (e.g., \(\sqrt{2}, \pi\)).</li>
+</ul>
+
+<NOTE>
+<b>Special Properties of Zero (\(0\)):</b><br>
+Zero is an <b>even integer</b>. It is neither positive nor negative. It is divisible by every non-zero integer.
+</NOTE>
+
+<F t="Parity Rules (Odd & Even)">
+<ul>
+  <li>\(\text{Even} \pm \text{Even} = \text{Even}\)</li>
+  <li>\(\text{Odd} \pm \text{Odd} = \text{Even}\)</li>
+  <li>\(\text{Even} \pm \text{Odd} = \text{Odd}\)</li>
+  <li>\(\text{Even} \times \text{Any Integer} = \text{Even}\)</li>
+  <li>\(\text{Odd} \times \text{Odd} = \text{Odd}\)</li>
+</ul>
+<p><i>Rule:</i> If the product of integers is <b>odd</b>, EVERY integer must be odd.</p>
+</F>
+
+<h3>Place Value & Rounding</h3>
+<p>In the decimal \(1563.972\):</p>
+<ul>
+  <li>\(6\) is in the <b>tens</b> place (\(10^1\))</li>
+  <li>\(9\) is in the <b>tenths</b> place (\(10^{-1}\))</li>
+  <li>\(7\) is in the <b>hundredths</b> place (\(10^{-2}\))</li>
+  <li>\(2\) is in the <b>thousandths</b> place (\(10^{-3}\))</li>
+</ul>
+<p><b>Rounding Rule:</b> Look at the digit immediately to the right. If \(\ge 5\), round up; if \(< 5\), round down.</p>
+`,
+  quiz: [
+    {
+      q: R`When rounded to the nearest tenth, \(2.3a5\) rounds to \(2.3\). Which of the following digits could be \(a\)?`,
+      o: [R`\(0, 1, 2, 3, \text{ or } 4\)`, R`\(5, 6, 7, 8, \text{ or } 9\)`, R`\(0, 1, 2, \text{ or } 3\) only`, R`\(4\) only`, R`\(0\) only`],
+      e: R`To round down to \(2.3\), the hundredths digit \(a\) must be strictly less than 5, so \(a \in \{0, 1, 2, 3, 4\}\).`
+    },
+    {
+      q: R`What is the smallest integer \(k\) such that \(0.0123 \times 10^k > 1000\)?`,
+      o: [R`\(5\)`, R`\(4\)`, R`\(6\)`, R`\(7\)`, R`\(3\)`],
+      e: R`Rewrite \(0.0123\) as \(1.23 \times 10^{-2}\).<br>\(1.23 \times 10^{k - 2} > 10^3 \Rightarrow 10^{k - 2} > \frac{1000}{1.23} \approx 813\).<br>Since \(10^2 = 100 < 813\) and \(10^3 = 1000 > 813\), we need \(k - 2 \ge 3 \Rightarrow k \ge 5\).`
+    },
+    {
+      q: R`Evaluate: \(\frac{4.5 \times 4 + 6}{0.003}\)`,
+      o: [R`\(8000\)`, R`\(800\)`, R`\(80000\)`, R`\(2400\)`, R`\(80\)`],
+      e: R`Numerator: \(4.5 \times 4 + 6 = 18 + 6 = 24\).<br>\(\frac{24}{0.003} = \frac{24000}{3} = 8000\).`
+    },
+    {
+      q: R`Evaluate: \(0.0003 \times 4000\)`,
+      o: [R`\(1.2\)`, R`\(12\)`, R`\(0.12\)`, R`\(0.012\)`, R`\(120\)`],
+      e: R`\(3 \times 10^{-4} \times 4 \times 10^3 = 12 \times 10^{-1} = 1.2\).`
+    },
+    {
+      q: R`Evaluate: \(6 \times 10^{-2} - 3 \times 10^{-3}\)`,
+      o: [R`\(0.057\)`, R`\(0.57\)`, R`\(0.0057\)`, R`\(0.03\)`, R`\(0.0597\)`],
+      e: R`\(0.060 - 0.003 = 0.057\).`
+    },
+    {
+      q: R`Evaluate: \((0.000027)^{1/3}\)`,
+      o: [R`\(0.03\)`, R`\(0.3\)`, R`\(0.003\)`, R`\(0.009\)`, R`\(0.09\)`],
+      e: R`\(0.000027 = 27 \times 10^{-6}\).<br>\((27 \times 10^{-6})^{1/3} = 3 \times 10^{-2} = 0.03\).`
+    },
+    {
+      q: R`In the decimal number \(253.846\), which digit is in the hundredths place?`,
+      o: [R`\(4\)`, R`\(8\)`, R`\(6\)`, R`\(5\)`, R`\(3\)`],
+      e: R`8 is tenths, 4 is hundredths, 6 is thousandths.`
+    }
+  ]
+});
+
+// 8. Fractions & Comparisons
+TOPICS.push({
+  id: 'frac',
+  ch: 'ari',
+  icon: '½',
+  title: 'Fractions & Ratios',
+  desc: 'Mixed numbers, fraction division, cross-multiplication, benchmarks & addition effects.',
+  learn: R`
+<h3>Operations with Fractions</h3>
+<ul>
+  <li><b>Mixed Numbers:</b> \(2\frac{1}{3} = \frac{2 \times 3 + 1}{3} = \frac{7}{3}\).</li>
+  <li><b>Division by a Fraction:</b> Multiply by its reciprocal:
+    <BIG>\(\frac{a}{b} \div \frac{c}{d} = \frac{a}{b} \times \frac{d}{c}\)</BIG>
+  </li>
+</ul>
+
+<F t="Three Techniques for Comparing Fractions">
+<ol>
+  <li><b>Cross-Multiplication:</b> To compare \(\frac{a}{b}\) and \(\frac{c}{d}\), compare \(a \cdot d\) with \(b \cdot c\).<br>
+    Example: \(\frac{4}{5}\) vs \(\frac{11}{13} \Rightarrow 4 \times 13 = 52\) vs \(5 \times 11 = 55 \Rightarrow \frac{11}{13} > \frac{4}{5}\).
+  </li>
+  <li><b>Benchmarking (against \(\frac{1}{2}\)):</b><br>
+    \(\frac{127}{255} < \frac{1}{2}\) (since \(127 < 127.5\)), while \(\frac{140}{278} > \frac{1}{2}\) (since \(140 > 139\)).<br>
+    Thus \(\frac{140}{278} > \frac{127}{255}\) immediately without long division!
+  </li>
+  <li><b>Effect of Adding a Positive Constant:</b><br>
+    Adding \(k > 0\) to both numerator and denominator drives the fraction closer to \(1\):<br>
+    If \(\frac{a}{b} < 1 \Rightarrow \frac{a + k}{b + k} > \frac{a}{b}\) (e.g., \(\frac{2}{3} \to \frac{12}{13} \approx 0.92 > 0.67\)).<br>
+    If \(\frac{a}{b} > 1 \Rightarrow \frac{a + k}{b + k} < \frac{a}{b}\).
+  </li>
+</ol>
+</F>
+`,
+  quiz: [
+    {
+      q: R`Evaluate and express as a fraction: \(2\frac{1}{3} + 6\frac{3}{5}\)`,
+      o: [R`\(\frac{134}{15}\)`, R`\(\frac{124}{15}\)`, R`\(\frac{144}{15}\)`, R`\(8\frac{4}{8}\)`, R`\(\frac{44}{5}\)`],
+      e: R`\(2\frac{1}{3} = \frac{7}{3} = \frac{35}{15}\), and \(6\frac{3}{5} = \frac{33}{5} = \frac{99}{15}\).<br>Sum \(= \frac{35 + 99}{15} = \frac{134}{15}\).`
+    },
+    {
+      q: R`Evaluate: \(2\frac{1}{3} \times 6\frac{3}{5}\)`,
+      o: [R`\(\frac{77}{5}\)`, R`\(\frac{134}{15}\)`, R`\(15\)`, R`\(\frac{88}{5}\)`, R`\(\frac{66}{5}\)`],
+      e: R`\(\frac{7}{3} \times \frac{33}{5} = \frac{7 \times 11}{5} = \frac{77}{5}\).`
+    },
+    {
+      q: R`Evaluate: \(\frac{1}{2} \div \frac{3}{4}\)`,
+      o: [R`\(\frac{2}{3}\)`, R`\(\frac{3}{8}\)`, R`\(\frac{3}{2}\)`, R`\(\frac{1}{6}\)`, R`\(\frac{4}{5}\)`],
+      e: R`\(\frac{1}{2} \times \frac{4}{3} = \frac{2}{3}\).`
+    },
+    {
+      q: R`Evaluate: \(\frac{\frac{3}{7} + \frac{1}{3}}{\frac{2}{3} + \frac{2}{5}}\)`,
+      o: [R`\(\frac{5}{7}\)`, R`\(\frac{7}{5}\)`, R`\(\frac{16}{21}\)`, R`\(\frac{16}{15}\)`, R`\(1\)`],
+      e: R`Numerator: \(\frac{9 + 7}{21} = \frac{16}{21}\).<br>Denominator: \(\frac{10 + 6}{15} = \frac{16}{15}\).<br>\(\frac{16}{21} \div \frac{16}{15} = \frac{16}{21} \times \frac{15}{16} = \frac{15}{21} = \frac{5}{7}\).`
+    },
+    {
+      q: R`Which fraction is strictly greater: \(\frac{127}{255}\) or \(\frac{140}{278}\)?`,
+      o: [R`\(\frac{140}{278}\)`, R`\(\frac{127}{255}\)`, R`They are equal`, R`Cannot be determined`],
+      fix: 1, a: 0,
+      e: R`Benchmark to \(1/2\): \(\frac{127}{255} < \frac{1}{2}\) because \(127 \times 2 = 254 < 255\).<br>\(\frac{140}{278} > \frac{1}{2}\) because \(140 \times 2 = 280 > 278\).<br>Therefore, \(\frac{140}{278} > \frac{127}{255}\).`
+    },
+    {
+      q: R`Arrange the fractions \(\frac{3}{13}, \frac{7}{19}, \frac{2}{5}, \frac{4}{11}\) in ascending order.`,
+      o: [
+        R`\(\frac{3}{13} < \frac{4}{11} < \frac{7}{19} < \frac{2}{5}\)`,
+        R`\(\frac{3}{13} < \frac{7}{19} < \frac{4}{11} < \frac{2}{5}\)`,
+        R`\(\frac{4}{11} < \frac{3}{13} < \frac{7}{19} < \frac{2}{5}\)`,
+        R`\(\frac{2}{5} < \frac{7}{19} < \frac{4}{11} < \frac{3}{13}\)`,
+        R`\(\frac{3}{13} < \frac{4}{11} < \frac{2}{5} < \frac{7}{19}\)`
+      ],
+      e: R`Decimal equivalents:<br>\(\frac{3}{13} \approx 0.231\)<br>\(\frac{4}{11} \approx 0.3636\)<br>\(\frac{7}{19} \approx 0.3684\)<br>\(\frac{2}{5} = 0.400\)<br>Thus: \(\frac{3}{13} < \frac{4}{11} < \frac{7}{19} < \frac{2}{5}\).`
+    }
+  ]
+});
+
+// 9. Factoring, Primes, HCF & LCM
+TOPICS.push({
+  id: 'factor',
+  ch: 'ari',
+  icon: '🌱',
+  title: 'Factors, Primes, HCF & LCM',
+  desc: 'Prime factorization ladder, highest common factor, least common multiple & number of divisors.',
+  learn: R`
+<h3>Prime Numbers</h3>
+<p>A prime number is an integer \(> 1\) whose only positive divisors are \(1\) and itself.</p>
+<NOTE>
+\(2\) is the <b>smallest prime</b> and the <b>only even prime</b>. \(1\) is NEITHER prime nor composite.
+</NOTE>
+
+<F t="Product Rule for HCF & LCM">
+For any two positive integers \(a\) and \(b\):
+<BIG>\(\text{HCF}(a, b) \times \text{LCM}(a, b) = a \times b\)</BIG>
+<p>For consecutive integers \(n\) and \(n+1\), \(\text{HCF}(n, n+1) = 1\) (they are always co-prime).</p>
+</F>
+
+<F t="Number of Factors Formula">
+If a number's prime factorization is \(N = p^a \cdot q^b \cdot r^c\):
+<BIG>\(\text{Total Factors} = (a + 1)(b + 1)(c + 1)\)</BIG>
+</F>
+
+<EX t="Prime Factorization Ladder">
+Find the prime factorization of \(2520\).
+<SOL>
+\(2520 = 10 \times 252 = (2 \times 5) \times (4 \times 63) = 2 \times 5 \times 2^2 \times (9 \times 7) = 2^3 \times 3^2 \times 5^1 \times 7^1\).<br>
+The sum of prime exponents is \(3 + 2 + 1 + 1 = \mathbf{7}\).
+</SOL>
+</EX>
+`,
+  quiz: [
+    {
+      q: R`What is the prime factorization of \(450\)?`,
+      o: [R`\(2 \times 3^2 \times 5^2\)`, R`\(2^2 \times 3 \times 5^2\)`, R`\(2 \times 3 \times 5^3\)`, R`\(9 \times 50\)`, R`\(2 \times 15^2\)`],
+      e: R`\(450 = 45 \times 10 = (9 \times 5) \times (2 \times 5) = 2 \times 3^2 \times 5^2\).`
+    },
+    {
+      q: R`Find the HCF (GCF) and LCM of \(90\) and \(120\).`,
+      o: [R`\(\text{HCF} = 30, \text{LCM} = 360\)`, R`\(\text{HCF} = 15, \text{LCM} = 360\)`, R`\(\text{HCF} = 30, \text{LCM} = 720\)`, R`\(\text{HCF} = 60, \text{LCM} = 360\)`, R`\(\text{HCF} = 10, \text{LCM} = 1080\)`],
+      e: R`\(90 = 30 \times 3\), \(120 = 30 \times 4\). HCF is 30. LCM \(= 30 \times 3 \times 4 = 360\).`
+    },
+    {
+      q: R`Find the HCF and LCM of \(112\) and \(32\).`,
+      o: [R`\(\text{HCF} = 16, \text{LCM} = 224\)`, R`\(\text{HCF} = 32, \text{LCM} = 224\)`, R`\(\text{HCF} = 8, \text{LCM} = 448\)`, R`\(\text{HCF} = 16, \text{LCM} = 112\)`, R`\(\text{HCF} = 4, \text{LCM} = 224\)`],
+      e: R`\(112 = 16 \times 7\) and \(32 = 16 \times 2\). HCF is 16. LCM \(= 16 \times 7 \times 2 = 224\).`
+    },
+    {
+      q: R`If \(2520 = 2^a \cdot 3^b \cdot 5^c \cdot 7^d\), where \(a, b, c, d\) are positive integers, what is the value of \(a + b + c + d\)?`,
+      o: [R`\(7\)`, R`\(8\)`, R`\(6\)`, R`\(9\)`, R`\(10\)`],
+      e: R`\(2520 = 2^3 \cdot 3^2 \cdot 5^1 \cdot 7^1\).<br>\(a + b + c + d = 3 + 2 + 1 + 1 = 7\).`
+    },
+    {
+      q: R`Which of the following numbers is a prime number?`,
+      o: [R`\(101\)`, R`\(81\)`, R`\(91\)`, R`\(111\)`, R`\(117\)`],
+      e: R`\(81 = 9^2\), \(91 = 7 \times 13\), \(111 = 3 \times 37\), \(117 = 9 \times 13\). Only 101 has no divisors other than 1 and itself.`
+    },
+    {
+      q: R`How many positive divisors does the number \(10\) have?`,
+      o: [R`\(4\)`, R`\(2\)`, R`\(3\)`, R`\(5\)`, R`\(8\)`],
+      e: R`The divisors of 10 are \(1, 2, 5, 10\) (total of 4). Formula: \(10 = 2^1 \times 5^1 \Rightarrow (1+1)(1+1) = 4\).`
+    }
+  ]
+});
+
+// 10. Divisibility & Remainders
+TOPICS.push({
+  id: 'div',
+  ch: 'ari',
+  icon: '➗',
+  title: 'Divisibility & Remainders',
+  desc: 'Divisibility rules (3, 4, 6, 8, 9), Division Algorithm, remainder cycles & parity reasoning.',
+  learn: R`
+<h3>Divisibility Tests</h3>
+<ul>
+  <li><b>Divisible by 3:</b> Sum of digits is divisible by 3.</li>
+  <li><b>Divisible by 9:</b> Sum of digits is divisible by 9.</li>
+  <li><b>Divisible by 4:</b> Last two digits form a number divisible by 4.</li>
+  <li><b>Divisible by 8:</b> Last three digits form a number divisible by 8.</li>
+  <li><b>Divisible by 6:</b> Number is both divisible by 2 (even) AND 3.</li>
+</ul>
+
+<F t="The Division Algorithm">
+For any integer dividend \(N\), divisor \(D\), quotient \(Q\), and remainder \(R\):
+<BIG>\(N = Q \cdot D + R \qquad (0 \le R < D)\)</BIG>
+<p><i>Key insight:</i> \(N - R\) is always an exact multiple of \(D\)!</p>
+</F>
+
+<EX t="Finding an Unknown Number">
+A number \(N\) between 30 and 35 is such that \(N - 3\) is divisible by 5. What is \(N\)?
+<SOL>
+Multiples of 5 near this range are \(25, 30, 35\).<br>
+If \(N - 3 = 30 \Rightarrow N = 33\).<br>
+Check: \(30 < 33 < 35\) ✓. Thus \(N = \mathbf{33}\).
+</SOL>
+</EX>
+`,
+  quiz: [
+    {
+      q: R`If \(a\) and \(b\) are odd prime numbers greater than 2, which of the following CANNOT be a divisor of \(ab\)?`,
+      o: [R`\(10\)`, R`\(15\)`, R`\(33\)`, R`\(55\)`, R`\(91\)`],
+      e: R`Since \(a\) and \(b\) are odd, their product \(ab\) is an odd number. An odd number can NEVER have an even divisor like 10.`
+    },
+    {
+      q: R`If the sum of three consecutive integers is odd, which of the following statements must be true?`,
+      o: [
+        R`The first and third integers are both even`,
+        R`The first and third integers are both odd`,
+        R`All three integers are odd`,
+        R`The middle integer is even`,
+        R`The product of the three integers is odd`
+      ],
+      e: R`Let the integers be \(n, n+1, n+2\). Their sum is \(3(n+1)\).<br>For this sum to be odd, \(n+1\) must be odd, which means \(n\) and \(n+2\) must both be even.`
+    },
+    {
+      q: R`If integer \(a\) is divided by 3, the quotient is \(b\) and remainder is 2. If \(a\) is divided by 4, the quotient is \(c\) and remainder is 3. What is the relation between \(b\) and \(c\)?`,
+      o: [R`\(3b = 4c + 1\)`, R`\(3b = 4c - 1\)`, R`\(3b + 2 = 4c\)`, R`\(4b = 3c + 1\)`, R`\(b = c + 1\)`],
+      e: R`\(a = 3b + 2\) and \(a = 4c + 3\). Equating both: \(3b + 2 = 4c + 3 \Rightarrow 3b = 4c + 1\).`
+    },
+    {
+      q: R`If integer \(n\) is not divisible by 5, is \(3n\) divisible by 10?`,
+      o: [R`Never`, R`Always`, R`May be`, R`Cannot be determined`],
+      fix: 1, a: 0,
+      e: R`To be divisible by 10, a number must be divisible by 5. Since neither 3 nor \(n\) has 5 as a factor, \(3n\) cannot be divisible by 5, hence never divisible by 10.`
+    },
+    {
+      q: R`If positive integer \(p\) is divisible by both 10 and 15, is \(p\) necessarily divisible by 6?`,
+      o: [R`Yes`, R`No`, R`May be`],
+      fix: 1, a: 0,
+      e: R`\(\text{LCM}(10, 15) = 30\). Any multiple of 30 is divisible by 6 (since \(30 = 6 \times 5\)). Thus, always YES.`
+    },
+    {
+      q: R`If \(a\) is an odd integer, can \(7a\) be divisible by 6?`,
+      o: [R`No`, R`Yes`, R`May be`],
+      fix: 1, a: 0,
+      e: R`7 is odd, and \(a\) is odd, so \(7a\) is odd. An odd number can never be divisible by an even number like 6.`
+    }
+  ]
+});
+
+// 11. Sequences & Series
+TOPICS.push({
+  id: 'seq',
+  ch: 'ari',
+  icon: '⛓️',
+  title: 'Sequences & Series',
+  desc: 'Arithmetic progressions, geometric series, counting formulas & consecutive square patterns.',
+  learn: R`
+<h3>Arithmetic Progression (AP)</h3>
+<p>An AP has a constant difference \(d\) between consecutive terms: \(a, a+d, a+2d, \dots\)</p>
+
+<F t="AP Formulas">
+<ul>
+  <li><b>\(n^{\text{th}}\) Term:</b> \(a_n = a + (n - 1)d\)</li>
+  <li><b>Sum of \(n\) Terms:</b> \(S_n = \frac{n}{2}(a + l) = \frac{n}{2}[2a + (n - 1)d]\)</li>
+  <li><b>Average of an AP:</b> \(\text{Average} = \text{Median} = \frac{\text{First} + \text{Last}}{2}\)</li>
+</ul>
+</F>
+
+<F t="Counting Numbers in a Range">
+<ul>
+  <li><b>FROM \(a\) TO \(b\) (inclusive):</b> Count \(= b - a + 1\)</li>
+  <li><b>BETWEEN \(a\) and \(b\) (exclusive):</b> Count \(= b - a - 1\)</li>
+  <li><b>Number of Multiples of \(k\) from \(a\) to \(b\):</b> \(\frac{\text{Last Multiple} - \text{First Multiple}}{k} + 1\)</li>
+</ul>
+</F>
+
+<h3>Geometric Progression (GP)</h3>
+<p>A GP has a constant ratio \(r\) between consecutive terms: \(a, ar, ar^2, \dots\)</p>
+<BIG>\(a_n = a \cdot r^{n - 1}\)</BIG>
+`,
+  quiz: [
+    {
+      q: R`Let \(a\) be the sum of integers from 1 to 30 inclusive, and \(b\) be the sum of integers from 31 to 60 inclusive. What is the value of \(b - a\)?`,
+      o: [R`\(900\)`, R`\(450\)`, R`\(300\)`, R`\(600\)`, R`\(930\)`],
+      e: R`Pair corresponding terms: \((31-1) + (32-2) + \dots + (60-30) = 30 + 30 + \dots + 30\) (30 times).<br>\(b - a = 30 \times 30 = 900\).`
+    },
+    {
+      q: R`How many multiples of 6 are there between 30 and 300, inclusive?`,
+      o: [R`\(46\)`, R`\(45\)`, R`\(47\)`, R`\(50\)`, R`\(44\)`],
+      e: R`First multiple is \(30 = 6 \times 5\). Last is \(300 = 6 \times 50\).<br>Count \(= 50 - 5 + 1 = 46\).`
+    },
+    {
+      q: R`What is the sum of all multiples of 4 from 20 to 80 inclusive?`,
+      o: [R`\(800\)`, R`\(750\)`, R`\(850\)`, R`\(1600\)`, R`\(700\)`],
+      e: R`The sequence is \(20, 24, \dots, 80\). Number of terms \(= \frac{80 - 20}{4} + 1 = 16\).<br>\(S = \frac{16}{2}(20 + 80) = 8 \times 100 = 800\).`
+    },
+    {
+      q: R`A city's population doubles every decade. If its population was 10 million in 1970, what was its population 50 years later in 2020?`,
+      o: [R`\(320\text{ million}\)`, R`\(160\text{ million}\)`, R`\(500\text{ million}\)`, R`\(640\text{ million}\)`, R`\(250\text{ million}\)`],
+      e: R`50 years \(= 5\) decades. The population doubles 5 times: \(10 \times 2^5 = 10 \times 32 = 320\text{ million}\).`
+    },
+    {
+      q: R`A rubber ball is dropped from a height of 100 ft. After each bounce, it rebounds to a fixed fraction \(r\) of its previous height. If after 2 bounces it reaches 25 ft, what is \(r\)?`,
+      o: [R`\(\frac{1}{2}\)`, R`\(\frac{1}{4}\)`, R`\(\frac{3}{4}\)`, R`\(\frac{1}{\sqrt{2}}\)`, R`\(\frac{2}{3}\)`],
+      e: R`Height after 2 bounces \(= 100 \cdot r^2 = 25 \Rightarrow r^2 = \frac{25}{100} = \frac{1}{4} \Rightarrow r = \frac{1}{2}\).`
+    },
+    {
+      q: R`Consider the squares of the first 10 positive integers: \(1^2, 2^2, 3^2, \dots, 10^2\). Let \(S\) be the sequence of differences between consecutive squares: \((2^2 - 1^2), (3^2 - 2^2), \dots\). What is the sum of the first 8 terms of \(S\)?`,
+      o: [R`\(80\)`, R`\(64\)`, R`\(99\)`, R`\(81\)`, R`\(72\)`],
+      e: R`Telescoping sum: \((2^2 - 1^2) + (3^2 - 2^2) + \dots + (9^2 - 8^2) = 9^2 - 1^2 = 81 - 1 = 80\).`
+    }
+  ]
+});
+
+
+/* ===== GRE Quant Lab — Word Problems ===== */
+'use strict';
+
+// 12. Percentages & Profit/Loss
+TOPICS.push({
+  id: 'pct',
+  ch: 'wp',
+  icon: '🏷️',
+  title: 'Percentages & Profit/Loss',
+  desc: 'Percent change, base multipliers, successive changes, reverse percentages & profit/discount.',
+  learn: R`
+<h3>Understanding Percentages</h3>
+<p>A percentage is simply a fraction with denominator 100: \(p\% = \frac{p}{100}\).</p>
+
+<F t="Percent Change Formula">
+<BIG>\(\text{Percent Change} = \frac{\text{Final} - \text{Initial}}{\text{Initial}} \times 100\%\)</BIG>
+<p><b>Always remember:</b> The denominator is ALWAYS the <i>original / initial base value</i>!</p>
+</F>
+
+<F t="Successive Percentage Changes">
+If a quantity changes by \(a\%\) and then by \(b\%\), the net percentage change is:
+<BIG>\(\text{Net Change} = a + b + \frac{ab}{100}\)</BIG>
+<ul>
+  <li>Successive discounts of \(20\%\) and \(10\%\) give: \(-20 - 10 + \frac{(-20)(-10)}{100} = -28\%\) (LESS than a single \(30\%\) discount!).</li>
+  <li>To return to original after a \(+50\%\) increase, you need a <b>\(33.33\%\) decrease</b>.</li>
+  <li>To return to original after a \(-20\%\) decrease, you need a <b>\(+25\%\) increase</b>.</li>
+</ul>
+</F>
+
+<EX t="Reverse Percentage">
+An item sold for \(\$100\) yields a \(10\%\) profit. What was its cost price?
+<SOL>
+Let Cost Price be \(CP\).<br>
+\(\text{Selling Price} = 1.10 \times CP = 100 \Rightarrow CP = \frac{100}{1.10} \approx \mathbf{\$90.91}\).<br>
+(Common mistake: subtracting \(10\%\) of \(\$100\) gives \(\$90\), which is wrong!)
+</SOL>
+</EX>
+`,
+  quiz: [
+    {
+      q: R`If \(10\%\) of a certain number is 5, what is \(30\%\) of that number?`,
+      o: [R`\(15\)`, R`\(10\)`, R`\(25\)`, R`\(50\)`, R`\(150\)`],
+      e: R`\(30\%\) is \(3 \times 10\%\), so \(3 \times 5 = 15\).`
+    },
+    {
+      q: R`In a study group of 10 boys and 20 girls, what percentage of the group are boys?`,
+      o: [R`\(33.33\%\)`, R`\(50\%\)`, R`\(25\%\)`, R`\(40\%\)`, R`\(30\%\)`],
+      e: R`Total students \(= 10 + 20 = 30\). Percentage of boys \(= \frac{10}{30} \times 100\% = 33.33\%\).`
+    },
+    {
+      q: R`Adam's weight increased from 55 lb to 65 lb. What was the percentage increase?`,
+      o: [R`\(18.18\%\)`, R`\(15.38\%\)`, R`\(20\%\)`, R`\(10\%\)`, R`\(12.5\%\)`],
+      e: R`Change \(= 65 - 55 = 10\). Percentage increase \(= \frac{10}{55} \times 100\% = \frac{2}{11} \times 100\% \approx 18.18\%\).`
+    },
+    {
+      q: R`50 is greater than 20 by what percentage?`,
+      o: [R`\(150\%\)`, R`\(250\%\)`, R`\(60\%\)`, R`\(40\%\)`, R`\(100\%\)`],
+      e: R`Base is 20: \(\frac{50 - 20}{20} \times 100\% = \frac{30}{20} \times 100\% = 150\%\).`
+    },
+    {
+      q: R`20 is less than 50 by what percentage?`,
+      o: [R`\(60\%\)`, R`\(150\%\)`, R`\(40\%\)`, R`\(30\%\)`, R`\(250\%\)`],
+      e: R`Base is 50: \(\frac{50 - 20}{50} \times 100\% = \frac{30}{50} \times 100\% = 60\%\).`
+    },
+    {
+      q: R`If \(a\%\) of \(b = 40\) and \(b\%\) of \(80 = 48\), what is the value of \(a\)?`,
+      o: [R`\(66.67\)`, R`\(60\)`, R`\(50\)`, R`\(75\)`, R`\(48\)`],
+      e: R`\(\frac{b}{100} \times 80 = 48 \Rightarrow 0.8b = 48 \Rightarrow b = 60\).<br>\(\frac{a}{100} \times 60 = 40 \Rightarrow 0.6a = 40 \Rightarrow a = \frac{400}{6} \approx 66.67\).`
+    },
+    {
+      q: R`A \(40\%\) discount on an item reduces its price by \(\$300\). What would be the selling price of the item if a discount of only \(20\%\) were applied instead?`,
+      o: [R`\(\$600\)`, R`\(\$650\)`, R`\(\$700\)`, R`\(\$750\)`, R`\(\$550\)`],
+      e: R`\(0.40 \times \text{Original} = 300 \Rightarrow \text{Original} = \$750\).<br>With a \(20\%\) discount, Selling Price \(= 750 \times 0.80 = \$600\).`
+    }
+  ]
+});
+
+// 13. Rates, Work & Pipes
+TOPICS.push({
+  id: 'work',
+  ch: 'wp',
+  icon: '⏱️',
+  title: 'Rate, Time & Work',
+  desc: 'Work rates, simultaneous workers, pipes & cisterns, and the smart LCM unit method.',
+  learn: R`
+<h3>The Fundamental Work Equation</h3>
+<BIG>\(\text{Rate} \times \text{Time} = \text{Work Completed}\)</BIG>
+<p>If a person completes a job in \(T\) hours, their rate is \(\frac{1}{T}\) of the job per hour.</p>
+
+<F t="Combined Work Formula">
+If Person A takes \(a\) hours and Person B takes \(b\) hours to complete a job alone:
+<BIG>\(T_{\text{together}} = \frac{a \cdot b}{a + b}\)</BIG>
+</F>
+
+<TIP>
+<b>Smart LCM Unit Method:</b><br>
+Instead of fractions, assign total work equal to \(\text{LCM}(a, b)\) units.<br>
+<i>Example:</i> A does a job in 6 hours, B in 4 hours.<br>
+Let Total Work \(= \text{LCM}(6, 4) = 12\) units.<br>
+A's rate \(= 12 / 6 = 2\) units/hr. B's rate \(= 12 / 4 = 3\) units/hr.<br>
+Together \(= 2 + 3 = 5\) units/hr. Time \(= \frac{12}{5} = 2.4\) hours!
+</TIP>
+
+<F t="Pipes & Cisterns">
+Inflow pipes have positive rates, while drainage pipes have negative rates:
+<BIG>\(\text{Net Rate} = R_{\text{in}} - R_{\text{out}}\)</BIG>
+</F>
+`,
+  quiz: [
+    {
+      q: R`A water pump fills a rectangular tank measuring \(3\text{ ft} \times 4\text{ ft} \times 8\text{ ft}\) at a constant rate of \(8\text{ cu ft/hr}\). How many hours will it take to fill the tank completely?`,
+      o: [R`\(12\)`, R`\(8\)`, R`\(16\)`, R`\(24\)`, R`\(10\)`],
+      e: R`Volume \(= 3 \times 4 \times 8 = 96\text{ cu ft}\).<br>Time \(= \frac{96}{8} = 12\text{ hours}\).`
+    },
+    {
+      q: R`Tap A can fill a tank in 3 hours, and Tap B can fill it in 2 hours. How many hours will it take to fill the tank if both taps are open simultaneously?`,
+      o: [R`\(1.2\text{ hrs (1 hr 12 min)}\)`, R`\(2.5\text{ hrs}\)`, R`\(1.5\text{ hrs}\)`, R`\(1.0\text{ hr}\)`, R`\(1.8\text{ hrs}\)`],
+      e: R`\(T = \frac{a \times b}{a + b} = \frac{3 \times 2}{3 + 2} = \frac{6}{5} = 1.2\text{ hours}\).`
+    },
+    {
+      q: R`Three workers can complete a project in 4 days, 5 days, and 6 days respectively when working alone. How many days will it take if all three work together?`,
+      o: [R`\(\frac{60}{37}\text{ days}\)`, R`\(\frac{37}{60}\text{ days}\)`, R`\(5\text{ days}\)`, R`\(2.5\text{ days}\)`, R`\(\frac{15}{4}\text{ days}\)`],
+      e: R`Combined rate \(= \frac{1}{4} + \frac{1}{5} + \frac{1}{6} = \frac{15 + 12 + 10}{60} = \frac{37}{60}\).<br>Time \(= \frac{60}{37}\text{ days} \approx 1.62\text{ days}\).`
+    },
+    {
+      q: R`Machine A mints 160 coins in 40 minutes, and Machine B mints 100 coins in 20 minutes. If both machines work together at their constant rates, how many minutes will they take to mint 200 coins?`,
+      o: [R`\(\frac{200}{9}\text{ min}\)`, R`\(20\text{ min}\)`, R`\(25\text{ min}\)`, R`\(\frac{100}{9}\text{ min}\)`, R`\(18\text{ min}\)`],
+      e: R`Rate of A \(= \frac{160}{40} = 4\text{ coins/min}\). Rate of B \(= \frac{100}{20} = 5\text{ coins/min}\).<br>Combined rate \(= 4 + 5 = 9\text{ coins/min}\).<br>Time \(= \frac{200}{9}\text{ minutes} \approx 22.2\text{ min}\).`
+    },
+    {
+      q: R`3 identical machines can bind 600 books in 4 hours. How many hours will 9 such machines take to bind 1350 books?`,
+      o: [R`\(3\)`, R`\(4\)`, R`\(2\)`, R`\(4.5\)`, R`\(2.5\)`],
+      e: R`Rate of 1 machine \(= \frac{600}{3 \times 4} = 50\text{ books/hr}\).<br>Rate of 9 machines \(= 9 \times 50 = 450\text{ books/hr}\).<br>Time \(= \frac{1350}{450} = 3\text{ hours}\).`
+    }
+  ]
+});
+
+// 14. Time, Speed & Distance
+TOPICS.push({
+  id: 'tsd',
+  ch: 'wp',
+  icon: '🚗',
+  title: 'Speed, Distance & Time',
+  desc: 'Average speed traps, round-trip harmonic mean, relative motion & meeting point calculations.',
+  learn: R`
+<h3>Fundamental Speed Formula</h3>
+<BIG>\(\text{Distance} = \text{Speed} \times \text{Time}\)</BIG>
+
+<F t="Average Speed: The Golden Definition">
+<BIG>\(\text{Average Speed} = \frac{\text{Total Distance}}{\text{Total Time}}\)</BIG>
+<p>⚠️ <b>CRITICAL GRE TRAP:</b> NEVER simply take the arithmetic average of two speeds! Since more time is spent at the slower speed, the true average speed is always weighted closer to the slower speed.</p>
+</F>
+
+<F t="Round Trip with Equal Distances">
+If an object travels a distance at speed \(v_1\) and returns along the same distance at speed \(v_2\):
+<BIG>\(\text{Average Speed} = \frac{2 v_1 v_2}{v_1 + v_2}\)</BIG>
+<p><i>Example:</i> 40 mph there and 60 mph back \(\Rightarrow \frac{2 \times 40 \times 60}{40 + 60} = \frac{4800}{100} = \mathbf{48\text{ mph}}\) (NOT 50!).</p>
+</F>
+
+<F t="Relative Motion">
+<ul>
+  <li><b>Moving towards each other:</b> Relative Speed \(= v_1 + v_2\)</li>
+  <li><b>Moving in same direction:</b> Relative Speed \(= |v_1 - v_2|\)</li>
+</ul>
+</F>
+`,
+  quiz: [
+    {
+      q: R`Paul drives \(40\%\) of a trip at \(20\text{ mph}\) and the remaining \(60\%\) of the trip at \(90\text{ mph}\). What was Paul's average speed for the entire trip?`,
+      o: [R`\(37.5\text{ mph}\)`, R`\(55\text{ mph}\)`, R`\(45\text{ mph}\)`, R`\(62\text{ mph}\)`, R`\(32.5\text{ mph}\)`],
+      e: R`Assume a convenient total distance of 100 miles.<br>Leg 1: 40 miles at 20 mph \(\Rightarrow t_1 = \frac{40}{20} = 2\text{ hrs}\).<br>Leg 2: 60 miles at 90 mph \(\Rightarrow t_2 = \frac{60}{90} = \frac{2}{3}\text{ hrs}\).<br>Total time \(= 2 + \frac{2}{3} = \frac{8}{3}\text{ hrs}\).<br>Average speed \(= \frac{100}{8/3} = \frac{300}{8} = 37.5\text{ mph}\).`
+    },
+    {
+      q: R`Adam drives 100 miles at 50 mph, and then 200 miles at 25 mph. What is his average speed for the entire 300-mile journey?`,
+      o: [R`\(30\text{ mph}\)`, R`\(37.5\text{ mph}\)`, R`\(33.3\text{ mph}\)`, R`\(35\text{ mph}\)`, R`\(28\text{ mph}\)`],
+      e: R`Time for leg 1: \(\frac{100}{50} = 2\text{ hrs}\). Time for leg 2: \(\frac{200}{25} = 8\text{ hrs}\).<br>Total time \(= 2 + 8 = 10\text{ hrs}\).<br>Average speed \(= \frac{300}{10} = 30\text{ mph}\).`
+    },
+    {
+      q: R`A commuter flies from Seattle to San Francisco at \(90\text{ mph}\), and then from San Francisco to Los Angeles at \(50\text{ mph}\). The total distance of \(1400\text{ miles}\) was covered in \(20\text{ hours}\). What is the distance from San Francisco to Los Angeles?`,
+      o: [R`\(500\text{ miles}\)`, R`\(900\text{ miles}\)`, R`\(600\text{ miles}\)`, R`\(700\text{ miles}\)`, R`\(450\text{ miles}\)`],
+      e: R`Let \(t\) be time for Seattle-SF. Then \(20 - t\) is time for SF-LA.<br>\(90t + 50(20 - t) = 1400 \Rightarrow 40t + 1000 = 1400 \Rightarrow 40t = 400 \Rightarrow t = 10\text{ hrs}\).<br>Distance SF-LA \(= 50 \times (20 - 10) = 500\text{ miles}\).`
+    },
+    {
+      q: R`Two cars are 400 miles apart on a straight highway and start driving directly towards each other at constant speeds of 40 mph and 60 mph. How many hours will it take for them to meet?`,
+      o: [R`\(4\text{ hours}\)`, R`\(5\text{ hours}\)`, R`\(3.5\text{ hours}\)`, R`\(4.5\text{ hours}\)`, R`\(6\text{ hours}\)`],
+      e: R`Relative speed \(= 40 + 60 = 100\text{ mph}\).<br>Time \(= \frac{\text{Distance}}{\text{Relative Speed}} = \frac{400}{100} = 4\text{ hours}\).`
+    }
+  ]
+});
+
+// 15. Simple & Compound Interest
+TOPICS.push({
+  id: 'interest',
+  ch: 'wp',
+  icon: '💰',
+  title: 'Interest: Simple & Compound',
+  desc: 'Simple interest formula, compound growth multipliers, and quarterly/monthly compounding rates.',
+  learn: R`
+<h3>Simple Interest (SI)</h3>
+<p>Interest is calculated only on the initial principal \(P\):</p>
+<BIG>\(SI = \frac{P \cdot R \cdot N}{100}\)</BIG>
+<BIG>\(\text{Total Amount } A = P + SI = P\left(1 + \frac{R \cdot N}{100}\right)\)</BIG>
+
+<F t="Compound Interest (CI)">
+Interest is added back to principal at each compounding interval:
+<BIG>\(A = P\left(1 + \frac{R}{100}\right)^N\)</BIG>
+<ul>
+  <li><b>Compounded Semi-Annually:</b> Rate \(= \frac{R}{2}\%\), Periods \(= 2N\)</li>
+  <li><b>Compounded Quarterly:</b> Rate \(= \frac{R}{4}\%\), Periods \(= 4N\)</li>
+  <li><b>Compounded Monthly:</b> Rate \(= \frac{R}{12}\%\), Periods \(= 12N\)</li>
+</ul>
+</F>
+
+<EX t="Quarterly Compounding">
+Find the compound interest on \(\$5000\) at \(12\%\) per annum compounded quarterly for 6 months.
+<SOL>
+Quarterly rate \(r = \frac{12\%}{4} = 3\%\).<br>
+Number of quarters in 6 months \(= 2\).<br>
+\(A = 5000(1 + 0.03)^2 = 5000 \times 1.0609 = \$5304.50\).<br>
+Compound Interest \(= A - P = \$304.50\).
+</SOL>
+</EX>
+`,
+  quiz: [
+    {
+      q: R`A sum of \(\$1000\) was split and invested: part at \(5\%\) simple interest per annum and the rest at \(10\%\) simple interest per annum. If the total interest earned after 1 year was \(\$75\), how much was invested at \(5\%\)?`,
+      o: [R`\(\$500\)`, R`\(\$400\)`, R`\(\$600\)`, R`\(\$450\)`, R`\(\$550\)`],
+      e: R`Let \(x\) be amount at \(5\%\). Amount at \(10\%\) is \(1000 - x\).<br>\(0.05x + 0.10(1000 - x) = 75 \Rightarrow 100 - 0.05x = 75 \Rightarrow 0.05x = 25 \Rightarrow x = \$500\).`
+    },
+    {
+      q: R`Brad invested \(\$10,000\) at \(10\%\) per annum simple interest for 3 years. What is the total amount he receives at maturity?`,
+      o: [R`\(\$13,000\)`, R`\(\$13,310\)`, R`\(\$12,500\)`, R`\(\$14,000\)`, R`\(\$3,000\)`],
+      e: R`\(SI = 10000 \times 0.10 \times 3 = \$3000\).<br>\(A = 10000 + 3000 = \$13,000\).`
+    },
+    {
+      q: R`If Brad had instead invested the same \(\$10,000\) at \(10\%\) per annum compounded annually for 3 years, what total amount would he receive?`,
+      o: [R`\(\$13,310\)`, R`\(\$13,000\)`, R`\(\$13,100\)`, R`\(\$13,500\)`, R`\(\$12,900\)`],
+      e: R`\(A = 10000(1 + 0.10)^3 = 10000(1.331) = \$13,310\).`
+    }
+  ]
+});
+
+// 16. Sets & Venn Diagrams
+TOPICS.push({
+  id: 'sets',
+  ch: 'wp',
+  icon: '⭕',
+  title: 'Sets & Venn Diagrams',
+  desc: 'Two-set inclusion-exclusion, exact-count terminology, and 2x2 grid table methods.',
+  learn: R`
+<h3>Two-Set Overlap Formula</h3>
+<p>For any two overlapping groups \(A\) and \(B\):</p>
+
+<F t="Inclusion-Exclusion Formula">
+<BIG>\(\text{Total} - \text{Neither} = A + B - \text{Both}\)</BIG>
+<ul>
+  <li><b>Only \(A\):</b> \(A - \text{Both}\)</li>
+  <li><b>Exactly one group:</b> \((A - \text{Both}) + (B - \text{Both})\)</li>
+  <li><b>At least one group:</b> \(\text{Total} - \text{Neither} = A + B - \text{Both}\)</li>
+</ul>
+</F>
+
+<h3>The 2×2 Table Method</h3>
+<p>When dealing with two binary categories (e.g. Male/Female and French/German), a 2×2 grid ensures no terms are double-counted!</p>
+`,
+  quiz: [
+    {
+      q: R`In a sample of 1000 people, \(80\%\) are over 70 years old, \(40\%\) take daily walks, and 150 people neither are over 70 nor take daily walks. How many people both are over 70 and take daily walks?`,
+      o: [R`\(350\)`, R`\(400\)`, R`\(250\)`, R`\(300\)`, R`\(200\)`],
+      e: R`Over 70 \(= 800\), Walk \(= 400\), Neither \(= 150\).<br>\(\text{Total} - \text{Neither} = A + B - \text{Both} \Rightarrow 1000 - 150 = 800 + 400 - \text{Both}\).<br>\(850 = 1200 - \text{Both} \Rightarrow \text{Both} = 350\).`
+    },
+    {
+      q: R`Among 50 university professors, 30 teach Mathematics, 25 teach Literature, and 10 teach neither. How many professors teach Mathematics but NOT Literature?`,
+      o: [R`\(15\)`, R`\(10\)`, R`\(20\)`, R`\(25\)`, R`\(5\)`],
+      e: R`\(50 - 10 = 30 + 25 - \text{Both} \Rightarrow 40 = 55 - \text{Both} \Rightarrow \text{Both} = 15\).<br>Maths but not Literature \(= 30 - 15 = 15\).`
+    },
+    {
+      q: R`In a survey of residents, \(60\%\) own a car. Of those who own a car, \(40\%\) also own a villa. If \(80\%\) of villa owners also own a car, what percentage of the entire surveyed population own a villa?`,
+      o: [R`\(30\%\)`, R`\(24\%\)`, R`\(40\%\)`, R`\(36\%\)`, R`\(20\%\)`],
+      e: R`People owning both car and villa \(= 60\% \times 40\% = 24\%\).<br>Let \(V\) be percentage owning a villa: \(80\% \text{ of } V = 24\% \Rightarrow 0.80V = 0.24 \Rightarrow V = 30\%\).`
+    },
+    {
+      q: R`A class of 30 students has 15 studying French and the remaining 15 studying German. 10 students play football, and 5 students play football and study German. How many students study French but do NOT play football?`,
+      o: [R`\(10\)`, R`\(5\)`, R`\(15\)`, R`\(8\)`, R`\(12\)`],
+      e: R`Football & German \(= 5\). Since total football players is 10, Football & French \(= 10 - 5 = 5\).<br>French total is 15, so French & no football \(= 15 - 5 = 10\).`
+    }
+  ]
+});
+
+
+/* ===== GRE Quant Lab — Data Analysis Topics ===== */
+'use strict';
+
+// 17. Mean, Median & Mode
+TOPICS.push({
+  id: 'mmm',
+  ch: 'da',
+  icon: '📊',
+  title: 'Mean, Median & Mode',
+  desc: 'Arithmetic mean, weighted averages, median calculation, and frequency distributions.',
+  learn: R`
+<h3>Measures of Central Tendency</h3>
+
+<F t="Arithmetic Mean & Sum">
+<BIG>\(\text{Mean} = \frac{\sum x}{n} \quad\iff\quad \sum x = n \times \text{Mean}\)</BIG>
+<p><i>Golden Rule:</i> Whenever an average is given or changes, immediately calculate the <b>TOTAL SUM</b>!</p>
+</F>
+
+<F t="Weighted Average">
+When combining two groups with averages \(x_1\) and \(x_2\) and counts \(w_1\) and \(w_2\):
+<BIG>\(\bar{x}_{\text{weighted}} = \frac{w_1 x_1 + w_2 x_2}{w_1 + w_2}\)</BIG>
+<p>The weighted average is ALWAYS pulled closer to the group with the larger count.</p>
+</F>
+
+<h3>Median & Mode</h3>
+<ul>
+  <li><b>Median:</b> The middle value when data is sorted in ascending order.
+    <ul>
+      <li>If \(n\) is odd: The exact middle value at position \(\frac{n+1}{2}\).</li>
+      <li>If \(n\) is even: The average of the two middle values at positions \(\frac{n}{2}\) and \(\frac{n}{2} + 1\).</li>
+    </ul>
+  </li>
+  <li><b>Mode:</b> The value that appears with the highest frequency. A set can have one mode, multiple modes, or no mode.</li>
+</ul>
+
+<NOTE>
+In any evenly spaced sequence (Arithmetic Progression), <b>\(\text{Mean} = \text{Median} = \frac{\text{First} + \text{Last}}{2}\)</b>.
+</NOTE>
+`,
+  quiz: [
+    {
+      q: R`The average of 5 positive numbers is 40. When 2 of the numbers are removed, the average of the remaining 3 numbers is 50. What is the average of the 2 removed numbers?`,
+      o: [R`\(25\)`, R`\(30\)`, R`\(20\)`, R`\(35\)`, R`\(45\)`],
+      e: R`Initial sum \(= 5 \times 40 = 200\).<br>Remaining sum \(= 3 \times 50 = 150\).<br>Sum of 2 removed numbers \(= 200 - 150 = 50\).<br>Their average \(= \frac{50}{2} = 25\).`
+    },
+    {
+      q: R`The average of 4 positive integers is 10. What is the greatest possible value that any one of these integers could have?`,
+      o: [R`\(37\)`, R`\(40\)`, R`\(36\)`, R`\(38\)`, R`\(39\)`],
+      e: R`Total sum \(= 4 \times 10 = 40\).<br>To maximize one integer, minimize the other three to the smallest positive integer (\(1\)):<br>\(40 - (1 + 1 + 1) = 37\).`
+    },
+    {
+      q: R`The ratio of male to female students in a college program is \(1:2\). If the mean score of the male students is 120 and the mean score of the female students is 135, what is the combined mean score of all students?`,
+      o: [R`\(130\)`, R`\(127.5\)`, R`\(132.5\)`, R`\(125\)`, R`\(128\)`],
+      e: R`Weighted average \(= \frac{1(120) + 2(135)}{1 + 2} = \frac{120 + 270}{3} = \frac{390}{3} = 130\).`
+    },
+    {
+      q: R`Given integers \(a, b, c\) such that \(-4 \le a \le 8\), \(4 \le b < 11\), and \(-4 < c \le 6\), what is the maximum possible arithmetic mean of \(a, b,\) and \(c\)?`,
+      o: [R`\(8\)`, R`\(7\)`, R`\(8.33\)`, R`\(9\)`, R`\(7.67\)`],
+      e: R`To maximize the mean, maximize each integer: \(a = 8\), \(b = 10\) (since \(b < 11\) is integer), \(c = 6\).<br>Sum \(= 8 + 10 + 6 = 24\). Mean \(= \frac{24}{3} = 8\).`
+    }
+  ]
+});
+
+// 18. Range & Standard Deviation
+TOPICS.push({
+  id: 'sd',
+  ch: 'da',
+  icon: '📏',
+  title: 'Range & Standard Deviation',
+  desc: 'Dispersion metrics, variance formula, transformation rules & visual spread comparison.',
+  learn: R`
+<h3>Measures of Spread</h3>
+<ul>
+  <li><b>Range:</b> \(\text{Max} - \text{Min} \ge 0\).</li>
+  <li><b>Standard Deviation (\(\sigma\)):</b> Measures how spread out numbers are from the mean.
+    <BIG>\(\sigma = \sqrt{\frac{\sum (x_i - \mu)^2}{n}}\)</BIG>
+  </li>
+  <li><b>Variance:</b> \(\text{Variance} = \sigma^2\).</li>
+</ul>
+
+<F t="Effects of Operations on Range & SD">
+<ol>
+  <li><b>Adding or Subtracting a Constant \(k\):</b><br>
+    The entire distribution shifts, but distances between points remain unchanged!<br>
+    \(\text{Range}_{\text{new}} = \text{Range}_{\text{old}}\)<br>
+    \(\sigma_{\text{new}} = \sigma_{\text{old}}\) (UNALTERED!)
+  </li>
+  <li><b>Multiplying by a Constant \(k\):</b><br>
+    Distances between points scale by \(|k|\):<br>
+    \(\text{Range}_{\text{new}} = |k| \times \text{Range}_{\text{old}}\)<br>
+    \(\sigma_{\text{new}} = |k| \times \sigma_{\text{old}}\)
+  </li>
+</ol>
+</F>
+`,
+  quiz: [
+    {
+      q: R`The range of a dataset is 20. If every number in the dataset is increased by 30, what is the new range?`,
+      o: [R`\(20\)`, R`\(50\)`, R`\(30\)`, R`\(10\)`, R`\(0\)`],
+      e: R`Adding a constant to every value shifts the entire set but does not change the difference between max and min: \((M + 30) - (m + 30) = M - m = 20\).`
+    },
+    {
+      q: R`Which of the following datasets has the greatest standard deviation?`,
+      o: [
+        R`\(\{20, 30, 40, 50\}\)`,
+        R`\(\{1, 4, 7, 10\}\)`,
+        R`\(\{2, 4, 6, 8\}\)`,
+        R`\(\{12, 13, 14, 15\}\)`,
+        R`\(\{-8, -6, -4, -2\}\)`
+      ],
+      e: R`Standard deviation measures distance from the mean. The spacing between consecutive terms in \(\{20, 30, 40, 50\}\) is 10, whereas in all other choices it is 3, 2, or 1. Thus it has the largest spread.`
+    },
+    {
+      q: R`Which of the following operations on a dataset will leave its standard deviation UNCHANGED?
+I. Increasing the largest number by 10
+II. Increasing each number by 10
+III. Multiplying each number by 10`,
+      o: [R`II only`, R`I only`, R`III only`, R`II and III`, R`None of them`],
+      fix: 1, a: 0,
+      e: R`Only adding the same constant to EVERY number (II) shifts the data without altering the deviations from the mean.`
+    },
+    {
+      q: R`What is the standard deviation and range of the set \(\{1, 5, 9, 13\}\)?`,
+      o: [
+        R`\(\text{SD} = \sqrt{20}, \text{Range} = 12\)`,
+        R`\(\text{SD} = 20, \text{Range} = 12\)`,
+        R`\(\text{SD} = \sqrt{10}, \text{Range} = 12\)`,
+        R`\(\text{SD} = 4, \text{Range} = 13\)`,
+        R`\(\text{SD} = \sqrt{20}, \text{Range} = 13\)`
+      ],
+      e: R`Mean \(= \frac{1+5+9+13}{4} = 7\).<br>Squared deviations: \((1-7)^2 = 36\), \((5-7)^2 = 4\), \((9-7)^2 = 4\), \((13-7)^2 = 36\).<br>Sum \(= 80\). Variance \(= 80/4 = 20 \Rightarrow \text{SD} = \sqrt{20}\).<br>Range \(= 13 - 1 = 12\).`
+    }
+  ]
+});
+
+// 19. Permutations & Combinations
+TOPICS.push({
+  id: 'pnc',
+  ch: 'da',
+  icon: '🎲',
+  title: 'Permutations & Combinations',
+  desc: 'Counting principle, combinations (nCr), permutations (nPr), circular seating & identical object anagrams.',
+  learn: R`
+<h3>Selection vs Arrangement</h3>
+
+<F t="Combinations: Order Does NOT Matter">
+Selecting \(r\) items out of \(n\) distinct items (e.g. committees, handshakes):
+<BIG>\(^nC_r = \frac{n!}{r!(n - r)!}\)</BIG>
+<ul>
+  <li>\(^nC_1 = n\), \quad \(^nC_n = 1\), \quad \(^nC_0 = 1\)</li>
+  <li>\(^nC_2 = \frac{n(n - 1)}{2}\)</li>
+</ul>
+</F>
+
+<F t="Permutations: Order MATTERS">
+Arranging \(r\) items out of \(n\) distinct items (e.g. ranks, podiums, words):
+<BIG>\(^nP_r = \frac{n!}{(n - r)!}\)</BIG>
+<ul>
+  <li>Arranging \(n\) items in a straight line: \(n!\)</li>
+  <li>Arranging \(n\) items in a circle: \((n - 1)!\)</li>
+</ul>
+</F>
+
+<TIP>
+<b>The Box / Glue Method (Items Kept Together):</b><br>
+To arrange letters of "BEGIN" such that vowels (E, I) are always together:<br>
+1. Glue {E, I} into 1 block. Total items to arrange: {B, G, N, [EI]} \(= 4\) items \(\Rightarrow 4! = 24\).<br>
+2. Arrange vowels internally: \(2! = 2\).<br>
+Total \(= 4! \times 2! = 24 \times 2 = \mathbf{48}\).
+</TIP>
+`,
+  quiz: [
+    {
+      q: R`In how many ways can a committee of 3 men and 2 women be chosen from a group of 8 men and 6 women?`,
+      o: [R`\(840\)`, R`\(420\)`, R`\(560\)`, R`\(1680\)`, R`\(336\)`],
+      e: R`Men: \(^8C_3 = \frac{8 \times 7 \times 6}{6} = 56\). Women: \(^6C_2 = \frac{6 \times 5}{2} = 15\).<br>Total \(= 56 \times 15 = 840\).`
+    },
+    {
+      q: R`A committee of 4 people is to be chosen from a group of 20 people. If Peter must NOT be on the committee and John MUST be on the committee, how many different committees can be formed?`,
+      o: [R`\(816\)`, R`\(969\)`, R`\(1140\)`, R`\(680\)`, R`\(1024\)`],
+      e: R`John is automatically included (1 choice). Peter is excluded (0 choices).<br>Remaining spots to fill: \(4 - 1 = 3\).<br>Eligible remaining candidates: \(20 - 2 = 18\).<br>\(^{18}C_3 = \frac{18 \times 17 \times 16}{6} = 3 \times 17 \times 16 = 816\).`
+    },
+    {
+      q: R`In how many ways can 5 people (A, B, C, D, E) stand in a straight line if A and B must NOT stand next to each other?`,
+      o: [R`\(72\)`, R`\(48\)`, R`\(120\)`, R`\(96\)`, R`\(60\)`],
+      e: R`Total arrangements \(= 5! = 120\).<br>Arrangements where A and B are together \(= 4! \times 2! = 24 \times 2 = 48\).<br>Not together \(= 120 - 48 = 72\).`
+    },
+    {
+      q: R`How many distinct 3-digit numbers can be formed using only the digits 4 and 7?`,
+      o: [R`\(8\)`, R`\(6\)`, R`\(9\)`, R`\(16\)`, R`\(4\)`],
+      e: R`Each of the 3 digit positions has 2 choices (4 or 7): \(2 \times 2 \times 2 = 8\).`
+    },
+    {
+      q: R`In how many ways can a fair coin land on exactly 3 heads when tossed 5 times?`,
+      o: [R`\(10\)`, R`\(5\)`, R`\(15\)`, R`\(20\)`, R`\(32\)`],
+      e: R`Choose 3 positions out of 5 for heads: \(^5C_3 = \frac{5 \times 4}{2} = 10\).`
+    }
+  ]
+});
+
+// 20. Probability
+TOPICS.push({
+  id: 'prob',
+  ch: 'da',
+  icon: '🎯',
+  title: 'Probability',
+  desc: 'Fundamental probability rules, independent events, complementary logic & card/dice scenarios.',
+  learn: R`
+<h3>Basic Probability</h3>
+<BIG>\(P(E) = \frac{\text{Number of Favorable Outcomes}}{\text{Total Possible Outcomes}} \qquad (0 \le P(E) \le 1)\)</BIG>
+<p><b>Complementary Rule:</b> \(P(\text{not } E) = 1 - P(E)\). (Very useful when asked for "at least one"!).</p>
+
+<F t="Compound Events">
+<ul>
+  <li><b>Independent Events (AND rule):</b> Both happen:
+    <BIG>\(P(A \text{ and } B) = P(A) \times P(B)\)</BIG>
+  </li>
+  <li><b>Mutually Exclusive Events:</b> Cannot happen together (\(P(A \cap B) = 0\)):
+    <BIG>\(P(A \text{ or } B) = P(A) + P(B)\)</BIG>
+  </li>
+  <li><b>General OR Rule (Overlapping):</b>
+    <BIG>\(P(A \text{ or } B) = P(A) + P(B) - P(A \text{ and } B)\)</BIG>
+  </li>
+</ul>
+</F>
+`,
+  quiz: [
+    {
+      q: R`A single integer is chosen at random from 1 to 100 inclusive. What is the probability that it is NOT a multiple of 5?`,
+      o: [R`\(0.80\)`, R`\(0.20\)`, R`\(0.75\)`, R`\(0.85\)`, R`\(0.50\)`],
+      e: R`Multiples of 5 from 1 to 100: \(100/5 = 20\).<br>\(P(\text{multiple of 5}) = \frac{20}{100} = 0.20\).<br>\(P(\text{not multiple of 5}) = 1 - 0.20 = 0.80\).`
+    },
+    {
+      q: R`A fair 6-sided die is rolled twice. What is the probability of rolling an even number on the first roll, followed by an odd number on the second roll?`,
+      o: [R`\(\frac{1}{4}\)`, R`\(\frac{1}{2}\)`, R`\(\frac{1}{6}\)`, R`\(\frac{1}{3}\)`, R`\(\frac{1}{8}\)`],
+      e: R`\(P(\text{even}) = \frac{3}{6} = \frac{1}{2}\). \(P(\text{odd}) = \frac{3}{6} = \frac{1}{2}\).<br>Independent: \(\frac{1}{2} \times \frac{1}{2} = \frac{1}{4}\).`
+    },
+    {
+      q: R`A standard 6-sided die is rolled once. What is the probability that the outcome is either 1 OR a prime number?`,
+      o: [R`\(\frac{2}{3}\)`, R`\(\frac{1}{2}\)`, R`\(\frac{5}{6}\)`, R`\(\frac{1}{3}\)`, R`\(1\)`],
+      e: R`Primes on a die are \(\{2, 3, 5\}\).<br>Favorable outcomes are \(\{1, 2, 3, 5\}\) (4 outcomes).<br>\(P = \frac{4}{6} = \frac{2}{3}\).`
+    },
+    {
+      q: R`2 boys and 4 girls stand in a line at random. What is the probability that the 2 boys do NOT stand next to each other?`,
+      o: [R`\(\frac{2}{3}\)`, R`\(\frac{1}{3}\)`, R`\(\frac{1}{2}\)`, R`\(\frac{3}{4}\)`, R`\(\frac{5}{6}\)`],
+      e: R`Total arrangements \(= 6!\).<br>Arrangements with boys together \(= 5! \times 2!\).<br>\(P(\text{together}) = \frac{5! \times 2}{6!} = \frac{2}{6} = \frac{1}{3}\).<br>\(P(\text{not together}) = 1 - \frac{1}{3} = \frac{2}{3}\).`
+    },
+    {
+      q: R`The probability of rain tomorrow is 0.40, and the independent probability that a driver gets a flat tire is 0.30. What is the probability that NEITHER of these two events occurs?`,
+      o: [R`\(0.42\)`, R`\(0.12\)`, R`\(0.30\)`, R`\(0.58\)`, R`\(0.70\)`],
+      e: R`\(P(\text{no rain}) = 1 - 0.40 = 0.60\). \(P(\text{no flat}) = 1 - 0.30 = 0.70\).<br>Independent: \(0.60 \times 0.70 = 0.42\).`
+    },
+    {
+      q: R`A bag contains 4 red, 5 green, and 6 blue marbles (total 15). If 2 marbles are drawn at random without replacement, what is the probability that BOTH are red?`,
+      o: [R`\(\frac{2}{35}\)`, R`\(\frac{4}{15}\)`, R`\(\frac{1}{10}\)`, R`\(\frac{2}{15}\)`, R`\(\frac{4}{105}\)`],
+      e: R`\(P = \frac{4}{15} \times \frac{3}{14} = \frac{2}{5 \times 7} = \frac{2}{35}\).`
+    }
+  ]
+});
+
+
+/* ===== GRE Quant Lab — Geometry Topics ===== */
+'use strict';
+
+// 21. Coordinate Geometry
+TOPICS.push({
+  id: 'coord',
+  ch: 'geo',
+  icon: '📍',
+  title: 'Coordinate Geometry',
+  desc: 'Distance formula, midpoints, slope rules, linear intercepts, perpendicular lines & circles.',
+  learn: R`
+<h3>Cartesian Plane & Formulas</h3>
+
+<F t="Essential Coordinate Formulas">
+Given two points \((x_1, y_1)\) and \((x_2, y_2)\):
+<ul>
+  <li><b>Distance:</b> \(d = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}\)</li>
+  <li><b>Midpoint:</b> \(M = \left(\frac{x_1 + x_2}{2}, \frac{y_1 + y_2}{2}\right)\)</li>
+  <li><b>Slope (\(m\)):</b> \(m = \frac{y_2 - y_1}{x_2 - x_1}\)</li>
+</ul>
+</F>
+
+<F t="Slopes of Parallel & Perpendicular Lines">
+<ul>
+  <li><b>Parallel Lines:</b> Have identical slopes: \(m_1 = m_2\)</li>
+  <li><b>Perpendicular Lines:</b> Slopes are negative reciprocals: \(m_1 \cdot m_2 = -1 \iff m_2 = -\frac{1}{m_1}\)</li>
+  <li><b>Horizontal Line (\(y = c\)):</b> Slope is \(0\)</li>
+  <li><b>Vertical Line (\(x = k\)):</b> Slope is <i>undefined</i></li>
+</ul>
+</F>
+
+<F t="Equation of a Circle">
+A circle with center \((h, k)\) and radius \(r\):
+<BIG>\((x - h)^2 + (y - k)^2 = r^2\)</BIG>
+</F>
+`,
+  quiz: [
+    {
+      q: R`What is the distance between the points \((3, 4)\) and \((7, 1)\)?`,
+      o: [R`\(5\)`, R`\(\sqrt{15}\)`, R`\(7\)`, R`\(\sqrt{41}\)`, R`\(6\)`],
+      e: R`\(d = \sqrt{(7 - 3)^2 + (1 - 4)^2} = \sqrt{4^2 + (-3)^2} = \sqrt{16 + 9} = \sqrt{25} = 5\).`
+    },
+    {
+      q: R`The midpoint of the line segment joining \((2, 5)\) and \((6, a)\) lies on the line \(3y + 4x = 19\). What is the value of \(a\)?`,
+      o: [R`\(-3\)`, R`\(3\)`, R`\(-1\)`, R`\(1\)`, R`\(5\)`],
+      e: R`Midpoint \(M = \left(\frac{2+6}{2}, \frac{5+a}{2}\right) = \left(4, \frac{5+a}{2}\right)\).<br>Substitute into line: \(3\left(\frac{5+a}{2}\right) + 4(4) = 19 \Rightarrow 3\left(\frac{5+a}{2}\right) = 3 \Rightarrow \frac{5+a}{2} = 1 \Rightarrow 5 + a = 2 \Rightarrow a = -3\).`
+    },
+    {
+      q: R`Which of the following points has the greatest slope when connected to the origin \((0,0)\)?`,
+      o: [R`\((1, 4)\)`, R`\((2, 3)\)`, R`\((1, 3)\)`, R`\((-1, 3)\)`, R`\((-3, -3)\)`],
+      e: R`Slope to origin is \(y/x\):<br>\((1, 4) \Rightarrow 4/1 = 4\)<br>\((2, 3) \Rightarrow 3/2 = 1.5\)<br>\((1, 3) \Rightarrow 3/1 = 3\)<br>\((-1, 3) \Rightarrow -3\)<br>\((-3, -3) \Rightarrow 1\)<br>The maximum is 4 at \((1, 4)\).`
+    },
+    {
+      q: R`What is the slope of a line that is perpendicular to the line \(2y + 4x = 2\)?`,
+      o: [R`\(\frac{1}{2}\)`, R`\(-2\)`, R`\(-\frac{1}{2}\)`, R`\(2\)`, R`\(4\)`],
+      e: R`Put in slope-intercept form: \(2y = -4x + 2 \Rightarrow y = -2x + 1\).<br>The slope of this line is \(m = -2\).<br>A perpendicular line has slope \(m_{\perp} = -\frac{1}{-2} = \frac{1}{2}\).`
+    },
+    {
+      q: R`A circle has diameter endpoints at \((6, 0)\) and \((0, 8)\). What is the radius of the circle?`,
+      o: [R`\(5\)`, R`\(10\)`, R`\(\sqrt{7}\)`, R`\(2.5\)`, R`\(7\)`],
+      e: R`Diameter length \(= \sqrt{(6 - 0)^2 + (0 - 8)^2} = \sqrt{36 + 64} = \sqrt{100} = 10\).<br>Radius \(= \frac{\text{Diameter}}{2} = \frac{10}{2} = 5\).`
+    }
+  ]
+});
+
+// 22. Lines, Angles & Triangles
+TOPICS.push({
+  id: 'tri',
+  ch: 'geo',
+  icon: '📐',
+  title: 'Lines, Angles & Triangles',
+  desc: 'Parallel transversals, triangle inequality, Pythagoras, special right triangles & similarity.',
+  learn: R`
+<h3>Angles & Transversals</h3>
+<p>When two parallel lines are intersected by a transversal:</p>
+<ul>
+  <li><b>Alternate Interior Angles</b> are equal (\(\angle 3 = \angle 5\)).</li>
+  <li><b>Corresponding Angles</b> are equal (\(\angle 1 = \angle 5\)).</li>
+  <li><b>Consecutive Interior Angles</b> add up to \(180^\circ\).</li>
+</ul>
+
+<F t="The Triangle Inequality Theorem">
+For ANY triangle with side lengths \(a, b, c\):
+<BIG>\(|a - b| < c < a + b\)</BIG>
+<p>The third side must be strictly between the difference and the sum of the other two sides!</p>
+</F>
+
+<F t="Special Right Triangles (Memorize for GRE!)">
+<ul>
+  <li><b>\(45^\circ - 45^\circ - 90^\circ\) Isosceles Right:</b> Ratio of sides is \(1 : 1 : \sqrt{2}\).</li>
+  <li><b>\(30^\circ - 60^\circ - 90^\circ\) Right Triangle:</b> Ratio of sides is \(1 : \sqrt{3} : 2\).
+    <br><i>Side opposite \(30^\circ\) is half the hypotenuse!</i>
+  </li>
+  <li><b>Common Pythagorean Triplets:</b> \(3-4-5\), \(5-12-13\), \(7-24-25\), \(8-15-17\).</li>
+</ul>
+</F>
+
+<F t="Equilateral Triangle Formulas">
+For side length \(s\):
+<BIG>\(\text{Height } h = \frac{\sqrt{3}}{2} s, \qquad \text{Area } A = \frac{\sqrt{3}}{4} s^2\)</BIG>
+</F>
+`,
+  quiz: [
+    {
+      q: R`Two sides of a triangle have lengths 4 and 10. If the third side has an integer length, what is the largest possible length of the third side?`,
+      o: [R`\(13\)`, R`\(14\)`, R`\(15\)`, R`\(10\)`, R`\(12\)`],
+      e: R`By triangle inequality: \(10 - 4 < s < 10 + 4 \Rightarrow 6 < s < 14\).<br>The largest integer strictly less than 14 is 13.`
+    },
+    {
+      q: R`A hiker walks 9 miles due North, and then 12 miles due East. How many miles is the hiker from the starting point?`,
+      o: [R`\(15\text{ miles}\)`, R`\(21\text{ miles}\)`, R`\(\sqrt{117}\text{ miles}\)`, R`\(18\text{ miles}\)`, R`\(16\text{ miles}\)`],
+      e: R`North and East form a right angle: \(d = \sqrt{9^2 + 12^2} = \sqrt{81 + 144} = \sqrt{225} = 15\text{ miles}\) (a 3-4-5 triplet scaled by 3).`
+    },
+    {
+      q: R`In right triangle \(ABC\), \(\angle B = 90^\circ\) and \(\angle A = 30^\circ\). If the hypotenuse \(AC = 5\), what is the length of side \(BC\)?`,
+      o: [R`\(2.5\)`, R`\(2.5\sqrt{3}\)`, R`\(5\sqrt{3}\)`, R`\(1.25\)`, R`\(\frac{5}{\sqrt{2}}\)`],
+      e: R`Side \(BC\) is opposite the \(30^\circ\) angle. In a \(30^\circ-60^\circ-90^\circ\) triangle, the side opposite \(30^\circ\) is half the hypotenuse: \(\frac{5}{2} = 2.5\).`
+    },
+    {
+      q: R`Two similar triangles \(ABC\) and \(PQR\) have areas in the ratio \(4 : 25\). If side \(AB = 16\), what is the length of the corresponding side \(PQ\)?`,
+      o: [R`\(40\)`, R`\(100\)`, R`\(20\)`, R`\(32\)`, R`\(50\)`],
+      e: R`The ratio of sides is the square root of the ratio of areas: \(\frac{\text{Side}_1}{\text{Side}_2} = \sqrt{\frac{4}{25}} = \frac{2}{5}\).<br>\(\frac{16}{PQ} = \frac{2}{5} \Rightarrow PQ = \frac{16 \times 5}{2} = 40\).`
+    }
+  ]
+});
+
+// 23. Quadrilaterals, Polygons & Circles
+TOPICS.push({
+  id: 'poly',
+  ch: 'geo',
+  icon: '🛑',
+  title: 'Quadrilaterals, Polygons & Circles',
+  desc: 'Polygons angle sum, diagonals, parallelogram & rhombus areas, circular arcs & inscribed angles.',
+  learn: R`
+<h3>Polygons Formulas</h3>
+
+<F t="Polygon Angles & Diagonals">
+For any convex \(n\)-sided polygon:
+<ul>
+  <li><b>Sum of Interior Angles:</b> \((n - 2) \times 180^\circ\)</li>
+  <li><b>Sum of Exterior Angles:</b> ALWAYS \(360^\circ\) (regardless of \(n\)!)</li>
+  <li><b>Each Interior Angle (Regular \(n\)-gon):</b> \(\frac{(n - 2) \times 180^\circ}{n}\)</li>
+  <li><b>Number of Diagonals:</b> \(\frac{n(n - 3)}{2}\)</li>
+</ul>
+</F>
+
+<F t="Special Quadrilaterals">
+<ul>
+  <li><b>Parallelogram:</b> Area \(= \text{base} \times \text{height}\). Diagonals bisect each other.</li>
+  <li><b>Rhombus:</b> All 4 sides equal. Diagonals are <b>perpendicular bisectors</b>.
+    <BIG>\(\text{Area} = \frac{1}{2} d_1 d_2\)</BIG>
+  </li>
+  <li><b>Trapezoid:</b> \(\text{Area} = \frac{1}{2}(a + b) h\)</li>
+  <li><b>Square:</b> \(\text{Area} = s^2 = \frac{1}{2} d^2\)</li>
+</ul>
+</F>
+
+<F t="Circle Geometry">
+<ul>
+  <li><b>Circumference:</b> \(C = 2\pi r\), \quad <b>Area:</b> \(A = \pi r^2\)</li>
+  <li><b>Arc Length:</b> \(L = \frac{\theta}{360^\circ} \times 2\pi r\)</li>
+  <li><b>Sector Area:</b> \(A_{\text{sector}} = \frac{\theta}{360^\circ} \times \pi r^2\)</li>
+  <li><b>Inscribed Angle Theorem:</b> Central angle \(= 2 \times\) Inscribed angle subtending the same arc.</li>
+  <li><b>Angle in a Semicircle:</b> ALWAYS a right angle (\(90^\circ\))!</li>
+</ul>
+</F>
+`,
+  quiz: [
+    {
+      q: R`What is the sum of the interior angles of a convex hexagon (6-sided polygon)?`,
+      o: [R`\(720^\circ\)`, R`\(540^\circ\)`, R`\(900^\circ\)`, R`\(1080^\circ\)`, R`\(360^\circ\)`],
+      e: R`Sum \(= (n - 2) \times 180^\circ = (6 - 2) \times 180^\circ = 4 \times 180^\circ = 720^\circ\).`
+    },
+    {
+      q: R`How many diagonals does a regular decagon (10-sided polygon) have?`,
+      o: [R`\(35\)`, R`\(45\)`, R`\(20\)`, R`\(70\)`, R`\(40\)`],
+      e: R`Diagonals \(= \frac{n(n - 3)}{2} = \frac{10(10 - 3)}{2} = \frac{70}{2} = 35\).`
+    },
+    {
+      q: R`A rectangular garden has an area of \(240\text{ m}^2\). A fence is placed around the perimeter, except along one of the long sides measuring \(40\text{ m}\). What is the total length of fencing required?`,
+      o: [R`\(52\text{ m}\)`, R`\(46\text{ m}\)`, R`\(92\text{ m}\)`, R`\(86\text{ m}\)`, R`\(60\text{ m}\)`],
+      e: R`Length \(= 40\text{ m}\). Width \(= \frac{240}{40} = 6\text{ m}\).<br>Fencing 3 sides (1 length + 2 widths) \(= 40 + 2(6) = 40 + 12 = 52\text{ m}\).`
+    },
+    {
+      q: R`A circle has a radius of 6 cm. What is the length of an arc that subtends a central angle of \(60^\circ\)?`,
+      o: [R`\(2\pi\text{ cm}\)`, R`\(\pi\text{ cm}\)`, R`\(3\pi\text{ cm}\)`, R`\(6\pi\text{ cm}\)`, R`\(4\pi\text{ cm}\)`],
+      e: R`\(L = \frac{60}{360} \times 2\pi(6) = \frac{1}{6} \times 12\pi = 2\pi\text{ cm}\).`
+    },
+    {
+      q: R`What is the area of a rhombus whose diagonals have lengths 12 cm and 16 cm?`,
+      o: [R`\(96\text{ cm}^2\)`, R`\(192\text{ cm}^2\)`, R`\(100\text{ cm}^2\)`, R`\(48\text{ cm}^2\)`, R`\(80\text{ cm}^2\)`],
+      e: R`\(\text{Area} = \frac{1}{2} d_1 d_2 = \frac{1}{2} \times 12 \times 16 = 96\text{ cm}^2\).`
+    }
+  ]
+});
+
+// 24. 3D Solids
+TOPICS.push({
+  id: 'solid',
+  ch: 'geo',
+  icon: '🧊',
+  title: '3D Solids',
+  desc: 'Cylinders, cones, spheres, rectangular boxes, space diagonals & surface area calculations.',
+  learn: R`
+<h3>Formulas for 3D Solids</h3>
+
+<F t="Rectangular Solid (Box)">
+<ul>
+  <li><b>Volume:</b> \(V = l \cdot w \cdot h\)</li>
+  <li><b>Total Surface Area:</b> \(TSA = 2(lw + wh + lh)\)</li>
+  <li><b>Longest Rod (Space Diagonal):</b> \(d = \sqrt{l^2 + w^2 + h^2}\)</li>
+</ul>
+</F>
+
+<F t="Cylinders & Cones">
+<ul>
+  <li><b>Cylinder Volume:</b> \(V = \pi r^2 h\)</li>
+  <li><b>Cylinder Curved Surface:</b> \(CSA = 2\pi r h\), \quad <b>Total:</b> \(2\pi r(h + r)\)</li>
+  <li><b>Cone Volume:</b> \(V = \frac{1}{3} \pi r^2 h\)</li>
+  <li><b>Cone Slant Height:</b> \(l = \sqrt{r^2 + h^2}\), \quad <b>CSA:</b> \(\pi r l\)</li>
+</ul>
+</F>
+
+<F t="Spheres">
+<ul>
+  <li><b>Volume:</b> \(V = \frac{4}{3} \pi r^3\)</li>
+  <li><b>Surface Area:</b> \(A = 4\pi r^2\)</li>
+</ul>
+</F>
+`,
+  quiz: [
+    {
+      q: R`A cylindrical water container has a capacity of 60 liters. If its radius is doubled while keeping its height unchanged, what is the INCREASE in capacity in liters?`,
+      o: [R`\(180\text{ liters}\)`, R`\(240\text{ liters}\)`, R`\(120\text{ liters}\)`, R`\(60\text{ liters}\)`, R`\(300\text{ liters}\)`],
+      e: R`Original: \(V = \pi r^2 h = 60\).<br>New: \(V' = \pi (2r)^2 h = 4\pi r^2 h = 4 \times 60 = 240\text{ liters}\).<br>Increase \(= 240 - 60 = 180\text{ liters}\).`
+    },
+    {
+      q: R`A rectangular room has dimensions \(4\text{ m} \times 3\text{ m} \times 2.5\text{ m}\). You want to paint the 4 walls and the ceiling (excluding the floor). The room has one window measuring \(1\text{ m} \times 0.5\text{ m}\) and one door measuring \(2\text{ m} \times 0.5\text{ m}\). If painting costs \(\$2\) per square meter, what is the total cost?`,
+      o: [R`\(\$91\)`, R`\(\$94\)`, R`\(\$88\)`, R`\(\$100\)`, R`\(\$96\)`],
+      e: R`Ceiling: \(4 \times 3 = 12\text{ m}^2\).<br>4 Walls: \(2(4 + 3) \times 2.5 = 2(7) \times 2.5 = 35\text{ m}^2\).<br>Unpainted areas: window \(= 0.5\text{ m}^2\), door \(= 1.0\text{ m}^2\). Total unpainted \(= 1.5\text{ m}^2\).<br>Net area to paint \(= 12 + 35 - 1.5 = 45.5\text{ m}^2\).<br>Cost \(= 45.5 \times \$2 = \$91\).`
+    },
+    {
+      q: R`What is the length of the longest straight rod that can fit completely inside a closed cylinder of radius 5 cm and height 10 cm?`,
+      o: [R`\(10\sqrt{2}\text{ cm}\)`, R`\(15\text{ cm}\)`, R`\(5\sqrt{5}\text{ cm}\)`, R`\(10\text{ cm}\)`, R`\(20\text{ cm}\)`],
+      e: R`The rod lies along the diagonal of the vertical cross-section of the cylinder.<br>The base diameter is \(2 \times 5 = 10\text{ cm}\), and height is \(10\text{ cm}\).<br>Diagonal \(= \sqrt{10^2 + 10^2} = \sqrt{200} = 10\sqrt{2}\text{ cm} \approx 14.14\text{ cm}\).`
+    },
+    {
+      q: R`What is the radius of the largest sphere that can fit completely inside a closed cylinder of radius 10 cm and height 40 cm?`,
+      o: [R`\(10\text{ cm}\)`, R`\(20\text{ cm}\)`, R`\(5\text{ cm}\)`, R`\(40\text{ cm}\)`, R`\(15\text{ cm}\)`],
+      e: R`The sphere's diameter cannot exceed the cylinder's diameter (\(20\text{ cm}\)) nor its height (\(40\text{ cm}\)).<br>Thus max diameter is \(20\text{ cm}\), meaning max radius is 10 cm.`
+    }
+  ]
+});
+
+// 25. Formula Master Challenge
+TOPICS.push({
+  id: 'review',
+  ch: 'alg',
+  icon: '🏆',
+  title: 'Formula Master Challenge',
+  desc: 'Comprehensive review quiz testing fast recall of core GRE quant rules and trap avoidance.',
+  learn: R`
+<h3>GRE Quant Rapid-Fire Rules</h3>
+<p>This challenge tests your instant recall across the major quantitative reasoning traps and formula relationships found on the official exam.</p>
+
+<F t="Key Quick-Check Rules">
+<ul>
+  <li>\((-1)^n = 1\) if \(n\) is even; \(-1\) if \(n\) is odd.</li>
+  <li>\(x^2 = 9 \Rightarrow x = \pm 3\), but \(\sqrt{9} = 3\) only!</li>
+  <li>Consecutive integers are ALWAYS co-prime (\(\text{HCF} = 1\)).</li>
+  <li>If \(a:b = 7:1\) and \(b:c = 2:5\), then \(a:b:c = 14:2:5\).</li>
+  <li>The product of any 3 consecutive integers is ALWAYS divisible by \(3! = 6\).</li>
+</ul>
+</F>
+`,
+  quiz: [
+    {
+      q: R`If \(a:b = 7:1\) and \(b:c = 2:5\), what is the combined ratio \(a:b:c\)?`,
+      o: [R`\(14 : 2 : 5\)`, R`\(7 : 2 : 5\)`, R`\(14 : 1 : 5\)`, R`\(7 : 1 : 5\)`, R`\(14 : 2 : 10\)`],
+      e: R`Multiply the first ratio by 2: \(a:b = 14:2\). Since \(b:c = 2:5\), we have \(a:b:c = 14:2:5\).`
+    },
+    {
+      q: R`Worker A completes \(\frac{2}{3}\) of a job. Worker B completes \(\frac{1}{5}\) of the REST of the job. Worker C completes \(\frac{1}{4}\) of the remaining portion. What fraction of the original job remains uncompleted?`,
+      o: [R`\(\frac{1}{5}\)`, R`\(\frac{1}{4}\)`, R`\(\frac{1}{6}\)`, R`\(\frac{2}{15}\)`, R`\(\frac{1}{10}\)`],
+      e: R`After A: \(1 - \frac{2}{3} = \frac{1}{3}\) remains.<br>After B: takes \(\frac{1}{5}\), so \(\frac{4}{5}\) of \(\frac{1}{3}\) remains \(= \frac{4}{15}\).<br>After C: takes \(\frac{1}{4}\), so \(\frac{3}{4}\) of \(\frac{4}{15}\) remains \(= \frac{3}{4} \times \frac{4}{15} = \frac{3}{15} = \frac{1}{5}\).`
+    },
+    {
+      q: R`If \(x^2 > 3^2\), which of the following describes all possible values of \(x\)?`,
+      o: [R`\(x > 3\) or \(x < -3\)`, R`\(x > 3\) only`, R`\(-3 < x < 3\)`, R`\(x > 9\) or \(x < -9\)`, R`\(x \ne 3\)`],
+      e: R`\(x^2 > 9 \iff |x| > 3 \iff x > 3\) or \(x < -3\).`
+    },
+    {
+      q: R`If \(c = a \cdot b\), where \(a\) and \(b\) are distinct prime numbers, how many positive divisors does \(c\) have?`,
+      o: [R`\(4\)`, R`\(2\)`, R`\(3\)`, R`\(6\)`, R`Cannot be determined`],
+      e: R`The divisors of \(c = ab\) are \(1, a, b,\) and \(ab\) (exactly 4 divisors). Formula: \((1+1)(1+1) = 4\).`
+    },
+    {
+      q: R`What is the greatest common factor (HCF) of any two consecutive positive integers \(n\) and \(n+1\)?`,
+      o: [R`\(1\)`, R`\(2\)`, R`\(n\)`, R`\(n+1\)`, R`Depends on whether \(n\) is even or odd`],
+      fix: 1, a: 0,
+      e: R`Any common factor of \(n\) and \(n+1\) must also divide their difference \((n+1) - n = 1\). Thus \(\text{HCF} = 1\).`
+    }
+  ]
+});
+
+
+/* ===== GRE Quant Lab — app logic ===== */
+(function () {
+  const $ = (s, el = document) => el.querySelector(s);
+  const $$ = (s, el = document) => [...el.querySelectorAll(s)];
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const TMAP = {}; TOPICS.forEach((t, i) => { t.idx = i; TMAP[t.id] = t; });
+  const LET = 'ABCDEFGH';
+
+  /* ---------------- TeX-lite renderer (offline, no CDN) ---------------- */
+  const SYM = { pm: '±', mp: '∓', times: '×', div: '÷', cdot: '·', le: '≤', leq: '≤', ge: '≥', geq: '≥', ne: '≠', neq: '≠', approx: '≈',
+    pi: 'π', theta: 'θ', alpha: 'α', beta: 'β', sigma: 'σ', mu: 'μ', Delta: 'Δ', infty: '∞', Rightarrow: '⇒', Leftrightarrow: '⇔',
+    to: '→', rightarrow: '→', angle: '∠', triangle: '△', perp: '⊥', parallel: '∥', circ: '°', cup: '∪', cap: '∩', dots: '…', ldots: '…',
+    cdots: '⋯', therefore: '∴', in: '∈', quad: '\u2003', qquad: '\u2003\u2003', ',': '\u2009', ' ': '\u00a0', ';': '\u2005', '%': '%', '$': '$',
+    '{': '{', '}': '}', '|': '|', '#': '#', '&': '&amp;', square: '□', checkmark: '✓', lt: '&lt;', gt: '&gt;' };
+  const OPS = new Set(['=', '+', '−', '×', '÷', '±', '≤', '≥', '&lt;', '&gt;', '≠', '≈', '⇒', '⇔', '→', '·', '∓']);
+  const BREAK = new Set(['=', '⇒', '⇔', '≤', '≥', '&lt;', '&gt;', '≠', '≈']);
+  const opSpan = s => `<span class="o">${s}</span>${BREAK.has(s) ? '<wbr>' : ''}`;
+  function tex(src) {
+    let i = 0;
+    const group = () => {
+      while (src[i] === ' ') i++;
+      if (src[i] === '{') { i++; const h = seq('}'); i++; return h; }
+      return atom();
+    };
+    const rawGroup = () => {
+      if (src[i] !== '{') return esc(src[i++] || '');
+      let d = 1, j = i + 1;
+      while (j < src.length && d) { if (src[j] === '{') d++; else if (src[j] === '}') d--; j++; }
+      const t = src.slice(i + 1, j - 1); i = j; return t;
+    };
+    const unary = () => { let k = i - 2; while (k >= 0 && src[k] === ' ') k--; return k < 0 || '([{=,:<>^_'.includes(src[k]); };
+    function atom() {
+      const c = src[i];
+      if (c === '\\') {
+        i++;
+        let name = '';
+        if (/[a-zA-Z]/.test(src[i] || '')) { while (i < src.length && /[a-zA-Z]/.test(src[i])) name += src[i++]; }
+        else name = src[i++] || '';
+        if (name === 'frac' || name === 'dfrac') { const a = group(), b = group(); return `<span class="fr"><span class="fn">${a}</span><span class="fd">${b}</span></span>`; }
+        if (name === 'sqrt') {
+          let idx = '';
+          if (src[i] === '[') { const j = src.indexOf(']', i); idx = src.slice(i + 1, j); i = j + 1; }
+          const a = group();
+          return `<span class="sq">${idx ? `<span class="ri">${esc(idx)}</span>` : ''}√<span class="sqc">${a}</span></span>`;
+        }
+        if (name === 'text' || name === 'mathrm') return `<span class="txt">${rawGroup()}</span>`;
+        if (name === 'overline') return `<span style="text-decoration:overline">${group()}</span>`;
+        if (name === 'bold' || name === 'mathbf') return `<b>${group()}</b>`;
+        const s = SYM[name];
+        if (s !== undefined) return OPS.has(s) ? opSpan(s) : s;
+        return esc(name);
+      }
+      i++;
+      if (c === '{') { const h = seq('}'); i++; return h; }
+      if (/[a-zA-Z]/.test(c)) return `<i>${c}</i>`;
+      if (c === '-') return unary() ? '−' : opSpan('−');
+      if (c === '*') return opSpan('×');
+      if (c === '<') return opSpan('&lt;');
+      if (c === '>') return opSpan('&gt;');
+      if (c === '&') return '&amp;';
+      if (c === '=' || c === '+') return opSpan(c);
+      if (c === "'") return '′';
+      if (c === ' ') return '';
+      return c;
+    }
+    function seq(stop) {
+      let out = '';
+      while (i < src.length && src[i] !== stop) {
+        if (src[i] === '^' || src[i] === '_') { const t = src[i] === '^' ? 'sup' : 'sub'; i++; out += `<${t}>${group()}</${t}>`; continue; }
+        out += atom();
+      }
+      return out;
+    }
+    return seq(undefined);
+  }
+  function md(s) {
+    return String(s)
+      .replace(/\\\[([\s\S]+?)\\\]/g, (_, m) => `<div class="big"><span class="m">${tex(m)}</span></div>`)
+      .replace(/\\\(([\s\S]+?)\\\)/g, (_, m) => `<span class="m">${tex(m)}</span>`);
+  }
+  function expand(h) {
+    return h
+      .replace(/<F t="([^"]*)">/g, '<div class="box formula"><div class="box-t">📐 $1</div>').replace(/<\/F>/g, '</div>')
+      .replace(/<TIP>/g, '<div class="box tip"><div class="box-t">💡 Tip</div>').replace(/<\/TIP>/g, '</div>')
+      .replace(/<NOTE>/g, '<div class="box note"><div class="box-t">📝 Note</div>').replace(/<\/NOTE>/g, '</div>')
+      .replace(/<EX t="([^"]*)">/g, '<details class="ex"><summary><span class="ex-t">$1</span><span class="ex-q">')
+      .replace(/<SOL>/g, '</span><span class="ex-btn">Solution</span></summary><div class="ex-s">').replace(/<\/EX>/g, '</div></details>')
+      .replace(/<BIG>/g, '<div class="big">').replace(/<\/BIG>/g, '</div>');
+  }
+  const R2 = h => md(expand(h));
+
+  /* ---------------- State / persistence ---------------- */
+  const KEY = 'greql_v1';
+  let storageOK = true;
+  try { localStorage.setItem('greql_test', '1'); localStorage.removeItem('greql_test'); } catch (e) { storageOK = false; }
+  const fresh = () => ({ v: 1, topics: {}, days: [], last: '', theme: 'dark' });
+  let S = (() => { try { const s = JSON.parse(localStorage.getItem(KEY)); if (s && s.v === 1) return Object.assign(fresh(), s); } catch (e) { } return fresh(); })();
+  function save() {
+    if (!storageOK) return;
+    try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) { toast('⚠️ Could not save progress — storage is full or blocked'); }
+  }
+  const tp = id => S.topics[id] || (S.topics[id] = { read: false, ans: {}, cur: 0, best: null, att: 0 });
+  const today = () => { const d = new Date(); return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`; };
+  function markDay() { const d = today(); if (S.days[S.days.length - 1] !== d) { S.days.push(d); if (S.days.length > 500) S.days = S.days.slice(-500); } }
+  function streak() {
+    const set = new Set(S.days); let n = 0; const d = new Date();
+    if (!set.has(today())) d.setDate(d.getDate() - 1);
+    for (;;) {
+      const k = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+      if (set.has(k)) { n++; d.setDate(d.getDate() - 1); } else break;
+    }
+    return n;
+  }
+  function stats(t) {
+    const P = S.topics[t.id]; const total = t.quiz.length;
+    if (!P) return { total, answered: 0, correct: 0, read: false, best: null };
+    const v = Object.entries(P.ans).filter(([k]) => +k < total).map(e => e[1]);
+    return { total, answered: v.length, correct: v.filter(a => a.ok).length, read: P.read, best: P.best };
+  }
+  const applyTheme = () => {
+    document.documentElement.dataset.theme = S.theme;
+    const m = $('meta[name="theme-color"]'); if (m) m.content = S.theme === 'light' ? '#f4f5fb' : '#070914';
+  };
+
+  /* ---------------- Quiz helpers ---------------- */
+  function hash(s) { let h = 2166136261; for (let k = 0; k < s.length; k++) { h ^= s.charCodeAt(k); h = Math.imul(h, 16777619); } return h >>> 0; }
+  function rng(seed) { return () => { seed |= 0; seed = seed + 0x6D2B79F5 | 0; let t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+  const numOf = s => { const c = String(s).replace(/\\\(|\\\)/g, '').replace(/[\s,$%]/g, '').replace(/^−/, '-'); return /^-?\d*\.?\d+$/.test(c) ? parseFloat(c) : null; };
+  function optOrder(t, idx) {
+    const q = t.quiz[idx], ix = q.o.map((_, k) => k);
+    if (q.fix) return ix;
+    const nums = q.o.map(numOf);
+    if (nums.every(v => v !== null)) return ix.sort((a, b) => nums[a] - nums[b]);
+    const r = rng(hash(t.id + ':' + idx));
+    for (let k = ix.length - 1; k > 0; k--) { const j = Math.floor(r() * (k + 1)); [ix[k], ix[j]] = [ix[j], ix[k]]; }
+    return ix;
+  }
+  const correctIdx = q => q.fix ? q.a : 0;
+  function parseNum(s) {
+    s = String(s).trim().replace(/[,\s$%]/g, '').replace(/[−–]/g, '-');
+    let m;
+    if ((m = s.match(/^(-?\d*\.?\d+)\/(-?\d*\.?\d+)$/))) { const b = parseFloat(m[2]); return b === 0 ? null : parseFloat(m[1]) / b; }
+    return /^-?\d*\.?\d+$/.test(s) ? parseFloat(s) : null;
+  }
+  function numEq(input, target) {
+    const x = parseNum(input), t = parseNum(target);
+    if (x === null || t === null) return false;
+    const tol = Number.isInteger(t) ? 1e-9 : Math.max(0.006, Math.abs(t) * 1e-6);
+    return Math.abs(x - t) <= tol;
+  }
+
+  /* ---------------- UI helpers ---------------- */
+  const view = () => $('#view');
+  let toastTimer;
+  function toast(msg, action, fn, ms = 2800) {
+    const el = $('#toast'); el.innerHTML = `<span>${msg}</span>${action ? `<button id="toastAct">${action}</button>` : ''}`;
+    el.classList.add('show'); clearTimeout(toastTimer);
+    if (action) $('#toastAct').onclick = () => { el.classList.remove('show'); fn(); };
+    toastTimer = setTimeout(() => el.classList.remove('show'), action ? 5000 : ms);
+  }
+  function ring(pct, label, sub) {
+    const C = 2 * Math.PI * 54;
+    return `<div class="ring"><svg viewBox="0 0 128 128"><circle class="track" cx="64" cy="64" r="54" stroke-width="10"/>
+      <circle class="bar" cx="64" cy="64" r="54" stroke-width="10" stroke-dasharray="${C}" stroke-dashoffset="${C}" data-off="${C * (1 - pct / 100)}"/></svg>
+      <div class="ring-label"><div><b>${label}</b><br><span>${sub}</span></div></div></div>`;
+  }
+  const animateRings = () => requestAnimationFrame(() => requestAnimationFrame(() => $$('.ring .bar').forEach(b => b.style.strokeDashoffset = b.dataset.off)));
+  const animateBars = () => requestAnimationFrame(() => requestAnimationFrame(() => $$('.pbar i[data-w]').forEach(b => b.style.width = b.dataset.w)));
+  function confetti() {
+    const c = document.createElement('canvas'); c.id = 'confetti'; document.body.appendChild(c);
+    const x = c.getContext('2d'); c.width = innerWidth; c.height = innerHeight;
+    const cols = ['#4f46e5', '#3b82f6', '#10b981', '#f59e0b', '#64748b'];
+    const P = Array.from({ length: 160 }, () => ({ x: innerWidth / 2 + (Math.random() - .5) * 200, y: innerHeight * .35, vx: (Math.random() - .5) * 14, vy: Math.random() * -14 - 4, s: Math.random() * 7 + 4, r: Math.random() * 6, vr: (Math.random() - .5) * .3, c: cols[Math.random() * 5 | 0] }));
+    const t0 = performance.now();
+    (function f(t) {
+      x.clearRect(0, 0, c.width, c.height);
+      P.forEach(p => { p.vy += .35; p.x += p.vx; p.y += p.vy; p.vx *= .99; p.r += p.vr; x.save(); x.translate(p.x, p.y); x.rotate(p.r); x.fillStyle = p.c; x.fillRect(-p.s / 2, -p.s / 4, p.s, p.s / 2); x.restore(); });
+      if (t - t0 < 3200) requestAnimationFrame(f); else c.remove();
+    })(t0);
+  }
+
+  /* ---------------- Router ---------------- */
+  let QV = { id: null, idx: 0, review: false, sel: null };
+  function route() {
+    const h = location.hash.replace(/^#\/?/, '').split('/');
+    if (h[0] === 't' && TMAP[h[1]]) {
+      const t = TMAP[h[1]], mode = h[2] === 'quiz' ? 'quiz' : 'learn';
+      renderTopic(t, mode); S.last = location.hash; save(); WB.setKey(t.id);
+    } else if (h[0] === 'formulas') { renderFormulas(); WB.setKey('home'); }
+    else { renderHome(); WB.setKey('home'); }
+    window.scrollTo(0, 0);
+  }
+
+  /* ---------------- Home ---------------- */
+  function renderHome() {
+    let tot = 0, cor = 0, ans = 0, done = 0, read = 0;
+    TOPICS.forEach(t => { const s = stats(t); tot += s.total; cor += s.correct; ans += s.answered; if (s.answered === s.total) done++; if (s.read) read++; });
+    const pct = tot ? Math.round(ans / tot * 100) : 0, acc = ans ? Math.round(cor / ans * 100) : 0;
+    const next = TOPICS.find(t => stats(t).answered < t.quiz.length) || TOPICS[0];
+    const cont = S.last && S.last.startsWith('#/t/') ? S.last : `#/t/${next.id}/learn`;
+    const lastT = TMAP[(S.last.split('/')[2]) || ''];
+    let html = `<section class="card hero fade-in">${ring(pct, pct + '%', 'complete')}
+      <div><h1>Master GRE Quant, one topic at a time.</h1>
+      <p>Learn each formula with worked examples, then lock it in with a topic quiz. Use the rough-work board anytime — everything is saved on this device.</p>
+      <div class="stats"><div class="stat"><b>${done}/${TOPICS.length}</b>topics done</div><div class="stat"><b>${ans}/${tot}</b>answered</div>
+      <div class="stat"><b>${acc}%</b>accuracy</div><div class="stat"><b>🔥 ${streak()}</b>day streak</div></div>
+      <div class="btn-row"><a class="btn btn-primary" id="contBtn" href="${cont}">${ans || read ? 'Continue' : 'Start learning'}${lastT && (ans || read) ? ' · ' + esc(lastT.title) : ''} →</a>
+      <a class="btn btn-ghost" href="#/formulas" id="fsBtn">📐 Formula sheet</a></div></div></section>`;
+    let n = 0;
+    CHAPTERS.forEach(ch => {
+      const ts = TOPICS.filter(t => t.ch === ch.id); if (!ts.length) return;
+      html += `<div class="chapter"><h2>${ch.name}</h2><span>${ch.sub}</span></div><div class="grid">`;
+      ts.forEach(t => {
+        const s = stats(t), full = s.answered === s.total, w = Math.round(s.answered / s.total * 100);
+        const badge = full ? (s.correct === s.total ? '<span class="badge ok">★ Mastered</span>' : `<span class="badge ok">✓ ${s.correct}/${s.total}</span>`)
+          : s.answered ? `<span class="badge go">In progress</span>` : s.read ? '<span class="badge go">Read</span>' : '<span class="badge">New</span>';
+        html += `<a class="card tcard fade-in ${full ? 'done-glow' : ''}" id="topic-${t.id}" style="animation-delay:${Math.min(n++ * 30, 600)}ms" href="#/t/${t.id}/${s.read ? 'quiz' : 'learn'}">
+          <div class="tcard-top"><div class="ticon">${t.icon}</div><div><div class="num">Topic ${t.idx + 1}</div><h3>${esc(t.title)}</h3></div></div>
+          <p>${esc(t.desc)}</p><div class="pbar"><i style="width:0" data-w="${w}%"></i></div>
+          <div class="tmeta"><span>${s.answered}/${s.total} questions${s.answered ? ` · ${s.correct} correct` : ''}</span>${badge}</div></a>`;
+      });
+      html += '</div>';
+    });
+    html += `<p class="footer">Built from your GRE notes · ${TOPICS.length} topics · ${tot} questions · Works offline</p>`;
+    view().innerHTML = html; animateRings(); animateBars();
+    document.title = 'GRE Quant Lab — Formulas, Lessons & Topic Quizzes';
+  }
+
+  /* ---------------- Topic ---------------- */
+  function renderTopic(t, mode) {
+    const s = stats(t);
+    document.title = `${t.title} — ${mode === 'quiz' ? 'Quiz' : 'Learn'} · GRE Quant Lab`;
+    view().innerHTML = `<div class="thead fade-in"><a class="crumb" href="#/" id="backHome">← All topics</a>
+      <h1><span class="ticon">${t.icon}</span>${esc(t.title)}</h1>
+      <nav class="tabs"><a class="tab ${mode === 'learn' ? 'active' : ''}" id="tabLearn" href="#/t/${t.id}/learn">📖 Learn ${s.read ? '<small>✓</small>' : ''}</a>
+      <a class="tab ${mode === 'quiz' ? 'active' : ''}" id="tabQuiz" href="#/t/${t.id}/quiz">✏️ Quiz <small>${s.answered}/${s.total}</small></a></nav></div><div id="pane"></div>`;
+    if (mode === 'learn') renderLearn(t); else { if (QV.id !== t.id) { const P = tp(t.id); QV = { id: t.id, idx: Math.min(P.cur || 0, t.quiz.length - 1), review: false, sel: null }; } renderQuiz(t); }
+  }
+  function topicNav(t) {
+    const p = TOPICS[t.idx - 1], n = TOPICS[t.idx + 1];
+    return `<div class="btn-row">${p ? `<a class="btn btn-ghost" href="#/t/${p.id}/learn">← ${esc(p.title)}</a>` : ''}${n ? `<a class="btn btn-ghost" href="#/t/${n.id}/learn">${esc(n.title)} →</a>` : ''}</div>`;
+  }
+  function renderLearn(t) {
+    $('#pane').innerHTML = `<article class="card lesson fade-in">${R2(t.learn)}
+      <div class="lesson-end"><span style="color:var(--muted);font-size:.9rem">Ready? ${t.quiz.length} questions on this topic.</span>
+      <button class="btn btn-primary" id="startQuiz">${tp(t.id).read ? 'Go to quiz' : 'Mark as read & start quiz'} →</button></div></article>
+      <div style="margin-top:16px">${topicNav(t)}</div>`;
+    $('#startQuiz').onclick = () => { tp(t.id).read = true; markDay(); save(); location.hash = `#/t/${t.id}/quiz`; };
+  }
+
+  /* ---------------- Quiz ---------------- */
+  function renderQuiz(t, anim) {
+    const P = tp(t.id), n = t.quiz.length, answered = Object.keys(P.ans).filter(k => +k < n).length;
+    if (answered === n && !QV.review) return renderResults(t);
+    const idx = QV.idx, q = t.quiz[idx], A = P.ans[idx], ci = q.o ? correctIdx(q) : null;
+    const dots = t.quiz.map((_, k) => { const a = P.ans[k]; return `<button class="dot ${a ? (a.ok ? 'ok' : 'no') : ''} ${k === idx ? 'cur' : ''}" data-k="${k}" aria-label="Question ${k + 1}">${k + 1}</button>`; }).join('');
+    let body;
+    if (q.o) {
+      body = '<div class="opts">' + optOrder(t, idx).map((oi, pos) => {
+        let cls = '';
+        if (A) { if (oi === ci) cls = 'right'; else if (oi === A.v) cls = 'wrong'; }
+        else if (QV.sel === oi) cls = 'sel';
+        return `<button class="opt ${cls}" id="opt-${pos}" data-o="${oi}" ${A ? 'disabled' : ''}><span class="L">${LET[pos]}</span><span>${md(q.o[oi])}</span></button>`;
+      }).join('') + '</div>';
+    } else {
+      body = `<div class="numin"><input id="numIn" inputmode="decimal" autocomplete="off" placeholder="Your answer" value="${A ? esc(A.v) : ''}" class="${A ? (A.ok ? 'right' : 'wrong') : ''}" ${A ? 'disabled' : ''}>
+        <span class="hint">Numeric entry — type an integer, decimal (round to 2 places if needed) or a fraction like 3/4.</span></div>`;
+    }
+    let verdict = '';
+    if (A) {
+      const ans = q.o ? md(q.o[ci]) : md(q.show || q.n);
+      verdict = `<div class="verdict ${A.ok ? 'ok' : 'no'}"><h4>${A.ok ? '✅ Correct!' : '❌ Not quite'}${A.ok ? '' : ` <span style="font-weight:500;color:var(--text)">— answer: ${ans}</span>`}</h4>
+        <div class="exp">${md(q.e || '')}</div></div>`;
+    }
+    const unanswered = t.quiz.map((_, k) => k).filter(k => !P.ans[k]);
+    let act;
+    if (!A) act = `<button class="btn btn-primary" id="qAct" data-act="check" ${q.o && QV.sel === null ? 'disabled' : ''}>Check answer</button>`;
+    else if (!unanswered.length) act = `<button class="btn btn-good" id="qAct" data-act="results">See results 🏁</button>`;
+    else act = `<button class="btn btn-primary" id="qAct" data-act="next">Next question →</button>`;
+    $('#pane').innerHTML = `<div class="qwrap">
+      <div class="qhead">
+        <span class="count">Question ${idx + 1} <small>of ${n}</small></span>
+        <button class="btn btn-ghost" id="qWbBtn" style="padding:4px 10px;font-size:0.8rem;gap:6px;display:inline-flex;align-items:center;border-radius:6px">✏️ Rough work</button>
+        <span class="spacer"></span>
+        <span class="chip">✅ ${Object.values(P.ans).filter(a => a.ok).length} correct</span>
+      </div>
+      <div class="dots">${dots}</div>
+      <div class="card qcard ${anim || 'fade-in'}" id="qcard"><div class="q-tag">${q.o ? 'Multiple choice' : 'Numeric entry'}${q.src ? ' · ' + esc(q.src) : ''}</div>
+        <div class="q-body">${md(q.q)}</div>${body}${verdict}
+        <div class="qnav"><button class="btn btn-ghost" id="qPrev" ${idx === 0 ? 'disabled' : ''}>← Prev</button>${act}</div></div>
+      <p class="kbd-hint">Tip: tap ✏️ Rough work to scribble. Keys: A–E select · Enter check/next</p></div>`;
+    const qwb = $('#qWbBtn'); if (qwb) qwb.onclick = WB.open;
+    $$('.dot').forEach(d => d.onclick = () => { QV.idx = +d.dataset.k; QV.sel = null; QV.review = true; renderQuiz(t); });
+    $$('.opt').forEach(b => b.onclick = () => { QV.sel = +b.dataset.o; $$('.opt').forEach(x => x.classList.toggle('sel', x === b)); $('#qAct').disabled = false; });
+    $('#qPrev').onclick = () => { QV.idx = Math.max(0, idx - 1); QV.sel = null; renderQuiz(t); };
+    const ni = $('#numIn'); if (ni && !A) { ni.onkeydown = e => { if (e.key === 'Enter') { e.preventDefault(); check(t); } }; }
+    $('#qAct').onclick = () => {
+      const a = $('#qAct').dataset.act;
+      if (a === 'check') check(t);
+      else if (a === 'results') { QV.review = false; renderQuiz(t); window.scrollTo(0, 0); }
+      else { const nx = unanswered.find(k => k > idx); QV.idx = nx !== undefined ? nx : unanswered[0]; QV.sel = null; tp(t.id).cur = QV.idx; save(); renderQuiz(t); scrollQ(); }
+    };
+  }
+  const scrollQ = () => { const h = $('.qhead'); if (h && h.getBoundingClientRect().top < 0) h.scrollIntoView({ behavior: 'smooth' }); };
+  function check(t) {
+    const P = tp(t.id), idx = QV.idx, q = t.quiz[idx];
+    let rec;
+    if (q.o) { if (QV.sel === null) return; rec = { v: QV.sel, ok: QV.sel === correctIdx(q) }; }
+    else {
+      const v = $('#numIn').value.trim();
+      if (parseNum(v) === null) { const c = $('#qcard'); c.classList.remove('shake'); void c.offsetWidth; c.classList.add('shake'); toast('Enter a number like 12, -3.5 or 3/4'); return; }
+      rec = { v, ok: numEq(v, q.n) };
+    }
+    P.ans[idx] = rec; P.cur = idx; QV.sel = null; markDay();
+    const n = t.quiz.length, all = Object.keys(P.ans).filter(k => +k < n);
+    if (all.length === n) { const sc = all.filter(k => P.ans[k].ok).length; P.att = (P.att || 0) + 1; P.best = Math.max(P.best || 0, sc); }
+    save();
+    renderQuiz(t, rec.ok ? 'pop' : 'shake');
+    const tq = $('#tabQuiz small'); if (tq) tq.textContent = `${all.length}/${n}`;
+    const v = $('.verdict'); if (v) setTimeout(() => { const r = v.getBoundingClientRect(); if (r.bottom > innerHeight - (document.body.classList.contains('wb-open') && innerWidth < 1024 ? innerHeight * .5 : 0)) v.scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 60);
+  }
+  function renderResults(t) {
+    const P = tp(t.id), n = t.quiz.length, sc = t.quiz.filter((_, k) => P.ans[k] && P.ans[k].ok).length, pct = Math.round(sc / n * 100);
+    const msg = pct === 100 ? 'Perfect score — topic mastered! 🎉' : pct >= 80 ? 'Excellent work! Review the misses and you\'re there.' : pct >= 50 ? 'Good progress. Re-read the formulas and retry the misses.' : 'Keep going — revisit the lesson, then retry.';
+    const nx = TOPICS[t.idx + 1];
+    $('#pane').innerHTML = `<div class="card results fade-in">${ring(pct, `${sc}/${n}`, 'score')}<h2>${msg}</h2>
+      <p>Best: ${P.best ?? sc}/${n} · Attempts: ${P.att || 1}</p>
+      <div class="dots" style="justify-content:center">${t.quiz.map((_, k) => `<button class="dot ${P.ans[k].ok ? 'ok' : 'no'}" data-k="${k}">${k + 1}</button>`).join('')}</div>
+      <div class="btn-row" style="justify-content:center">
+        ${sc < n ? '<button class="btn btn-primary" id="retryWrong">↻ Retry incorrect</button>' : ''}
+        <button class="btn btn-ghost" id="reviewBtn">🔍 Review answers</button>
+        <button class="btn btn-ghost" id="restartBtn">⟲ Restart quiz</button>
+        ${nx ? `<a class="btn ${sc === n ? 'btn-primary' : 'btn-ghost'}" href="#/t/${nx.id}/learn" id="nextTopic">Next: ${esc(nx.title)} →</a>` : '<a class="btn btn-ghost" href="#/">🏠 Home</a>'}
+      </div></div>`;
+    animateRings();
+    if (pct === 100 && !P.celebrated) { P.celebrated = 1; save(); confetti(); }
+    $$('.results .dot').forEach(d => d.onclick = () => { QV.idx = +d.dataset.k; QV.review = true; renderQuiz(t); });
+    $('#reviewBtn').onclick = () => { QV.idx = 0; QV.review = true; renderQuiz(t); };
+    const rw = $('#retryWrong');
+    if (rw) rw.onclick = () => { const w = t.quiz.map((_, k) => k).filter(k => !P.ans[k].ok); w.forEach(k => delete P.ans[k]); P.cur = w[0]; QV = { id: t.id, idx: w[0], review: false, sel: null }; save(); renderTopic(t, 'quiz'); };
+    $('#restartBtn').onclick = () => { if (!confirm('Clear all answers for this topic and start again?')) return; P.ans = {}; P.cur = 0; P.celebrated = 0; QV = { id: t.id, idx: 0, review: false, sel: null }; save(); renderTopic(t, 'quiz'); };
+  }
+
+  /* ---------------- Formula sheet ---------------- */
+  function renderFormulas() {
+    document.title = 'Formula Sheet · GRE Quant Lab';
+    let html = `<div class="thead fade-in"><a class="crumb" href="#/">← All topics</a><h1><span class="ticon">📐</span>Formula Sheet</h1>
+      <p style="color:var(--muted)">Every formula box from every lesson, in one place — perfect for last-minute revision.</p></div>`;
+    CHAPTERS.forEach(ch => {
+      const ts = TOPICS.filter(t => t.ch === ch.id); if (!ts.length) return;
+      html += `<div class="chapter"><h2>${ch.name}</h2></div>`;
+      ts.forEach(t => {
+        const boxes = t.learn.match(/<F t="[^"]*">[\s\S]*?<\/F>/g) || [];
+        if (!boxes.length) return;
+        html += `<section class="card fs-topic fade-in"><h3><span>${t.icon} ${esc(t.title)}</span><a href="#/t/${t.id}/learn">Open lesson →</a></h3>${R2(boxes.join(''))}</section>`;
+      });
+    });
+    view().innerHTML = html;
+  }
+
+  /* ---------------- Settings modal ---------------- */
+  function closeModal() { const m = $('.modal-bg'); if (m) m.remove(); }
+  function openSettings() {
+    closeModal();
+    const code = btoa(unescape(encodeURIComponent(JSON.stringify(S))));
+    const bg = document.createElement('div'); bg.className = 'modal-bg';
+    bg.innerHTML = `<div class="card modal" role="dialog" aria-label="Settings"><h2>Settings & progress</h2>
+      <p>Progress is saved automatically in this browser on this device${storageOK ? '' : ' — <b style="color:var(--bad)">but storage is blocked here, so it will not persist. Open the file in Chrome/Safari directly.</b>'}.</p>
+      <div class="switch-row"><span>Light theme</span><button class="btn btn-ghost" id="themeT">${S.theme === 'light' ? 'On' : 'Off'}</button></div>
+      <h4>📤 Backup / move progress</h4><p>Copy this code and paste it into the app on another device (e.g. your phone) to carry your progress over.</p>
+      <textarea id="expCode" readonly>${code}</textarea><div class="btn-row" style="margin-top:8px"><button class="btn btn-ghost" id="copyCode">Copy code</button></div>
+      <h4>📥 Restore from code</h4><textarea id="impCode" placeholder="Paste a backup code here"></textarea>
+      <div class="btn-row" style="margin-top:8px"><button class="btn btn-primary" id="impBtn">Restore</button></div>
+      <h4>📱 Using it on your phone</h4><p><b>Android:</b> send the HTML file to yourself, download it, then open it with Chrome (Files → tap → Open with Chrome). <b>iPhone:</b> the Files preview can't save progress — upload the file to any free static host (e.g. Netlify Drop, GitHub Pages) and open the link in Safari; "Add to Home Screen" makes it feel like an app.</p>
+      <h4 style="color:var(--bad)">Danger zone</h4><div class="btn-row"><button class="btn btn-ghost" id="resetAll">Reset all progress</button><button class="btn btn-ghost" id="clearBoards">Clear all whiteboards</button></div>
+      <div class="btn-row" style="margin-top:20px;justify-content:flex-end"><button class="btn btn-primary" id="closeM">Done</button></div></div>`;
+    document.body.appendChild(bg);
+    bg.onclick = e => { if (e.target === bg) closeModal(); };
+    $('#closeM').onclick = closeModal;
+    $('#themeT').onclick = () => { S.theme = S.theme === 'light' ? 'dark' : 'light'; applyTheme(); save(); $('#themeT').textContent = S.theme === 'light' ? 'On' : 'Off'; WB.redraw(); };
+    $('#copyCode').onclick = () => { const ta = $('#expCode'); ta.select(); (navigator.clipboard ? navigator.clipboard.writeText(ta.value) : Promise.reject()).then(() => toast('Backup code copied'), () => { document.execCommand('copy'); toast('Backup code copied'); }); };
+    $('#impBtn').onclick = () => {
+      try { const s = JSON.parse(decodeURIComponent(escape(atob($('#impCode').value.trim())))); if (!s || s.v !== 1) throw 0; S = Object.assign(fresh(), s); save(); applyTheme(); closeModal(); QV.id = null; route(); toast('✅ Progress restored'); }
+      catch (e) { toast('That code is not valid'); }
+    };
+    $('#resetAll').onclick = () => { if (!confirm('Erase ALL quiz progress? This cannot be undone.')) return; const th = S.theme; S = fresh(); S.theme = th; save(); QV.id = null; closeModal(); route(); toast('Progress reset'); };
+    $('#clearBoards').onclick = () => { if (!confirm('Erase every whiteboard drawing?')) return; WB.clearAll(); toast('All whiteboards cleared'); };
+  }
+
+  /* ---------------- Whiteboard ---------------- */
+  const WB = (() => {
+    const COLORS = ['ink', '#818cf8', '#38bdf8', '#34d399', '#fbbf24', '#f87171', '#94a3b8'];
+    const PK = 'greql_wbpref', BK = 'greql_wb_';
+    let pref = { tool: 'pen', color: 'ink', pen: 3, eraser: 28, paper: false, h: 60, big: false };
+    try { Object.assign(pref, JSON.parse(localStorage.getItem(PK) || '{}')); } catch (e) { }
+    if (typeof pref.h !== 'number' || isNaN(pref.h) || pref.h < 30 || pref.h > 95) {
+      pref.h = 60;
+    }
+    let el, stage, cv, ctx, dpr = 1, W = 0, H = 0, key = null, strokes = [], redoS = [], cur = null;
+    let isDrawing = false, activeId = null, isOpen = false, lastCleared = null;
+    const savePref = () => { try { localStorage.setItem(PK, JSON.stringify(pref)); } catch (e) { } };
+    const ink = c => c === 'ink' ? (pref.paper ? '#1b1f3a' : '#f1f3ff') : c;
+    const icon = {
+      pen: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>',
+      eraser: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m7 21-4.3-4.3a1 1 0 0 1 0-1.4l10-10a1 1 0 0 1 1.4 0l5.6 5.6a1 1 0 0 1 0 1.4L11 21"/><path d="M22 21H7"/><path d="m5 11 9 9"/></svg>',
+      undo: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 14 4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11"/></svg>',
+      redo: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 14 5-5-5-5"/><path d="M20 9H9.5a5.5 5.5 0 0 0 0 11H13"/></svg>',
+      trash: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>',
+      paper: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M6.3 17.7l-1.4 1.4M19.1 4.9l-1.4 1.4"/></svg>',
+      expand: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>',
+      close: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>'
+    };
+    function build() {
+      el = $('#wb');
+      el.innerHTML = `<div class="wb-handle" id="wbHandle" title="Drag to resize"><i></i></div>
+        <div class="wb-bar">
+          <button class="tool" id="wbClose" title="Close board (Esc)">${icon.close}</button>
+          <div class="wb-title">✏️ Rough work <small id="wbName"></small></div><span class="wb-sep"></span>
+          <button class="tool" id="wbPen" title="Pen">${icon.pen}</button><button class="tool" id="wbEraser" title="Eraser">${icon.eraser}</button>
+          <span class="wb-sep"></span>
+          ${COLORS.map((c, k) => `<button class="swatch" id="wbC${k}" data-c="${c}" title="Ink colour" style="background:${c === 'ink' ? 'linear-gradient(135deg,#f1f3ff 50%,#1b1f3a 50%)' : c}"></button>`).join('')}
+          <span class="wb-sep"></span>
+          <label class="size-ctl" title="Size"><span class="size-prev"><i id="wbPrev"></i></span><input type="range" id="wbSize" min="1" max="40" aria-label="Ink size"><span class="size-val" id="wbVal"></span></label>
+          <span class="wb-sep"></span>
+          <button class="tool" id="wbUndo" title="Undo">${icon.undo}</button><button class="tool" id="wbRedo" title="Redo">${icon.redo}</button>
+          <button class="tool" id="wbClear" title="Clear board">${icon.trash}</button>
+          <button class="tool" id="wbPaper" title="Dark / paper background">${icon.paper}</button><button class="tool" id="wbBig" title="Bigger board">${icon.expand}</button>
+        </div>
+        <div class="wb-stage" id="wbStage"><canvas id="wbCanvas"></canvas><div class="wb-empty" id="wbEmpty">Scribble your rough work here ✍️<br>Pick pen size & colour above · use the eraser to fix mistakes</div></div>`;
+      stage = $('#wbStage'); cv = $('#wbCanvas'); ctx = cv.getContext('2d');
+      $('#wbClose').onclick = close;
+      $('#wbPen').onclick = () => setTool('pen'); $('#wbEraser').onclick = () => setTool('eraser');
+      $$('.swatch', el).forEach(s => s.onclick = () => { pref.color = s.dataset.c; setTool('pen'); });
+      $('#wbSize').oninput = e => { pref[pref.tool] = +e.target.value; syncUI(); savePref(); };
+      $('#wbUndo').onclick = undo; $('#wbRedo').onclick = redo;
+      $('#wbClear').onclick = () => { if (!strokes.length) return; lastCleared = strokes; strokes = []; redoS = []; persist(); redraw(); toast('Board cleared', 'Undo', () => { strokes = lastCleared; persist(); redraw(); }); };
+      $('#wbPaper').onclick = () => { pref.paper = !pref.paper; savePref(); syncUI(); redraw(); };
+      $('#wbBig').onclick = () => { pref.big = !pref.big; savePref(); applySize(); setTimeout(fit, 100); };
+      
+      // Pointer events for modern touch & mouse
+      cv.addEventListener('pointerdown', down);
+      window.addEventListener('pointermove', move, { passive: false });
+      window.addEventListener('pointerup', up);
+      window.addEventListener('pointercancel', cancel);
+
+      // Dedicated TouchEvent fallbacks with { passive: false } to guarantee prevention of mobile gestures
+      cv.addEventListener('touchstart', e => {
+        if (!window.PointerEvent) down(e);
+      }, { passive: false });
+      cv.addEventListener('touchmove', e => {
+        e.preventDefault(); // Prevents page scrolling behind whiteboard during mobile touch
+        if (!window.PointerEvent) move(e);
+      }, { passive: false });
+      cv.addEventListener('touchend', e => {
+        if (!window.PointerEvent) up(e);
+      });
+      cv.addEventListener('touchcancel', e => {
+        if (!window.PointerEvent) cancel(e);
+      });
+
+      if (window.ResizeObserver) {
+        new ResizeObserver(() => requestAnimationFrame(fit)).observe(stage);
+      }
+      window.addEventListener('resize', () => { applySize(); fit(); });
+      window.addEventListener('orientationchange', () => { setTimeout(() => { applySize(); fit(); }, 200); });
+
+      // drag-to-resize (mobile bottom sheet handle)
+      const hd = $('#wbHandle');
+      if (hd) {
+        const startDrag = e => {
+          if (e.cancelable) e.preventDefault();
+          el.classList.add('dragging');
+          const getY = ev => (ev.touches && ev.touches[0]) ? ev.touches[0].clientY : ev.clientY;
+          const mv = ev => {
+            const cy = getY(ev);
+            if (typeof cy === 'number') {
+              const vh = Math.max(26, Math.min(92, ((window.innerHeight - cy) / window.innerHeight) * 100));
+              pref.h = Math.round(vh);
+              pref.big = false;
+              applySize();
+            }
+          };
+          const end = () => {
+            el.classList.remove('dragging');
+            window.removeEventListener('pointermove', mv);
+            window.removeEventListener('pointerup', end);
+            window.removeEventListener('touchmove', mv);
+            window.removeEventListener('touchend', end);
+            savePref();
+            setTimeout(fit, 40);
+          };
+          window.addEventListener('pointermove', mv, { passive: false });
+          window.addEventListener('pointerup', end);
+          window.addEventListener('touchmove', mv, { passive: false });
+          window.addEventListener('touchend', end);
+        };
+        hd.addEventListener('pointerdown', startDrag);
+        hd.addEventListener('touchstart', startDrag, { passive: false });
+      }
+      applySize(); syncUI();
+    }
+    function applySize() {
+      if (el) {
+        el.classList.toggle('expanded', !!pref.big);
+        el.style.height = pref.big ? '94vh' : (window.innerWidth < 768 ? '85vh' : '82vh');
+      }
+      const bigBtn = $('#wbBig');
+      if (bigBtn) bigBtn.classList.toggle('active', !!pref.big);
+      setTimeout(fit, 60);
+    }
+    function setTool(t) { pref.tool = t; savePref(); syncUI(); }
+    function syncUI() {
+      $('#wbPen').classList.toggle('active', pref.tool === 'pen'); $('#wbEraser').classList.toggle('active', pref.tool === 'eraser');
+      $$('.swatch', el).forEach(s => s.classList.toggle('active', pref.tool === 'pen' && s.dataset.c === pref.color));
+      const sz = $('#wbSize'), er = pref.tool === 'eraser';
+      sz.min = er ? 6 : 1; sz.max = er ? 80 : 30; sz.value = pref[pref.tool];
+      $('#wbVal').textContent = pref[pref.tool];
+      const d = Math.min(28, pref[pref.tool]), p = $('#wbPrev');
+      p.style.width = p.style.height = d + 'px';
+      p.style.background = er ? 'transparent' : (pref.color === 'ink' ? '#f1f3ff' : pref.color);
+      p.style.border = er ? '1.5px dashed var(--muted)' : 'none';
+      stage.classList.toggle('paper', pref.paper); stage.classList.toggle('dark', !pref.paper); stage.classList.toggle('erasing', er);
+      $('#wbPaper').classList.toggle('active', pref.paper);
+      $('#wbUndo').disabled = !strokes.length; $('#wbRedo').disabled = !redoS.length;
+      $('#wbUndo').style.opacity = strokes.length ? 1 : .4; $('#wbRedo').style.opacity = redoS.length ? 1 : .4;
+      $('#wbEmpty').style.opacity = strokes.length || cur ? 0 : 1;
+    }
+    function fit() {
+      if (!stage || !cv) return;
+      const newW = stage.clientWidth, newH = stage.clientHeight;
+      if (!newW || !newH) return;
+      const newDpr = Math.min(window.devicePixelRatio || 1, 2.5);
+      const targetW = Math.round(newW * newDpr);
+      const targetH = Math.round(newH * newDpr);
+      if (cv.width === targetW && cv.height === targetH && W === newW && H === newH && dpr === newDpr) {
+        return; // Size hasn't changed; avoid clearing canvas bitmap
+      }
+      W = newW; H = newH; dpr = newDpr;
+      cv.width = targetW; cv.height = targetH;
+      cv.style.width = W + 'px'; cv.style.height = H + 'px';
+      redraw();
+    }
+    function style(s) {
+      ctx.globalCompositeOperation = s.t === 'e' ? 'destination-out' : 'source-over';
+      ctx.strokeStyle = ctx.fillStyle = s.t === 'e' ? '#000' : ink(s.c);
+      ctx.lineWidth = s.s; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+    }
+    function drawStroke(s) {
+      const p = s.p; style(s); ctx.beginPath();
+      if (p.length <= 2) { ctx.arc(p[0], p[1], s.s / 2, 0, Math.PI * 2); ctx.fill(); return; }
+      ctx.moveTo(p[0], p[1]);
+      for (let k = 2; k < p.length - 2; k += 2) ctx.quadraticCurveTo(p[k], p[k + 1], (p[k] + p[k + 2]) / 2, (p[k + 1] + p[k + 3]) / 2);
+      ctx.lineTo(p[p.length - 2], p[p.length - 1]); ctx.stroke();
+    }
+    function redraw() {
+      if (!ctx || !cv.width || !cv.height) return;
+      ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.globalCompositeOperation = 'source-over'; ctx.clearRect(0, 0, cv.width, cv.height);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      strokes.forEach(drawStroke); if (cur) drawStroke(cur);
+      syncUI();
+    }
+    const pos = e => {
+      const r = cv.getBoundingClientRect();
+      let cx, cy;
+      if (e.touches && e.touches.length > 0) {
+        cx = e.touches[0].clientX; cy = e.touches[0].clientY;
+      } else if (e.changedTouches && e.changedTouches.length > 0) {
+        cx = e.changedTouches[0].clientX; cy = e.changedTouches[0].clientY;
+      } else {
+        cx = e.clientX; cy = e.clientY;
+      }
+      return [
+        Math.round((cx - r.left) * 10) / 10,
+        Math.round((cy - r.top) * 10) / 10
+      ];
+    };
+    function down(e) {
+      if (isDrawing) return;
+      if (e.pointerType === 'mouse' && e.button !== 0) return;
+      if (e.cancelable) e.preventDefault();
+      isDrawing = true;
+      activeId = e.pointerId !== undefined ? e.pointerId : (e.touches && e.touches[0] ? e.touches[0].identifier : 'touch');
+      try { if (e.pointerId !== undefined && cv.setPointerCapture) cv.setPointerCapture(e.pointerId); } catch (er) { }
+      const er = pref.tool === 'eraser', [x, y] = pos(e);
+      cur = { t: er ? 'e' : 'p', c: pref.color, s: pref[pref.tool], p: [x, y] };
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0); drawStroke(cur); $('#wbEmpty').style.opacity = '0';
+    }
+    function move(e) {
+      if (!isDrawing || !cur) return;
+      if (activeId !== 'touch' && e.pointerId !== undefined && e.pointerId !== activeId) return;
+      if (e.cancelable) e.preventDefault();
+      const evs = (e.getCoalescedEvents && typeof e.getCoalescedEvents === 'function') ? e.getCoalescedEvents() : [e];
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0); style(cur);
+      for (const ev of (evs.length ? evs : [e])) {
+        const [x, y] = pos(ev), p = cur.p, lx = p[p.length - 2], ly = p[p.length - 1];
+        if (Math.abs(x - lx) + Math.abs(y - ly) < 1.2) continue;
+        ctx.beginPath(); ctx.moveTo(lx, ly); ctx.lineTo(x, y); ctx.stroke();
+        p.push(x, y);
+      }
+    }
+    function up(e) {
+      if (!isDrawing) return;
+      if (activeId !== 'touch' && e && e.pointerId !== undefined && e.pointerId !== activeId) return;
+      try { if (e && e.pointerId !== undefined && cv.releasePointerCapture) cv.releasePointerCapture(e.pointerId); } catch (er) { }
+      if (cur && cur.p && cur.p.length >= 2) {
+        strokes.push(cur);
+        redoS = [];
+        persist();
+      }
+      cur = null;
+      isDrawing = false;
+      activeId = null;
+      redraw();
+    }
+    function cancel(e) {
+      if (!isDrawing) return;
+      try { if (e && e.pointerId !== undefined && cv.releasePointerCapture) cv.releasePointerCapture(e.pointerId); } catch (er) { }
+      cur = null;
+      isDrawing = false;
+      activeId = null;
+      redraw();
+    }
+    function undo() { if (!strokes.length) return; redoS.push(strokes.pop()); persist(); redraw(); }
+    function redo() { if (!redoS.length) return; strokes.push(redoS.pop()); persist(); redraw(); }
+    function persist() {
+      if (!key) return;
+      try { if (strokes.length) localStorage.setItem(BK + key, JSON.stringify(strokes)); else localStorage.removeItem(BK + key); }
+      catch (e) { toast('⚠️ Whiteboard storage full — clear an old board'); }
+    }
+    function setKey(k) {
+      if (k === key) return;
+      key = k; redoS = []; cur = null; isDrawing = false; activeId = null;
+      try { strokes = JSON.parse(localStorage.getItem(BK + k) || '[]'); } catch (e) { strokes = []; }
+      $('#wbName').textContent = '· ' + (k === 'home' ? 'General' : TMAP[k].title);
+      redraw();
+    }
+    function open() {
+      isOpen = true;
+      document.body.classList.add('wb-open');
+      applySize();
+      requestAnimationFrame(() => {
+        fit();
+        setTimeout(fit, 60);
+        setTimeout(fit, 200);
+        setTimeout(fit, 450);
+      });
+    }
+    function close() {
+      isOpen = false;
+      document.body.classList.remove('wb-open');
+    }
+    function clearAll() { Object.keys(localStorage).filter(k => k.startsWith(BK)).forEach(k => localStorage.removeItem(k)); strokes = []; redoS = []; redraw(); }
+    return { build, open, close, toggle: () => isOpen ? close() : open(), setKey, redraw, clearAll, get isOpen() { return isOpen; }, undo, redo, setTool };
+  })();
+
+  /* ---------------- Boot ---------------- */
+  function boot() {
+    applyTheme(); WB.build();
+    $('#fab').onclick = WB.open;
+    const topWb = $('#topbarWbBtn'); if (topWb) topWb.onclick = WB.toggle;
+    const bdrop = $('#wbBackdrop'); if (bdrop) bdrop.onclick = WB.close;
+    $('#settingsBtn').onclick = openSettings;
+    $('#themeBtn').onclick = () => { S.theme = S.theme === 'light' ? 'dark' : 'light'; applyTheme(); save(); WB.redraw(); };
+    document.addEventListener('keydown', e => {
+      if ($('.modal-bg')) { if (e.key === 'Escape') closeModal(); return; }
+      const tag = (e.target.tagName || '').toLowerCase();
+      if (e.key === 'Escape' && WB.isOpen) { WB.close(); return; }
+      if (WB.isOpen && (e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'z') { e.preventDefault(); e.shiftKey ? WB.redo() : WB.undo(); return; }
+      if (tag === 'input' || tag === 'textarea' || e.ctrlKey || e.metaKey || e.altKey) return;
+      if (!$('#qcard')) return;
+      const k = e.key.toLowerCase(), pos = LET.toLowerCase().indexOf(k) >= 0 ? LET.toLowerCase().indexOf(k) : (/^[1-8]$/.test(k) ? +k - 1 : -1);
+      if (pos >= 0) { const b = $('#opt-' + pos); if (b && !b.disabled) { b.click(); e.preventDefault(); } }
+      else if (e.key === 'Enter') { const a = $('#qAct'); if (a && !a.disabled) { a.click(); e.preventDefault(); } }
+    });
+    window.addEventListener('hashchange', route);
+    route();
+    if (!storageOK) setTimeout(() => toast('⚠️ This viewer blocks storage — progress will not be saved. Open the file in Chrome or Safari.', null, null, 7000), 600);
+  }
+  boot();
+})();
+
+  </script>
+</body>
+</html>
